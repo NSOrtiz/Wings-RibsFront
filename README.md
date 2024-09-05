@@ -1,8 +1,4 @@
-# React + Vite
+Colores y texto en CSS/colors_text
+Iconos en public formato svg, obetnidos de https://fonts.google.com/icons?icon.style=Rounded&icon.size=24&icon.color=%235f6368&selected=Material+Symbols+Rounded:sell:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=shopp,
+si se desean agregar mas, favor de descargar en formato svg y colocarlos en la carpeta
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
