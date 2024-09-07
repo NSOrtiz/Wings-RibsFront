@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBtn from './NavBtn';
+import '../CSS/colors_text.css';
 
 export default function NavBar() {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import '../CSS/colors_text.css';
 
 export default function NavBar() {
   const buttons = ['Log In', 'Register'];
