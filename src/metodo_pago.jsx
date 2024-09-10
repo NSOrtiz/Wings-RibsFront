@@ -26,7 +26,7 @@ const MetodoDePago = () => {
         <div className="flex flex-wrap justify-center mb-4">
           <img src="visa-logo.png" alt="Visa Logo" className="w-24 h-24 mr-4" />
           <img src="paypal-logo.png" alt="PayPal Logo" className="w-24 h-24 mr-4" />
-          {/* Agrega más logos de pago aquí */}
+          {/**/}
         </div>
       </div>
       <div className="flex flex-col mb-4">
