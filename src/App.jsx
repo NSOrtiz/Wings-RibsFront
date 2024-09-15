@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -16,3 +17,18 @@ export default function App() {
     </BrowserRouter>
   );
 }
+=======
+import React from 'react';
+
+import Menu1 from './pages/menusucursal';
+
+function App() {
+  return (
+    <main className="w-full h-dvh">
+      <Menu1 />
+    </main>
+  );
+}
+
+export default App;
+>>>>>>> 436b045ffe8ec1ef1d910251204b0da86e1e52b1
