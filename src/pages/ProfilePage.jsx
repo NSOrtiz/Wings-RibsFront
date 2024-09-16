@@ -1,4 +1,4 @@
-import NavBar from './NavBar';
+import NavBar from '../components/NavBar';
 import React from 'react';
 
 export default function ProfilePage() {
@@ -23,6 +23,7 @@ export default function ProfilePage() {
               and take in some sunshine? We have a list of places to do just
               that.
             </p>
+            <div>Gerardo </div>
           </div>
         </div>
       </div>
