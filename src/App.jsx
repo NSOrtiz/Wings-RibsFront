@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import Menu1 from './pages/menusucursal';
 import React from 'react';
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/home/menu" element={<Menu1 />} />
       </Routes>
     </BrowserRouter>
   );

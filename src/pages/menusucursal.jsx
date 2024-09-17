@@ -1,13 +1,13 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import '../CSS/colors_text.css';
-import Colorstest from '../components/Colors';
+//import Colorstest from '../components/Colors';
 
 export default function Menu1() {
   return (
     <main className="w-full h-dvh flex flex-col items-center gap-[28px]">
       <NavBar />
-      <Colorstest />
+
       <section className="w-full flex flex-col gap-[28px] items-center">
         <div className="w-full flex flex-row justify-between px-[80px]">
           <h1 className="">Menu Sucursal Paseo Loma Real</h1>
