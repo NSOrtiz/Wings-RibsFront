@@ -1,40 +1,74 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+
 export default function Categories() {
   const categories = [
-    {
-      category: 'Games',
-      Icon: 'https://static-cdn.jtvnw.net/c3-vg/verticals/gaming.svg',
-    },
-    {
-      category: 'IRL',
-      Icon: 'https://static-cdn.jtvnw.net/c3-vg/verticals/irl.svg',
-    },
-    {
-      category: 'Music',
-      Icon: 'https://static-cdn.jtvnw.net/c3-vg/verticals/music.svg',
-    },
-    {
-      category: 'Creative',
-      Icon: 'https://static-cdn.jtvnw.net/c3-vg/verticals/creative.svg',
-    },
-    {
-      category: 'Sports',
-      Icon: 'https://static-cdn.jtvnw.net/c3-vg/verticals/esports.svg',
-    },
+    'Promociones',
+    'Combos',
+    'Wings',
+    'Bonles',
+    'Snacks',
+    'Ribs',
+    'Burguers & Dogs',
+    'Charolas',
+    'Ensaldas',
+    'Combos',
+    'Bebidas',
   ];
+
+  const scrollContainer = useRef(null);
+  let scrollInterval = null;
+
+  const handleMouseMove = (e) => {
+    const container = scrollContainer.current;
+    const { left, right } = container.getBoundingClientRect();
+
+    if (e.clientX < left + 50) {
+      startScrolling(-5);
+    } else if (e.clientX > right - 50) {
+      startScrolling(5);
+    } else {
+      stopScrolling();
+    }
+  };
+
+  const startScrolling = (speed) => {
+    if (!scrollInterval) {
+      scrollInterval = setInterval(() => {
+        scrollContainer.current.scrollLeft += speed;
+      }, 20);
+    }
+  };
+
+  const stopScrolling = () => {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
+  };
+
+  useEffect(() => {
+    const container = scrollContainer.current;
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mouseleave', stopScrolling);
+
+    return () => {
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseleave', stopScrolling);
+    };
+  }, []);
   return (
-    <div className="mt-2 h-[60px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-      {categories.map((item) => {
+    <div
+      ref={scrollContainer}
+      className="flex flex-row w-full gap-2 overflow-x-auto scrollbar-hide"
+    >
+      {categories.map((btn) => {
         return (
-          <div
-            key={item.category}
-            className="flex flex-row w-[90%] h-[40px] mt-5 items-center justify-between pl-3 pr-3 bg-[#4c31c4] rounded-md hover:bg-[#7637D3] cursor-pointer"
+          <button
+            key={`btn-${btn}`}
+            id="ubuntu-bold"
+            className="text-amber-500 border-solid border-amber-500 px-[16px] py-[4px] border-2 text-center rounded-full text-[12px] lg:text-[16px] shadow-md hover:bg-amber-500 hover:text-neutral-100 min-w-fit"
           >
-            <label className="text-white font-Inter font-semibold text-2xl">
-              {item.category}
-            </label>
-            <img src={item.Icon} className="w-[60px] h-[60px]" alt="" />
-          </div>
+            {' '}
+            {btn}
+          </button>
         );
       })}
     </div>

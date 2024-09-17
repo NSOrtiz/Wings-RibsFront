@@ -1,13 +1,20 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
+import Menu1 from './pages/Menusucursal';
 import React from 'react';
 
-import Menu1 from './pages/menusucursal';
-
-function App() {
+export default function App() {
   return (
-    <main className="w-full h-dvh">
-      <Menu1 />
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/home/menu" element={<Menu1 />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
