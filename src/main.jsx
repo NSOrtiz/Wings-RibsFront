@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Confirmacioncom from './Confirmacion-com.jsx'
+import EstatusDePedido from './Estatus-de-pedido.jsx'
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -18,6 +19,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/Confirmacion-com" element={<Confirmacioncom />} />
+        <Route path="/Estatus-de-pedido" element={<EstatusDePedido />} />
+        
       </Routes>
     </Router>
   </StrictMode>
