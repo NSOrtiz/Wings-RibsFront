@@ -11,7 +11,7 @@ export default function MetodoDePago() {
           className="flex flex-col items-center gap-4 px-[80px] py-0 flex-1"
           style={{ padding: '0px 80px', background: 'rgba(255, 255, 255, 0.08)' }}
         >
-          {/* Contenedor interno con la disposición solicitada */}
+          {/* Contenedor interno */}
           <div
             className="flex flex-col items-center gap-4"
             style={{ padding: '0px 80px', flex: '1 0 0' }}
@@ -51,40 +51,14 @@ export default function MetodoDePago() {
               </h3>
             </div>
 
-            {/* Contenedor para los detalles de tarjeta */}
-            <div
-              className="flex flex-col items-start gap-4 p-8 self-stretch"
-              style={{
-                display: 'flex',
-                padding: '8px',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '16px',
-                alignSelf: 'stretch',
-              }}
-            >
-              {/* Título "Tipo de tarjeta" con los estilos solicitados */}
-              <div
-                className="text-[#242828] font-Ubuntu text-[20px] font-[700] leading-normal tracking-[0.2px]"
-                style={{
-                  color: 'var(--Primary-Gris-950, #242828)',
-                  fontFamily: 'Ubuntu',
-                  fontSize: '20px',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  lineHeight: 'normal',
-                  letterSpacing: '0.2px',
-                }}
-              >
-                Tipo de tarjeta
-              </div>
-
+            {/* Formulario */}
+            <form className="w-full">
               {/* Contenedor para las imágenes de tipo de tarjeta */}
               <div
                 className="flex justify-between w-full"
                 style={{
                   display: 'flex',
-                  gap: '0px', // Sin gap, distribución uniforme
+                  gap: '0px',
                 }}
               >
                 <img
@@ -105,17 +79,7 @@ export default function MetodoDePago() {
               </div>
 
               {/* Formulario para los inputs */}
-              <form
-                className="flex flex-col items-center gap-4 p-8 self-stretch"
-                style={{
-                  display: 'flex',
-                  padding: '8px',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '16px',
-                  alignSelf: 'stretch',
-                }}
-              >
+              <div className="flex flex-col items-center gap-4 p-8 self-stretch">
                 {/* Input "Nombre del titular de la tarjeta" */}
                 <div className="w-full flex flex-col">
                   <label
@@ -126,7 +90,7 @@ export default function MetodoDePago() {
                   <input
                     type="text"
                     className="w-full border-[#667473] border-[1px] rounded-[4px] bg-[#FFF] p-[12px]"
-                    placeholder="Nombre en la tarjeta"
+                    placeholder="Nombre en la sucursal"
                   />
                 </div>
 
@@ -174,8 +138,8 @@ export default function MetodoDePago() {
                     />
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
 
             {/* Contenedor de subtotales y totales */}
             <div
@@ -250,3 +214,4 @@ export default function MetodoDePago() {
     </div>
   );
 }
+ 
