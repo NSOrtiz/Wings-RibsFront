@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {},
   },
-  fontFamily: {
-    body: ['Ubuntu', 'system-ui'],
-  },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+    require('tailwind-scrollbar-hide'),
+  ],
 };
