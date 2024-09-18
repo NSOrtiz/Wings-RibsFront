@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 
 import LogoPR from '../assets/W&R2.png';
 import { useNavigate } from 'react-router-dom';
+=======
+import React from 'react';
+>>>>>>> 8636628f8d66f4a5e62bf61e0a0b5b5c982b2e30
 
 export default function RegisterPage() {
   const {
@@ -44,7 +48,7 @@ export default function RegisterPage() {
                   <div id="ubuntu-medium">
                     <img
                       className="mx-auto"
-                      src={LogoPR}
+                      src="/images/W&R2.png"
                       height="115px"
                       width="223px"
                     ></img>
