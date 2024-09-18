@@ -1,7 +1,12 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
 
 function EstatusDePedido() {
   return (
+    <main>
+      <NavBar />
+      <section>
+
     <div className="flex items-center justify-center min-h-screen bg-neutral-200">
       <div className="p-4 max-w-5xl md:max-w-7xl w-full ">
         <div className="flex flex-col lg:flex-row md:flex-col space-y-4 lg:space-y-0 lg:space-x-4">
@@ -148,6 +153,8 @@ function EstatusDePedido() {
         </div>
       </div>
     </div>
+      </section>
+    </main>
   );
 }
 

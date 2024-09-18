@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import NavBar from '../components/NavBar';
 import React from 'react';
-import LogoPR from '../assets/W&R2.png';
 
 export default function RegisterPage() {
   const { register } = useForm();
@@ -18,7 +17,7 @@ export default function RegisterPage() {
                   <div id="ubuntu-medium">
                     <img
                       className="mx-auto"
-                      src={LogoPR}
+                      src="/images/W&R2.png"
                       height="115px"
                       width="223px"
                     ></img>

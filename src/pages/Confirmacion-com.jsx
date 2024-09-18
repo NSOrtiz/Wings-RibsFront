@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar';
 
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,6 +8,10 @@ function Confirmacioncom() {
   };
 
   return (
+    <main>
+      <NavBar />
+      <section>
+
     <div className="flex items-center justify-center min-h-screen bg-neutral-200 p-4">
       <div className="p-6 max-w-7xl w-full rounded-lg shadow-md">
         <h1 id='ubuntu-bold' className="text-[32px] mb-10 text-center text-amber-500">Confirmar compra</h1>
@@ -131,6 +136,8 @@ function Confirmacioncom() {
         </div>
       </div>
     </div>
+      </section>
+    </main>
   );
 }
 
