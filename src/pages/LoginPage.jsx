@@ -1,11 +1,8 @@
 import { useForm } from 'react-hook-form';
 import NavBar from '../components/NavBar';
 import React from 'react';
-<<<<<<< HEAD
 import LogoPR from '../assets/W&R2.png';
 import { useAuth } from '../context/AuthContext';
-=======
->>>>>>> 8636628f8d66f4a5e62bf61e0a0b5b5c982b2e30
 
 export default function LoginPage() {
   const {
@@ -21,7 +18,6 @@ export default function LoginPage() {
 
   return (
     <>
-<<<<<<< HEAD
       <div>
         <NavBar />
         <div className="max-w-full mx-auto bg-slate-50 p-10 rounded-sm md:max-w-5xl">
@@ -95,25 +91,6 @@ export default function LoginPage() {
                       <input type="checkbox" name="check" />
                       <p className="text-center text-[16px]">
                         Acepto los terminos y condiciones
-=======
-      <>
-        <div>
-          <NavBar />
-          <div className="max-w-full mx-auto bg-slate-50 p-10 rounded-sm md:max-w-5xl">
-            <div className="flex">
-              <div className="py-2 w-full">
-                <form>
-                  <div className="p-4">
-                    <div id="ubuntu-medium">
-                      <img
-                        className="mx-auto"
-                        src="/images/W&R2.png"
-                        height="115px"
-                        width="223px"
-                      ></img>
-                      <p className="text-center text-2xl text-amber-600 p-2 ">
-                        Inicio
->>>>>>> 8636628f8d66f4a5e62bf61e0a0b5b5c982b2e30
                       </p>
                     </div>
                     <br />
