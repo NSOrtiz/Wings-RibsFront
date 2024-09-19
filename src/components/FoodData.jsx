@@ -1,8 +1,7 @@
 import Cards from './Cards';
 import React from 'react';
-import '../CSS/colors_text.css';
 
-export default function Games() {
+export default function Food() {
   const cardsData = [
     {
       item: 'Wings 8 piezas',

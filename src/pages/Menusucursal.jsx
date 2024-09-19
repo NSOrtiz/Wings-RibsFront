@@ -1,8 +1,9 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Categories from '../components/Categories';
-import Games from '../components/FoodData';
-import '../CSS/colors_text.css';
+import Food from '../components/FoodData';
+import Cart from '../components/ShoppingCart';
+import Footer from '../components/Footer';
 
 export default function Menu1() {
   return (
@@ -25,10 +26,12 @@ export default function Menu1() {
         </div>
         <Categories />
         <section className="flex flex-row">
-          <Games />
+          <Food />
+          <Cart />
           <aside className="flex"></aside>
         </section>
       </section>
+      <Footer />
     </main>
   );
 }
