@@ -1,9 +1,28 @@
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
-import React from 'react';
+import React, { useEffect } from 'react';
+
+//import LogoPR from '../assets/W&R2.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
-  const { register } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    //el navigate se puede cambiar una vez terminada la página del menu exclusivo de cliente
+    if (isAuthenticated) navigate('/home/menu');
+  }, [isAuthenticated]);
+
+  const onSubmit = handleSubmit(async (values) => {
+    signup(values);
+  });
 
   return (
     <>
@@ -12,7 +31,16 @@ export default function RegisterPage() {
         <div className="max-w-full mx-auto bg-slate-50 p-10 rounded-sm md:max-w-5xl">
           <div className="flex">
             <div className="py-2 w-full">
-              <form>
+              {registerErrors.map((error, i) => (
+                <div
+                  className="mx-auto rounded-md bg-neutral-800 text-amber-50 py-2 px-2 font-bold w-64 text-center"
+                  key={i}
+                >
+                  console.log(error)
+                  {error}
+                </div>
+              ))}
+              <form onSubmit={onSubmit}>
                 <div className="p-4">
                   <div id="ubuntu-medium">
                     <img
@@ -28,7 +56,7 @@ export default function RegisterPage() {
                 </div>
                 <br />
                 <p className="text-center font-bold text-[16px] text-neutral-500">
-                  Introduce tú correo electrónico
+                  Introduce los datos correctamente
                 </p>
                 <br />
                 <p className="text-neutral-500 font-bold text-[20px]">
@@ -38,8 +66,13 @@ export default function RegisterPage() {
                   type="text"
                   {...register('username', { required: true })}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
-                  placeholder="Nombre"
+                  placeholder="Ingresa tú Nombre"
                 />
+                {errors.username && (
+                  <p className="font-bold text-[20px] text-amber-600 p-2">
+                    Nombre completo es requerido
+                  </p>
+                )}
                 <p className="text-neutral-500 font-bold text-[20px]">
                   Correo electrónico
                 </p>
@@ -47,8 +80,13 @@ export default function RegisterPage() {
                   type="email"
                   {...register('email', { required: true })}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
-                  placeholder="Email"
+                  placeholder="Ingresa tú Correo"
                 />
+                {errors.email && (
+                  <p className="font-bold text-[20px] text-amber-600 p-2">
+                    Correo electrónico es requerido
+                  </p>
+                )}
                 <p className="text-neutral-500 font-bold text-[20px]">
                   Contraseña
                 </p>
@@ -56,8 +94,13 @@ export default function RegisterPage() {
                   type="password"
                   {...register('password', { required: true })}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
-                  placeholder="Contraseña"
+                  placeholder="Ingresa tú Contraseña"
                 />
+                {errors.password && (
+                  <p className="font-bold text-[20px] text-amber-600 p-2">
+                    La contraseña es requerida
+                  </p>
+                )}
                 <div className="flex flex-col w-96 p-5 mx-auto">
                   <div id="ubuntu-medium">
                     <div className="flex p-4 gap-3 w-full  text-amber-500">
@@ -72,7 +115,9 @@ export default function RegisterPage() {
                       type="submit"
                       className=" w-full px-2 py-2 rounded-xl border border-orange-400 bg-amber-500 text-white"
                     >
-                      <p className="font-bold text-lg text-[28px]">Inicio</p>
+                      <p className="font-bold text-lg text-[28px]">
+                        Registrate
+                      </p>
                     </button>
                   </div>
                   <p className="text-center p-3">o</p>
