@@ -1,10 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-import Menu1 from './pages/menusucursal';
+import Menu1 from './pages/Menusucursal';
+import MetodoPago from './pages/metodo_pago';
 import React from 'react';
 import HomePage from './pages/HomePage';
+import Confirmacioncom from './pages/Confirmacion-com';
+import EstatusDePedido from './pages/Estatus-de-pedido';
 
 export default function App() {
   return (
@@ -15,6 +19,9 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/home/menu" element={<Menu1 />} />
+        <Route path="/metodo_pago" element={<MetodoPago />} />
+        <Route path="/Confirmacion-com" element={<Confirmacioncom />} />
+        <Route path="/Estatus-pedido" element={<EstatusDePedido />} />
       </Routes>
     </BrowserRouter>
   );
