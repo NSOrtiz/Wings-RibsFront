@@ -1,8 +1,15 @@
 import React from 'react';
+import imageURL from '../assets/BackgroundHomepage.jpeg';
 
 export default function LocalizadorSucursal() {
   return (
-    <div className="w-full h-[500px] flex-col justify-center items-center gap-2.5 inline-flex">
+    <div
+      className="w-full h-[500px] flex-col justify-center items-center gap-2.5 inline-flex"
+      style={{
+        backgroundImage: `url(${imageURL})`,
+        objectFit: 'scale-down',
+      }}
+    >
       <div className="rounded-[10px] flex-col justify-center items-start gap-2 flex">
         <div className="self-stretch justify-center items-center gap-2 inline-flex">
           <div className="h-11 p-2 bg-[#f39c12] rounded-2xl shadow border border-[#424949] justify-center items-center flex">

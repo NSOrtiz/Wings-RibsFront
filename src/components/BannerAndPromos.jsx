@@ -4,8 +4,7 @@ import CarouselPromociones from './CarouselPromociones';
 
 export default function BannerYPromos() {
   return (
-    <div className="bg-neutral-900 w-full text-white text-center py-4">
-      <p>Banner y promos</p>
+    <div className="w-full">
       <BannerPromo />
       <CarouselPromociones />
     </div>
