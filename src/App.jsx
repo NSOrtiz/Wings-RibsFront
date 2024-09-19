@@ -6,6 +6,8 @@ import ProfilePage from './pages/ProfilePage';
 import Menu1 from './pages/Menusucursal';
 import MetodoPago from './pages/metodo_pago';
 import React from 'react';
+import Confirmacioncom from './pages/Confirmacion-com';
+import EstatusDePedido from './pages/Estatus-de-pedido';
 
 
 export default function App() {
@@ -18,6 +20,8 @@ export default function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/home/menu" element={<Menu1 />} />
         <Route path="/metodo_pago" element={<MetodoPago />} />
+        <Route path="/Confirmacion-com" element={<Confirmacioncom/>} />
+          <Route path="/Estatus-pedido" element={<EstatusDePedido />} />
       </Routes>
     </BrowserRouter>
   );
