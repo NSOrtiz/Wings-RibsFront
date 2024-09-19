@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import Categories from '../components/Categories';
 import Food from '../components/FoodData';
 import Cart from '../components/ShoppingCart';
+import Footer from '../components/Footer';
 
 export default function Menu1() {
   return (
@@ -30,6 +31,7 @@ export default function Menu1() {
           <aside className="flex"></aside>
         </section>
       </section>
+      <Footer />
     </main>
   );
 }
