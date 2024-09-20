@@ -4,7 +4,7 @@ import imageURL from '../assets/BackgroundHomepage.jpeg';
 export default function LocalizadorSucursal() {
   return (
     <div
-      className="w-full h-[500px] flex-col justify-center items-center gap-2.5 inline-flex"
+      className="w-full h-[500px] flex-col justify-center items-center gap-2.5 inline-flex pt-10 px-4"
       style={{
         backgroundImage: `url(${imageURL})`,
         objectFit: 'scale-down',
