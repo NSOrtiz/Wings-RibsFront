@@ -1,5 +1,6 @@
 import Cards from './Cards';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function CarouselPromociones() {
   const cardsData = [
@@ -364,26 +365,87 @@ export default function CarouselPromociones() {
 
   const discountedCards = cardsData.filter((card) => card.discount > 0);
 
-  return (
-    <section className="w-full">
-      <div className="w-full rounded-t-lg bg-neutral-900 p-4 my-4">
-        <h3 className="text-2xl font-bold text-amber-500">Promociones</h3>
-      </div>
-      <div className="flex flex-wrap overflow-x-scroll scrolling-touch items-start mb-8 gap-4">
-        {discountedCards.map((data) => {
-          return (
+  const CardsContainer = ({ discountedCards }) => {
+    const scrollContainer = useRef(null);
+    const [scrollInterval, setScrollInterval] = useState(null);
+
+    const handleMouseMove = (e) => {
+      const container = scrollContainer.current;
+      const { left, right } = container.getBoundingClientRect();
+      const buffer = 30;
+
+      if (e.clientX < left + buffer) {
+        startScrolling(-5);
+      } else if (e.clientX > right - 20) {
+        startScrolling(5);
+      } else {
+        stopScrolling();
+      }
+    };
+
+    const startScrolling = (speed) => {
+      if (!scrollInterval) {
+        const interval = setInterval(() => {
+          scrollContainer.current.scrollLeft += speed;
+        }, 20);
+        setScrollInterval(interval);
+      }
+    };
+
+    const stopScrolling = () => {
+      if (scrollInterval) {
+        clearInterval(scrollInterval);
+        setScrollInterval(null);
+      }
+    };
+
+    useEffect(() => {
+      const container = scrollContainer.current;
+      container.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseleave', stopScrolling);
+
+      return () => {
+        container.removeEventListener('mousemove', handleMouseMove);
+        container.removeEventListener('mouseleave', stopScrolling);
+        stopScrolling();
+      };
+    }, [scrollInterval]);
+
+    return (
+      <div
+        ref={scrollContainer}
+        className="flex flex-row gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+        style={{ width: '100vw', whiteSpace: 'nowrap', overflowX: 'scroll' }}
+      >
+        {discountedCards.map((data) => (
+          <div key={`card-${data.item}`} className="snap-start">
             <Cards
-              key={`card-${data.item}`}
               photo={data.photo}
               item={data.item}
               discount={data.discount}
               subsidiary={data.subsidiary}
               newprice={data.newprice}
-              price={data.pice}
+              price={data.price}
             />
-          );
-        })}
+          </div>
+        ))}
       </div>
-    </section>
-  );
+    );
+  };
+  CardsContainer.propTypes = {
+    discountedCards: PropTypes.arrayOf(
+      PropTypes.shape({
+        item: PropTypes.string.isRequired,
+        subsidiary: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        discount: PropTypes.number.isRequired,
+        newprice: PropTypes.func.isRequired,
+        description: PropTypes.string,
+        card_category: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };
+
+  return <CardsContainer discountedCards={discountedCards} />;
 }
