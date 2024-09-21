@@ -371,6 +371,13 @@ export default function Food() {
     acc[category].push(card);
     return acc;
   }, {});
+
+  const discountedItems = cardsData.filter((card) => card.discount !== 0);
+  if (discountedItems.length > 0) {
+    groupedData['Con Descuento'] = discountedItems;
+  }
+  //const discountedCardsData = cardsData.filter((card) => card.discount !== 0);
+
   //
   return (
     <section className="w-full h-full">
