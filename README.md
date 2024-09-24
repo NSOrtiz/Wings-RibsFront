@@ -16,4 +16,8 @@ Intalaciones de dependecias: -react-hook-form -react-dom -react-router-dom -tail
 
 Uso de herramientas: -eslint -prettier -tailwind
 
-NOTA: cualquier duda lo podemos ver en reuniones: saludos cordiales ;)
+19/09/2024 repositorio de Backend: https://github.com/GerryD-1986/App-Alitas-Snacks.git
+
+Intalaciones de dependecias: -react-hook-form -react-dom -react-router-dom -tailwind-scrollbar -tailwind-scrollbar-hide -axios -cors
+
+Uso de herramientas: -eslint -prettier -tailwind
