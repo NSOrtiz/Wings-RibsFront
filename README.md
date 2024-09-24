@@ -10,4 +10,6 @@ se ajustan algunos componentes en la pagina de registro y logueo, estos ajustes 
 4.- se pone codigo para enlazar backend con front, ya puede ingresar datos a mongodb
 5.-se instala cors para permitir acceso entre proxies
 
-NOTA: cualquier duda lo podemos ver en reuniones: saludos cordiales ;)
+lunes 23/09/2024
+instalacion npm install react-slick --save
+y npm install slick-carousel --save

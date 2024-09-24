@@ -1,8 +1,42 @@
-import { CardsPromo } from './Cards';
+import { CardsMenu, CardsPromo } from './Cards';
 import React, { useRef, useEffect } from 'react';
 import { cardsData } from './FoodData';
 
-export default function PromoCarrusel() {
+export function MenuFood() {
+  const groupedData = cardsData.reduce((acc, card) => {
+    const category = card.card_category;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(card);
+    return acc;
+  }, {});
+
+  return (
+    <section className="w-full h-full">
+      {Object.keys(groupedData).map((category) => (
+        <div key={category} className="mb-8">
+          <h2 className="text-2xl font-bold text-amber-600">{category}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {groupedData[category].map((data) => (
+              <CardsMenu
+                key={`card-${data.item}`}
+                photo={data.photo}
+                item={data.item}
+                discount={data.discount}
+                subsidiary={data.subsidiary}
+                newprice={data.newprice}
+                price={data.price}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+export function PromoFood() {
   const discountedCards = cardsData.filter((card) => card.discount > 0);
 
   const scrollContainer = useRef(null);

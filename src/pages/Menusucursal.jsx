@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Categories from '../components/Categories';
-import Food from '../components/FoodData';
+import { MenuFood, PromoFood } from '../components/ListFoot';
 import Cart from '../components/ShoppingCart';
 import Footer from '../components/Footer';
 
@@ -26,7 +26,11 @@ export default function Menu1() {
         </div>
         <Categories />
         <section className="flex flex-row">
-          <Food />
+          <div className="w-full flex flex-col">
+            <PromoFood />
+            <MenuFood />
+          </div>
+
           <Cart />
           <aside className="flex"></aside>
         </section>
