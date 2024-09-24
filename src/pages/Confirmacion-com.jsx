@@ -12,8 +12,8 @@ function Confirmacioncom() {
       <NavBar />
       <section>
 
-    <div className="flex items-center justify-center min-h-screen bg-neutral-200 p-4">
-      <div className="p-6 max-w-7xl w-full rounded-lg shadow-md">
+    <div className="flex items-center justify-center min-h-screen bg-neutral-200 p-4 w-full max-w-full mx-auto">
+      <div className="p-6 max-w-7xl w-[450px] rounded-lg shadow-md sm:w-[480px] md:w-[500px] lg:w-full">
         <h1 id='ubuntu-bold' className="text-[32px] mb-10 text-center text-amber-500">Confirmar compra</h1>
         <div className="flex flex-col lg:flex-row gap-4">
           
