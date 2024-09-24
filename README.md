@@ -10,6 +10,14 @@ se ajustan algunos componentes en la pagina de registro y logueo, estos ajustes 
 4.- se pone codigo para enlazar backend con front, ya puede ingresar datos a mongodb
 5.-se instala cors para permitir acceso entre proxies
 
-lunes 23/09/2024
-instalacion npm install react-slick --save
-y npm install slick-carousel --save
+19/09/2024 repositorio de Backend: https://github.com/GerryD-1986/App-Alitas-Snacks.git
+
+Intalaciones de dependecias: -react-hook-form -react-dom -react-router-dom -tailwind-scrollbar -tailwind-scrollbar-hide -axios -cors
+
+Uso de herramientas: -eslint -prettier -tailwind
+
+19/09/2024 repositorio de Backend: https://github.com/GerryD-1986/App-Alitas-Snacks.git
+
+Intalaciones de dependecias: -react-hook-form -react-dom -react-router-dom -tailwind-scrollbar -tailwind-scrollbar-hide -axios -cors
+
+Uso de herramientas: -eslint -prettier -tailwind
