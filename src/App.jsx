@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import Menu1 from './pages/Menusucursal';
+
 import React from 'react';
 
 export default function App() {
