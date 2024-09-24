@@ -5,8 +5,8 @@ export default function ProfilePage() {
   return (
     <div>
       <NavBar />
-      <div className="font-[Ubuntu] font-bold bg-neutral-100 md:p-[56px] lg:p-[28px]">
-        <div className="grid grid-cols-2 grid-row-4 gap-[16px] p-[16px] pt-10 w-auto border-2 border-gray-100 border-b-zinc-700 md:grid-cols-3 grid-rows-4 lg:grid-cols-5 grid-rows-4 lg:p-[8px] lg:pt-8">
+      <div className="font-[Ubuntu] font-bold bg-neutral-100 md:p-[56px] lg:p-[80px]  ">
+        <div className="grid grid-cols-2 grid-row-4 gap-[16px] p-[16px] pt-10 w-auto border-2 border-gray-100 border-b-zinc-700 md:grid-cols-3 grid-rows-4 lg:grid-cols-5 lg:grid-rows-4 lg:p-[8px] lg:pt-8 ">
           <div className="col-span-2 grid place-content-center p-2 md:col-span-1 lg:col-span-1 row-[1/5]">
             <img
               className="rounded-full h-[120px] w-[120px]"
