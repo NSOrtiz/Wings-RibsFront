@@ -279,7 +279,7 @@ export const cardsData = [
     item: 'Ensalada parmesana',
     subsidiary: 'Loma Real',
     photo:
-      'https://img.freepik.com/foto-gratis/delicioso-hot-dog-salsa_23-2148768259.jpg?t=st=1726518386~exp=1726521986~hmac=d140c6ff2f63e5a6cf0fe2b7e038b9d02b905b07b4e4dd9a815f2e28442690ef&w=360',
+      'https://img.freepik.com/fotos-premium/plato-comida-ensalada-cebollas-tomates_1191871-65339.jpg?ga=GA1.1.1033137900.1717898657',
     price: 250,
     discount: 10,
     newprice: function () {

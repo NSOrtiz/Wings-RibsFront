@@ -33,7 +33,7 @@ function Counter() {
 
 export default function Cart() {
   return (
-    <section className="w-[400px] h-fit flex flex-col justify-center items-center gap-[28px] border-[1px] border-amber-600 bg-white shadow-sm rounded-b-[16px]">
+    <section className="w1-cart w2-cart h-fit flex flex-col justify-center items-center gap-[28px] border-[1px] border-amber-600 bg-white shadow-sm rounded-b-[16px]">
       <span className="w-full h-fit flex flex-row justify-center items-center gap-2 border-b-[1px] border-amber-600">
         <img className="w-[40px] h-[40px]" src="/icons/shopping.svg" alt="" />
         <h2 id="ubuntu-bold" className="text-[36px] text-amber-600">
