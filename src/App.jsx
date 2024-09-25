@@ -5,6 +5,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import Menu1 from './pages/Menusucursal';
 import MetodoPago from './pages/metodo_pago';
+
 import React from 'react';
 import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
