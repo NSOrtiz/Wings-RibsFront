@@ -9,6 +9,8 @@ import React from 'react';
 import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
+import UsuarioPedido from './pages/Vendedor-pedidos';
+import VendedorPedido from './pages/Vendedor-pedidos';
 
 
 export default function App() {
@@ -24,6 +26,7 @@ export default function App() {
         <Route path="/Confirmacion-com" element={<Confirmacioncom/>} />
         <Route path="/Estatus-pedido" element={<EstatusDePedido />} />
         <Route path="/Admin-pedido" element={<AdminPedido />} />
+        <Route path="/vendedor-pedido" element={<VendedorPedido />} />
       </Routes>
     </BrowserRouter>
   );
