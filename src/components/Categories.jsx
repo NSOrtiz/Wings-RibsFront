@@ -1,21 +1,21 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
-export default function Categories() {
+export default function Categories({ onCategoryClick }) {
   const categories = [
     'Promociones',
-    'Combos',
     'Wings',
-    'Bonles',
+    'Boneless',
     'Snacks',
     'Ribs',
     'Burguers & Dogs',
     'Charolas',
-    'Ensaldas',
-    'Combos',
+    'Ensaladas',
     'Bebidas',
   ];
 
   const scrollContainer = useRef(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+
   let scrollInterval = null;
 
   const handleMouseMove = (e) => {
@@ -44,6 +44,11 @@ export default function Categories() {
     scrollInterval = null;
   };
 
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    onCategoryClick(category);
+  };
+
   useEffect(() => {
     const container = scrollContainer.current;
     container.addEventListener('mousemove', handleMouseMove);
@@ -64,9 +69,13 @@ export default function Categories() {
           <button
             key={`btn-${btn}`}
             id="ubuntu-bold"
-            className="text-amber-500 border-solid border-amber-500 px-[16px] py-[4px] border-2 text-center rounded-full text-[12px] lg:text-[16px] shadow-md hover:bg-amber-500 hover:text-neutral-100 min-w-fit"
+            className={`border-solid border-amber-500 px-[16px] py-[4px] border-2 text-center rounded-full text-[12px] lg:text-[16px] shadow-md hover:bg-amber-500 hover:text-neutral-100 min-w-fit ${
+              activeCategory === btn
+                ? 'bg-amber-500 text-neutral-100'
+                : 'text-amber-500'
+            }`}
+            onClick={() => handleCategoryClick(btn)} // Maneja el clic en el botón
           >
-            {' '}
             {btn}
           </button>
         );

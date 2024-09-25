@@ -6,6 +6,13 @@ import Cart from '../components/ShoppingCart';
 import Footer from '../components/Footer';
 
 export default function Menu1() {
+  const handleCategoryClick = (category) => {
+    const categoryRef = document.getElementById(category);
+    if (categoryRef) {
+      categoryRef.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <main className="w-full h-dvh flex flex-col items-center gap-[28px]">
       <NavBar />
@@ -24,7 +31,7 @@ export default function Menu1() {
             />
           </div>
         </div>
-        <Categories />
+        <Categories onCategoryClick={handleCategoryClick} />
         <section className="w-full flex flex-row justify-between">
           <div className="w-full flex flex-col justify-center">
             <MenuFood />

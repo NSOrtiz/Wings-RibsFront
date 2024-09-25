@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useState } from 'react';
-import Boton from './Button';
+import { Boton } from './Button';
 
 function Counter() {
   const [count, setCount] = useState(0);

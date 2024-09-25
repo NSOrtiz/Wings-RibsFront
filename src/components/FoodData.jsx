@@ -259,7 +259,7 @@ export const cardsData = [
     },
     description:
       'Hamburguesa acompañada de Aro de cebolla, queso, pepinillos, tomates, ranch y porcion de papas',
-    card_category: 'Burgues & Dogs',
+    card_category: 'Burguers & Dogs',
   },
   {
     item: 'Chick Dog',
@@ -273,7 +273,7 @@ export const cardsData = [
     },
     description:
       'Tradicional pan de hot dog + boneless, pico de gallo, flaming y ranch',
-    card_category: 'Burgues & Dogs',
+    card_category: 'Burguers & Dogs',
   },
   {
     item: 'Ensalada parmesana',
@@ -287,7 +287,7 @@ export const cardsData = [
     },
     description:
       'Capa de lechuga, 10 boneless, con zanahoria, apio, tomate, pepinillos parmesano y ranch',
-    card_category: 'Ensalada',
+    card_category: 'Ensaladas',
   },
   {
     item: 'Charola Mediana',
