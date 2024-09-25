@@ -1,54 +1,21 @@
-import { CardsMenu, CardsPromo } from './Cards';
+import { CardsMenu } from './Cards';
 import React, { useRef, useEffect } from 'react';
 import { cardsData } from './FoodData';
 
 export function MenuFood() {
-  const groupedData = cardsData.reduce((acc, card) => {
-    const category = card.card_category;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(card);
-    return acc;
-  }, {});
-
-  return (
-    <section className="w-full h-full">
-      {Object.keys(groupedData).map((category) => (
-        <div key={category} className="mb-8">
-          <h2 className="text-2xl font-bold text-amber-600">{category}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {groupedData[category].map((data) => (
-              <CardsMenu
-                key={`card-${data.item}`}
-                photo={data.photo}
-                item={data.item}
-                discount={data.discount}
-                subsidiary={data.subsidiary}
-                newprice={data.newprice}
-                price={data.price}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
-    </section>
-  );
-}
-
-export function PromoFood() {
-  const discountedCards = cardsData.filter((card) => card.discount > 0);
-
+  let groupedData = {};
   const scrollContainer = useRef(null);
+  const categoryRefs = {};
+
   let scrollInterval = null;
 
   const handleMouseMove = (e) => {
     const container = scrollContainer.current;
-    const { left, right } = container.getBoundingClientRect();
+    const { top, bottom } = container.getBoundingClientRect();
 
-    if (e.clientX < left + 50) {
+    if (e.clientY < top + 50) {
       startScrolling(-5);
-    } else if (e.clientX > right - 50) {
+    } else if (e.clientY > bottom - 50) {
       startScrolling(5);
     } else {
       stopScrolling();
@@ -58,7 +25,7 @@ export function PromoFood() {
   const startScrolling = (speed) => {
     if (!scrollInterval) {
       scrollInterval = setInterval(() => {
-        scrollContainer.current.scrollLeft += speed;
+        scrollContainer.current.scrollTop += speed;
       }, 20);
     }
   };
@@ -78,23 +45,57 @@ export function PromoFood() {
       container.removeEventListener('mouseleave', stopScrolling);
     };
   }, []);
+
+  const datafilter = cardsData.filter(
+    (card) => card.subsidiary === 'Loma Real'
+  );
+
+  const discountedItems = datafilter.filter((card) => card.discount !== 0);
+  if (discountedItems.length > 0) {
+    groupedData['Promociones'] = discountedItems;
+  }
+
+  datafilter.forEach((card) => {
+    const category = card.card_category;
+    if (!groupedData[category]) {
+      groupedData[category] = [];
+    }
+    groupedData[category].push(card);
+  }, {});
+
   return (
     <section
       ref={scrollContainer}
-      className="flex flex-row w-full gap-2 overflow-x-auto scrollbar-hide"
+      className="w-full h-screen flex flex-col gap-2 overflow-y-auto scrollbar-hide pb-4"
     >
-      {discountedCards.map((data) => (
-        <div key={data.item}>
-          <CardsPromo
-            photo={data.photo}
-            item={data.item}
-            discount={data.discount}
-            subsidiary={data.subsidiary}
-            newprice={data.newprice}
-            price={data.price}
-          />
-        </div>
-      ))}
+      {Object.keys(groupedData).map((category) => {
+        const categoryRef = useRef();
+        categoryRefs[category] = categoryRef;
+        return (
+          <div key={category} className="mb-8" ref={categoryRef}>
+            <h2
+              id={category}
+              className="text-[24px] md:text-[28px] font-bold text-amber-500 pb-1 bg-neutral-950 px-6 rounded-t-[20px]"
+            >
+              {category}
+            </h2>
+            <div className="grid justify-items-center grid-cols-1 show2-cards show3-cards show4-cards show-4cards gap-y-6 gap-x-0 pt-4">
+              {groupedData[category].map((data) => (
+                <CardsMenu
+                  key={`card-${data.item}`}
+                  photo={data.photo}
+                  item={data.item}
+                  discount={data.discount}
+                  subsidiary={data.subsidiary}
+                  newprice={data.newprice}
+                  price={data.price}
+                  className="w-full"
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </section>
   );
 }

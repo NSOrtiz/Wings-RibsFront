@@ -7,16 +7,16 @@ function EstatusDePedido() {
       <NavBar />
       <section>
 
-    <div className="flex items-center justify-center min-h-screen bg-neutral-200">
+    <div className="flex items-center justify-center min-h-screen  bg-neutral-200">
       <div className="p-4 max-w-5xl md:max-w-7xl w-full ">
-        <div className="flex flex-col lg:flex-row md:flex-col space-y-4 lg:space-y-0 lg:space-x-4">
+        <div className="flex flex-col lg:flex-col md:flex-col xl:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
           <div className="flex-1 flex flex-col space-y-4 lg:space-y-8">
-            <div className="flex flex-col items-center bg-white p-4 rounded-xl">
+            <div className="flex flex-col items-center bg-white p-4 rounded-xl w-full max-w-[600px] mx-auto">
               <div className="flex items-center pb-2 w-full">
                 <h2 className="text-base md:text-lg font-semibold flex-1 text-center text-amber-500">No. de pedido</h2>
                 <img src="/edit_24.svg" alt="Edit" className="w-5 md:w-6 h-5 md:h-6 ml-4" />
               </div>
-              <div className="flex flex-col space-y-4 mt-4 w-full">
+              <div className="flex flex-col space-y-4 mt-4 w-[400px] md:w-[500px] lg:w-[500px]">
               {[1, 2, 3].map((item, index) => (
                   <div key={index} className="flex items-center border-b border-neutral-200 pb-2 w-full justify-between">
                     <div className="flex items-center">
@@ -69,7 +69,7 @@ function EstatusDePedido() {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col lg:flex-col md:flex-col space-y-4 items-center justify-center">
+          <div className="flex-1 flex flex-col lg:flex-col md:flex-col space-y-4 items-center justify-center ">
             <div className="text-center mb-6">
               <h2 id='ubuntu-bold' className="text-[32px] md:text-[32px]">Estatus de pedido</h2>
               <p  id='ubuntu-light' className='text-[28px] md:text-[28px]'>Hora estimada de entrega 8:30 - 9:15 PM</p>

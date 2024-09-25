@@ -259,7 +259,7 @@ export const cardsData = [
     },
     description:
       'Hamburguesa acompañada de Aro de cebolla, queso, pepinillos, tomates, ranch y porcion de papas',
-    card_category: 'Burgues & Dogs',
+    card_category: 'Burguers & Dogs',
   },
   {
     item: 'Chick Dog',
@@ -273,13 +273,13 @@ export const cardsData = [
     },
     description:
       'Tradicional pan de hot dog + boneless, pico de gallo, flaming y ranch',
-    card_category: 'Burgues & Dogs',
+    card_category: 'Burguers & Dogs',
   },
   {
     item: 'Ensalada parmesana',
     subsidiary: 'Loma Real',
     photo:
-      'https://img.freepik.com/foto-gratis/delicioso-hot-dog-salsa_23-2148768259.jpg?t=st=1726518386~exp=1726521986~hmac=d140c6ff2f63e5a6cf0fe2b7e038b9d02b905b07b4e4dd9a815f2e28442690ef&w=360',
+      'https://img.freepik.com/fotos-premium/plato-comida-ensalada-cebollas-tomates_1191871-65339.jpg?ga=GA1.1.1033137900.1717898657',
     price: 250,
     discount: 10,
     newprice: function () {
@@ -287,7 +287,7 @@ export const cardsData = [
     },
     description:
       'Capa de lechuga, 10 boneless, con zanahoria, apio, tomate, pepinillos parmesano y ranch',
-    card_category: 'Ensalada',
+    card_category: 'Ensaladas',
   },
   {
     item: 'Charola Mediana',
