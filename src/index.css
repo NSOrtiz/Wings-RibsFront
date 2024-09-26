@@ -4,9 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgb(245 245 245);
   font-family: 'Ubuntu';
+  padding: 0;
+  margin: 0;
 }
 
 #ubuntu-light {
@@ -55,4 +61,73 @@ body {
   font-family: 'Ubuntu', system-ui;
   font-weight: 700;
   font-style: italic;
+}
+
+#text2 {
+  font-family: 'Ubuntu', system-ui;
+  text-align: left;
+  font-size: 20px;
+  font-style: normal;
+  padding: 4px;
+}
+
+#logo-sub {
+  height: 25px;
+  width: 25px;
+  flex-shrink: 0;
+}
+
+#btn-sub {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 138.462% */
+  letter-spacing: 0.16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.promo-slider {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 1320px) {
+  .hide-cart {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1320px) {
+  .w1-cart {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1450px) {
+  .w2-cart {
+    width: 400px;
+  }
+}
+
+@media (min-width: 600px) {
+  .show2-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .show3-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1290px) {
+  .show4-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1800px) {
+  .show-4cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

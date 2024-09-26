@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import NavBar from '../components/NavBar';
 import React, { useEffect } from 'react';
 
-//import LogoPR from '../assets/W&R2.png';
+import LogoPR from '../assets/W&R2.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
@@ -36,7 +36,6 @@ export default function RegisterPage() {
                   className="mx-auto rounded-md bg-neutral-800 text-amber-50 py-2 px-2 font-bold w-64 text-center"
                   key={i}
                 >
-                  console.log(error)
                   {error}
                 </div>
               ))}
@@ -45,7 +44,7 @@ export default function RegisterPage() {
                   <div id="ubuntu-medium">
                     <img
                       className="mx-auto"
-                      src="/images/W&R2.png"
+                      src={LogoPR}
                       height="115px"
                       width="223px"
                     ></img>

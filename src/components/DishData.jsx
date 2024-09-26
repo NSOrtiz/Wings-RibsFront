@@ -11,6 +11,15 @@ export default function DishData() {
       discount: 15,
       description: 'Deliciosas alitas de pollo estilo búfalo',
     },
+
+    {
+      item: 'Wings 12 piezas',
+      photo:
+        'https://img.freepik.com/foto-gratis/alitas-pollo-al-bufalo-frescas-aperitivo-salado-ai-generativa_188544-8118.jpg?ga=GA1.1.1033137900.1717898657&semt=ais_hybrid',
+      price: 120,
+      discount: 20,
+      description: 'Deliciosas alitas de pollo estilo búfalo',
+    },
   ];
 
   return (
@@ -26,6 +35,7 @@ export default function DishData() {
             newprice={newPrice}
             price={data.price}
             description={data.description}
+            className="w-full"
           />
         );
       })}
