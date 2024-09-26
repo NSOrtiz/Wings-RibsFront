@@ -5,12 +5,12 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import Menu1 from './pages/Menusucursal';
 import MetodoPago from './pages/metodo_pago';
-
+import HomePage from './pages/HomePage';
 import React from 'react';
 import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
-import UsuarioPedido from './pages/Vendedor-pedidos';
+//import UsuarioPedido from './pages/Vendedor-pedidos';
 import VendedorPedido from './pages/Vendedor-pedidos';
 
 export default function App() {
@@ -18,6 +18,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
