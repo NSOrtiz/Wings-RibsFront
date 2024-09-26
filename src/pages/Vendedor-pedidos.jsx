@@ -43,11 +43,11 @@ export default function VendedorPedido() {
                         <img src="/icons/FilterList.svg" alt="filterList" />
                         <p className="text-[16px] text-amber-500 px-2">Filtros</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex-row hidden md:flex">
                         <img src="/icons/TableRows.svg" alt="tabalRows" />
                         <p className="text-[16px] text-amber-500 px-2">Densidad</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex-row hidden lg:flex">
                         <img src="/icons/SaveAlt.svg" alt="saveAlt" />
                         <p className="text-[16px] text-amber-500 px-2">Exportar</p>
                         </div>

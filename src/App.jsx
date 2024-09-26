@@ -9,7 +9,6 @@ import React from 'react';
 import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
-import UsuarioPedido from './pages/Vendedor-pedidos';
 import VendedorPedido from './pages/Vendedor-pedidos';
 
 
