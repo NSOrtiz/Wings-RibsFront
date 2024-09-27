@@ -12,6 +12,7 @@ import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
 //import UsuarioPedido from './pages/Vendedor-pedidos';
 import VendedorPedido from './pages/Vendedor-pedidos';
+import Pedidos from './pages/insumos-vendedor';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/Estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/Admin-pedido" element={<AdminPedido />} />
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
+          <Route path="/insumos-vendedor" element={<Pedidos />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
