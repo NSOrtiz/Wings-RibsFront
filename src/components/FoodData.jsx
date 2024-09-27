@@ -1,5 +1,6 @@
 export const cardsData = [
   {
+    id: 1,
     item: 'Wings 8 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -13,6 +14,7 @@ export const cardsData = [
     card_category: 'Wings',
   },
   {
+    id: 2,
     item: 'Wings 12 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -26,6 +28,7 @@ export const cardsData = [
     card_category: 'Wings',
   },
   {
+    id: 3,
     item: 'Wings 24 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -39,6 +42,7 @@ export const cardsData = [
     card_category: 'Wings',
   },
   {
+    id: 4,
     item: 'Boneless 10 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -53,6 +57,7 @@ export const cardsData = [
   },
 
   {
+    id: 5,
     item: 'Boneless 15 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -66,6 +71,7 @@ export const cardsData = [
     card_category: 'Boneless',
   },
   {
+    id: 6,
     item: 'Boneless 25 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -79,6 +85,7 @@ export const cardsData = [
     card_category: 'Boneless',
   },
   {
+    id: 7,
     item: 'Boneless 30 piezas',
     subsidiary: 'Loma Real',
     photo:
@@ -92,6 +99,7 @@ export const cardsData = [
     card_category: 'Boneless',
   },
   {
+    id: 8,
     item: 'Aros de Cebolla',
     subsidiary: 'Loma Real',
     photo:
@@ -105,6 +113,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 9,
     item: 'Aros de Cebolla flaming hot',
     subsidiary: 'Loma Real',
     photo:
@@ -118,6 +127,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 10,
     item: 'Cheese sticks',
     subsidiary: 'Loma Real',
     photo:
@@ -131,6 +141,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 11,
     item: 'Cheese sticks flaming hot',
     subsidiary: 'Loma Real',
     photo:
@@ -144,6 +155,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 12,
     item: 'Bonachones',
     subsidiary: 'Loma Real',
     photo:
@@ -157,6 +169,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 13,
     item: 'Papas ',
     subsidiary: 'Loma Real',
     photo:
@@ -170,6 +183,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 14,
     item: 'Papas con queso',
     subsidiary: 'Loma Real',
     photo:
@@ -183,6 +197,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 15,
     item: 'Verdura extra',
     subsidiary: 'Loma Real',
     photo:
@@ -196,6 +211,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 16,
     item: 'Aderezo extra',
     subsidiary: 'Loma Real',
     photo:
@@ -209,6 +225,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 17,
     item: 'Ribs',
     subsidiary: 'Loma Real',
     photo:
@@ -222,6 +239,7 @@ export const cardsData = [
     card_category: 'Snacks',
   },
   {
+    id: 18,
     item: 'Ribs & Boneless',
     subsidiary: 'Loma Real',
     photo:
@@ -235,6 +253,7 @@ export const cardsData = [
     card_category: 'Ribs',
   },
   {
+    id: 19,
     item: 'Papas bufalo',
     subsidiary: 'Loma Real',
     photo:
@@ -248,6 +267,7 @@ export const cardsData = [
     card_category: 'Ribs',
   },
   {
+    id: 20,
     item: 'Burguer bufalo',
     subsidiary: 'Loma Real',
     photo:
@@ -262,6 +282,7 @@ export const cardsData = [
     card_category: 'Burguers & Dogs',
   },
   {
+    id: 21,
     item: 'Chick Dog',
     subsidiary: 'Loma Real',
     photo:
@@ -276,6 +297,7 @@ export const cardsData = [
     card_category: 'Burguers & Dogs',
   },
   {
+    id: 22,
     item: 'Ensalada parmesana',
     subsidiary: 'Loma Real',
     photo:
@@ -290,6 +312,7 @@ export const cardsData = [
     card_category: 'Ensaladas',
   },
   {
+    id: 23,
     item: 'Charola Mediana',
     subsidiary: 'Loma Real',
     photo:
@@ -304,6 +327,7 @@ export const cardsData = [
     card_category: 'Charolas',
   },
   {
+    id: 24,
     item: 'Charola Grande',
     subsidiary: 'Loma Real',
     photo:
@@ -318,6 +342,7 @@ export const cardsData = [
     card_category: 'Charolas',
   },
   {
+    id: 25,
     item: 'Charola Combinada',
     subsidiary: 'Loma Real',
     photo:
@@ -332,6 +357,7 @@ export const cardsData = [
     card_category: 'Charolas',
   },
   {
+    id: 27,
     item: 'Refrescos',
     subsidiary: 'Loma Real',
     photo: 'https://i.blogs.es/7fc463/tapones1/1366_2000.jpg',
@@ -344,6 +370,7 @@ export const cardsData = [
     card_category: 'Bebidas',
   },
   {
+    id: 28,
     item: 'Cerveza',
     subsidiary: 'Loma Real',
     photo:
