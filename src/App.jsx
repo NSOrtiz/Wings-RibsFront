@@ -15,6 +15,7 @@ import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
 import Insumos from './pages/Vendedor-insumos';
+import AdminSucursales from './pages/Admin-sucursales';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />
           <Route path="/vendedor-insumos" element={<Insumos />} />
+          <Route path="/admin-sucursales" element={<AdminSucursales />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
