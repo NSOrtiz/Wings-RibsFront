@@ -21,7 +21,7 @@ export default function Menu2() {
         <aside className="w-1/4 flex flex-col items-center ">
           <AdminMenu />
         </aside>
-        <section className="w-max-[2200px] grid grid-4 gap-[28px] items-center px-[16px] md:px-[56px] lg:px-[80px]">
+        <section className="w-full grid grid-4 gap-[28px] items-center pl-[16px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
           <div className="w-full flex flex-row justify-between items-center">
             <h1 id="ubuntu-bold" className=" text-[32px] text-amber-500">
               Menu Sucursal Paseo Loma Real

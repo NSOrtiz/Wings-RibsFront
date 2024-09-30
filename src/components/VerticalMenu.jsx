@@ -31,7 +31,7 @@ export function AdminMenu() {
   const handleButtonClick = (index) => {
     setSelectedBtn(index);
     if (index === 0) {
-      navigate('/admin-pedido');
+      navigate('/admin-pedidos');
     } else if (index === 1) {
       navigate('/admin-vendedores');
     } else if (index === 2) {
@@ -159,7 +159,7 @@ export function SellerMenu() {
     if (index === 0) {
       navigate('/vendedor-menu');
     } else if (index === 1) {
-      navigate('/vendedor-pedido');
+      navigate('/vendedor-pedidos');
     } else if (index === 2) {
       navigate('/vendedor-insumos');
     } else if (index === 3) {

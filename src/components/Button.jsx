@@ -4,7 +4,7 @@ export function Boton({ texto, onClick }) {
   return (
     <button
       id="ubuntu-medium"
-      className="bg-amber-500 hover:bg-amber-600 text-white text-[12px] py-[8px] px-[16px] rounded-[8px]"
+      className="bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px]"
       onClick={onClick}
     >
       {texto}
