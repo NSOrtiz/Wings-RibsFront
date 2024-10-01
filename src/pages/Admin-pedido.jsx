@@ -45,8 +45,8 @@ export default function AdminPedido() {
             Pedidos
           </div>
 
-          <div className="flex justify-between items-center mb-20">
-            <div className="flex space-x-4">
+          <div className="flex justify-end items-center mb-10">
+            {/*<div className="flex space-x-4">
               <div className="flex flex-row ">
                 <img src="/icons/ViewColumn.svg" alt="columna" />
                 <p className="text-[16px] text-amber-500 px-2">Columnas</p>
@@ -63,11 +63,11 @@ export default function AdminPedido() {
                 <img src="/icons/SaveAlt.svg" alt="saveAlt" />
                 <p className="text-[16px] text-amber-500 px-2">Exportar</p>
               </div>
-            </div>
+            </div>*/}
             <Search />
           </div>
 
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33.33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
+          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
             <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
               Detalles de pedido
             </p>

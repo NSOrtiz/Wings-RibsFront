@@ -36,7 +36,7 @@ export default function PedidoCard() {
   return (
     <main>
       <section className="p-4">
-        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33.33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4">
+        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4">
           <div className="flex flex-col mb-2 items-center">
             <div className="text-center mb-1 text-[16px]">Cliente</div>
             <div className="flex space-x-1 items-center">
@@ -153,7 +153,11 @@ export default function PedidoCard() {
           </div>
 
           <div className="hidden lg:flex flex-col items-center justify-center">
-            <img src="/edit_24.svg" alt="Editar" className="w-6 h-6" />
+            <img
+              src="/icons/edit-yellow.svg"
+              alt=""
+              className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+            />
           </div>
         </div>
       </section>

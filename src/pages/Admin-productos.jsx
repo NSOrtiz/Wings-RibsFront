@@ -21,14 +21,14 @@ export default function Productos() {
           >
             Productos
           </div>
-          <div className="w-full flex flex-row justify-between pb-4">
+          <div className="w-full flex flex-row items-center justify-end gap-4 pb-4">
             <Search />
             <Boton
-              texto="Agregar producto  "
+              texto="Agregar producto"
               onClick={() => handleClick('Has hecho clic en Comprar ahora')}
             />
           </div>
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
+          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
             <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
               Id
             </p>

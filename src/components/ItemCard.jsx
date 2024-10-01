@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 export default function ItemCard(props) {
   return (
     <section className="p-2">
-      <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-400 items-center justify-items-center pb-4">
+      <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-400 items-center justify-items-center pb-4">
         <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-neutral-800">
           {props.id}
         </p>
