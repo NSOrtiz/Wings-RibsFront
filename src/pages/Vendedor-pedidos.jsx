@@ -1,34 +1,11 @@
 import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PedidoCard from '../components/PedidoCard';
 import { SellerMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 
 export default function VendedorPedido() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [status, setStatus] = useState('Selecciona un estado');
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const closeDropdown = (e) => {
-    if (!e.target.closest('#dropdownButton')) {
-      setDropdownOpen(false);
-    }
-  };
-
-  const selectStatus = (newStatus) => {
-    setStatus(newStatus);
-    setDropdownOpen(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener('click', closeDropdown);
-    return () => window.removeEventListener('click', closeDropdown);
-  }, []);
-
   return (
     <main className="w-full">
       <AdminSellerNavBar />
