@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components/NavBar';
 import LocalizadorSucursal from '../components/LocalizadorSucursal';
 import BannerYPromos from '../components/BannerAndPromos';
 import Footer from '../components/Footer';

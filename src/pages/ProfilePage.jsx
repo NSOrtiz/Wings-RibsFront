@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components/NavBar';
 import React from 'react';
 /*import visaLogo from '../assets/visa-logo.png';
 import paypalLogo from '../assets/paypal-logo.png';*/

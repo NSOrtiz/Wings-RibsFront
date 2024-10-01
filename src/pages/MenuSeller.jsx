@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+import { AdminSellerNavBar } from '../components/NavBar';
 import Categories from '../components/Categories';
 import { MenuFood } from '../components/ListFoot';
 import Footer from '../components/Footer';
@@ -16,9 +16,9 @@ export default function Menu3() {
 
   return (
     <main className="w-full">
-      <NavBar />
+      <AdminSellerNavBar />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2 ">
-        <aside className="w-1/4 flex flex-col items-center ">
+        <aside className="w-1/4 flex flex-col items-center hidden lg:block ">
           <SellerMenu />
         </aside>
         <section className="w-full grid grid-4 gap-[28px] items-center pl-[16px] pt-[16px] md:pt-[56px] lg:pt-[80px]">

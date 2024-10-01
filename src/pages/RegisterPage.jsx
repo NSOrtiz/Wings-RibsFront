@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components/NavBar';
 import React, { useEffect } from 'react';
 
 import LogoPR from '../assets/W&R2.png';
