@@ -11,6 +11,8 @@ import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
 import VendedorPedido from './pages/Vendedor-pedidos';
+import VendedorInsumos from './pages/Vendedor-insumos';
+import AdminVendors from './pages/AdminVendors';
 import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/admin-pedido" element={<AdminPedido />} />
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
+          <Route path="/vendedor-insumos" element={<VendedorInsumos />} />
+          <Route path="/admin-vendors" element={<AdminVendors />} />
           <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />
