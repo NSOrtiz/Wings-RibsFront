@@ -18,6 +18,10 @@ export function NavBar() {
       navigate('/register');
     } else if (btn === 'menu') {
       navigate('/home/menu');
+    } else if (btn === 'carrito') {
+      navigate('/home/carrito');
+    } else if (btn === 'contacto') {
+      navigate('/contacto');
     }
   }
 
@@ -39,14 +43,14 @@ export function NavBar() {
         {location.pathname !== '/login' &&
           location.pathname !== '/register' &&
           location.pathname !== '/profile' && (
-            <div className="hidden lg:block">
+            <div className="hidden hide-cart">
               <NavBtn />
             </div>
           )}
         {location.pathname !== '/login' &&
           location.pathname !== '/register' &&
           location.pathname !== '/profile' && (
-            <div className="lg:hidden">
+            <div className="block hide-btns">
               <img
                 onClick={toggleMenu}
                 className="w-[40px] h-[40px] cursor-pointer"
@@ -56,19 +60,65 @@ export function NavBar() {
             </div>
           )}
         {isOpen && (
-          <div className="flex flex-col lg:hidden absolute top-16 bg-neutral-100 border-2 border-neutral-300 rounded-[8px] overflow-hidden shadow-lg right-[16px] md:right-[56px] w-[150px]">
+          <div className="flex flex-col hide-btns absolute top-16 bg-neutral-100 rounded-[4px] overflow-hidden border-[1px] border-neutral-300 shadow-lg right-[16px] md:right-[56px] z-20">
             <button
               id="ubuntu-medium"
-              className="border-b-2 text-[16px] hover:bg-amber-500 hover:text-white"
+              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+              onClick={() => handleNavigation('menu')}
+            >
+              <img
+                className="w-[20px] h-[20px] cursor-pointer"
+                src="/icons/fast-food-outline.svg"
+                alt=""
+              />
+              Menu
+            </button>
+            <button
+              id="ubuntu-medium"
+              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row items-center justify-start p-2 items-center gap-2"
+              onClick={() => handleNavigation('carrito')}
+            >
+              <img
+                className="w-[20px] h-[20px] cursor-pointer"
+                src="/icons/shopping_cart_black.svg"
+                alt=""
+              />
+              Carrito de compras
+            </button>
+            <button
+              id="ubuntu-medium"
+              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+              onClick={() => handleNavigation('contacto')}
+            >
+              <img
+                className="w-[20px] h-[20px] cursor-pointer"
+                src="/icons/call-outline_black.svg"
+                alt=""
+              />
+              Contactanos
+            </button>
+            <button
+              id="ubuntu-medium"
+              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 border-t-[1px] border-neutral-300 items-center gap-2"
               onClick={() => handleNavigation('Inicio')}
             >
+              <img
+                className="w-[20px] h-[20px] cursor-pointer"
+                src="/icons/log-in-outline.svg"
+                alt=""
+              />
               Inicio
             </button>
             <button
               id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white"
+              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
               onClick={() => handleNavigation('Registro')}
             >
+              <img
+                className="w-[20px] h-[20px] cursor-pointer"
+                src="/icons/create-outline.svg"
+                alt=""
+              />
               Registro
             </button>
           </div>

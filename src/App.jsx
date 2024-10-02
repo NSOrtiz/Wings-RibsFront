@@ -17,6 +17,8 @@ import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
 import Insumos from './pages/Vendedor-insumos';
+import AdminSucursales from './pages/Admin-sucursales';
+import AdminVendores from './pages/AdminVendors';
 
 export default function App() {
   return (
@@ -31,7 +33,7 @@ export default function App() {
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-          <Route path="/admin-pedido" element={<AdminPedido />} />
+          <Route path="/admin-pedidos" element={<AdminPedido />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
           <Route path="/vendedor-insumos" element={<VendedorInsumos />} />
           <Route path="/admin-vendores" element={<AdminVendors />} />
@@ -39,6 +41,8 @@ export default function App() {
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />
           <Route path="/vendedor-insumos" element={<Insumos />} />
+          <Route path="/admin-sucursales" element={<AdminSucursales />} />
+          <Route path="/admin-vendedores" element={<AdminVendores />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
