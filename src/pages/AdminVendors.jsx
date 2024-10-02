@@ -3,9 +3,10 @@ import NavBarManager from '../components/NavBarManger';
 import Footer from '../components/Footer';
 import MenuOP from '../components/VerticalMenuOP';
 import { Search } from '../components/Button';
+import { Boton } from '../components/Button';
 import ProfileVendor from '../components/ProfileVendors';
 
-export default function AdminVendors() {
+export default function AdminVendores() {
   return (
     <main className="w-full">
       <NavBarManager />
@@ -24,12 +25,10 @@ export default function AdminVendors() {
 
             <div className="w-full flex pt-8 justify-between mb-20">
               <Search />
-              <button
-                type="button"
-                className="  rounded-full bg-amber-500 text-white w-32 h-8  justufy-items-center"
-              >
-                <p className="font-bold text-center">agregar</p>
-              </button>
+              <Boton
+                texto="Agregar Vendedor"
+                onClick={() => handleClick('Has hecho clic en Comprar ahora')}
+              />
             </div>
 
             <div className=" flex flex-row gap-8 border-b border-neutral-500 mb-6 font-bold">

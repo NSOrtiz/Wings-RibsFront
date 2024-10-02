@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Boton } from '../components/Button';
@@ -8,7 +8,7 @@ import TableStores from '../components/Table-stores';
 export default function Productos() {
   return (
     <main>
-      <NavBar />
+      <AdminSellerNavBar />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2">
         <aside className="w-1/4 flex flex-col items-center hidden lg:block ">
           <AdminMenu />

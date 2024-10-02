@@ -95,6 +95,9 @@ body {
   .hide-cart {
     display: block !important;
   }
+  .hide-btns {
+    display: none !important;
+  }
 }
 
 @media (min-width: 1320px) {

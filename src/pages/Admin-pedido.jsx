@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../components/NavBar';
+import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
 import PedidoCard from '../components/PedidoCard';
 import { AdminMenu } from '../components/VerticalMenu';
@@ -31,9 +31,9 @@ export default function AdminPedido() {
 
   return (
     <main className="w-full">
-      <NavBar />
+      <AdminSellerNavBar />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2">
-        <aside className="w-1/4 flex flex-col items-center ">
+        <aside className="w-1/4 flex flex-col items-center hidden lg:block ">
           <AdminMenu />
         </aside>
 
