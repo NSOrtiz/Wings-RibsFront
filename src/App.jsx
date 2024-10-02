@@ -19,6 +19,8 @@ import Menu3 from './pages/MenuSeller';
 import Insumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
 import AdminVendores from './pages/AdminVendors';
+import ResponsiveCart from './pages/Carrito_compra';
+import Contacto from './pages/Contacto-sucursales';
 
 export default function App() {
   return (
@@ -43,6 +45,8 @@ export default function App() {
           <Route path="/vendedor-insumos" element={<Insumos />} />
           <Route path="/admin-sucursales" element={<AdminSucursales />} />
           <Route path="/admin-vendedores" element={<AdminVendores />} />
+          <Route path="/home/carrito" element={<ResponsiveCart />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
