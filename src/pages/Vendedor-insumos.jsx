@@ -22,8 +22,8 @@ export default function VendedorInsumos() {
               Insumos
             </div>
 
-            <div className="w-full flex justify-between items-center mb-20">
-              <div className="flex space-x-4">
+            <div className="w-full flex justify-end items-center mb-20">
+              {/*<div className="flex space-x-4">
                 <div className="flex flex-row ">
                   <img src="/icons/ViewColumn.svg" alt="columna" />
                   <p className="text-[16px] text-amber-500 px-2">Columnas</p>
@@ -36,7 +36,7 @@ export default function VendedorInsumos() {
                   <img src="/icons/TableRows.svg" alt="tabalRows" />
                   <p className="text-[16px] text-amber-500 px-2">Densidad</p>
                 </div>
-              </div>
+              </div>*/}
               <Search />
             </div>
 

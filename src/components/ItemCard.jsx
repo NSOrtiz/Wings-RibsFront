@@ -16,7 +16,7 @@ export default function ItemCard(props) {
           className="w-[100px] h-[100px] rounded-full object-cover relative"
         />
         <p className="text-center text-[16px] text-neutral-800 ">
-          {props.description}
+          {props.item} {props.description}
         </p>
         <p className="text-center text-[16px] text-neutral-800 ">
           {props.options}

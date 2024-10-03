@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components/NavBar';
 
 export default function MetodoDePago() {
   return (
@@ -9,7 +9,10 @@ export default function MetodoDePago() {
         {/* Contenedor principal */}
         <div
           className="flex flex-col items-center gap-4 px-[80px] py-0 flex-1"
-          style={{ padding: '0px 80px', background: 'rgba(255, 255, 255, 0.08)' }}
+          style={{
+            padding: '0px 80px',
+            background: 'rgba(255, 255, 255, 0.08)',
+          }}
         >
           {/* Contenedor interno */}
           <div
@@ -82,9 +85,7 @@ export default function MetodoDePago() {
               <div className="flex flex-col items-center gap-4 p-8 self-stretch">
                 {/* Input "Nombre del titular de la tarjeta" */}
                 <div className="w-full flex flex-col">
-                  <label
-                    className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2"
-                  >
+                  <label className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2">
                     Nombre del titular de la tarjeta
                   </label>
                   <input
@@ -96,9 +97,7 @@ export default function MetodoDePago() {
 
                 {/* Input "Número de la tarjeta" */}
                 <div className="w-full flex flex-col">
-                  <label
-                    className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2"
-                  >
+                  <label className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2">
                     Número de la tarjeta
                   </label>
                   <input
@@ -156,42 +155,30 @@ export default function MetodoDePago() {
             >
               {/* Contenedor para "Subtotal" */}
               <div className="w-full flex justify-between items-center">
-                <span
-                  className="text-neutral-500 text-[16px] font-[400] font-Ubuntu leading-normal tracking-[0.2px]"
-                >
+                <span className="text-neutral-500 text-[16px] font-[400] font-Ubuntu leading-normal tracking-[0.2px]">
                   Subtotal
                 </span>
-                <span
-                  className="text-amber-600 text-[16px] font-[500] font-Ubuntu leading-normal text-right"
-                >
+                <span className="text-amber-600 text-[16px] font-[500] font-Ubuntu leading-normal text-right">
                   $123.45
                 </span>
               </div>
 
               {/* Contenedor para "Shipping" */}
               <div className="w-full flex justify-between items-center">
-                <span
-                  className="text-neutral-500 text-[16px] font-[400] font-Ubuntu leading-normal tracking-[0.2px]"
-                >
+                <span className="text-neutral-500 text-[16px] font-[400] font-Ubuntu leading-normal tracking-[0.2px]">
                   Shipping
                 </span>
-                <span
-                  className="text-amber-600 text-[16px] font-[500] font-Ubuntu leading-normal text-right"
-                >
+                <span className="text-amber-600 text-[16px] font-[500] font-Ubuntu leading-normal text-right">
                   $12.34
                 </span>
               </div>
 
               {/* Contenedor para "Total" */}
               <div className="w-full flex justify-between items-center">
-                <span
-                  className="text-neutral-700 text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px]"
-                >
+                <span className="text-neutral-700 text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px]">
                   Total
                 </span>
-                <span
-                  className="text-amber-700 text-[20px] font-[700] font-Ubuntu leading-normal text-right"
-                >
+                <span className="text-amber-700 text-[20px] font-[700] font-Ubuntu leading-normal text-right">
                   $135.79
                 </span>
               </div>
@@ -202,9 +189,7 @@ export default function MetodoDePago() {
               className="w-full flex justify-center"
               style={{ paddingTop: '16px' }}
             >
-              <button
-                className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md"
-              >
+              <button className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md">
                 Pagar
               </button>
             </div>
@@ -214,4 +199,3 @@ export default function MetodoDePago() {
     </div>
   );
 }
- 

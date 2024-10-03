@@ -41,23 +41,30 @@ export function IconBtn({ icono, texto, onClick }) {
 
 export function Search() {
   return (
-    <div className="relative flex items-center">
-      {/* Solo ícono en pantallas pequeñas */}
+    <div className="relative flex items-center z-10">
+      {/*pantallas pequeñas */}
       <img
         src="/icons/magnifier.svg"
         alt="buscador"
-        className="block md:hidden w-[20px] h-[20px] cursor-pointer"
+        className="hidden md:hidden w-[20px] h-[20px] cursor-pointer "
       />
-      {/* Input completo en pantallas medianas o más grandes */}
+      {/*pantallas medianas */}
+
+      <img
+        src="/icons/magnifier.svg"
+        alt="buscador"
+        className="hidden md:block lg:hidden w-[20px] h-[20px] cursor-pointer"
+      />
+      {/*pantallas grandes */}
       <input
         type="text"
         placeholder="Buscar"
-        className="hidden md:block border border-gray-300 rounded-md pl-10 pr-2 py-1 focus:outline-none focus:border-amber-500 w-[200px]"
+        className="hidden lg:block border border-gray-300 rounded-md pl-10 pr-2 py-1 focus:outline-none focus:border-amber-500 w-[200px]"
       />
       <img
         src="/icons/magnifier.svg"
         alt="buscador"
-        className="absolute left-3 w-5 h-5 text-gray-500 hidden md:block"
+        className="absolute left-3 w-5 h-5 text-gray-500 hidden lg:block"
       />
     </div>
   );

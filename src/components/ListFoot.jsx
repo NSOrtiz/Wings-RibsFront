@@ -14,9 +14,9 @@ export function MenuFood() {
     const { top, bottom } = container.getBoundingClientRect();
 
     if (e.clientY < top + 50) {
-      startScrolling(-5);
+      startScrolling(-10);
     } else if (e.clientY > bottom - 50) {
-      startScrolling(5);
+      startScrolling(10);
     } else {
       stopScrolling();
     }
@@ -79,7 +79,7 @@ export function MenuFood() {
             >
               {category}
             </h2>
-            <div className="grid justify-items-center grid-cols-1 show2-cards show3-cards show4-cards show-4cards gap-y-6 gap-x-0 pt-4">
+            <div className="grid justify-items-center grid-cols-1 show2-cards show3-cards show4-cards show-4cards gap-y-6 gap-x-4 pt-4">
               {groupedData[category].map((data) => (
                 <CardsMenu
                   key={`card-${data.item}`}
