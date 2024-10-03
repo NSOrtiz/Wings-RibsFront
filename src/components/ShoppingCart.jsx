@@ -2,8 +2,15 @@ import React from 'react';
 import DishData from './DishData';
 import { useState } from 'react';
 import { Boton, IconBtn } from './Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
+  const navigate = useNavigate();
+
+  const handleClick = (message) => {
+    alert(message);
+    navigate('/confirmacion-com');
+  };
   return (
     <section className="w1-cart w2-cart h-fit flex flex-col justify-center items-center gap-[28px] border-[1px] border-amber-600 bg-white shadow-sm rounded-b-[16px]">
       <span className="w-full h-fit flex flex-row justify-start items-center gap-2 border-b-[1px] border-amber-600 px-[16px]">
@@ -32,7 +39,7 @@ export default function Cart() {
         <IconBtn
           icono="/icons/payments.svg"
           texto="Pagar"
-          onClick={() => handleClick('Has hecho clic en Comprar ahora')}
+          onClick={() => handleClick('Confirmacionde compra')}
         />
       </div>
     </section>
