@@ -1,0 +1,85 @@
+import { React } from 'react';
+
+export default function UpdateUser() {
+  return (
+    <div>
+      <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div className="relative justify-center p-4 w-full max-w-4xl max-h-full ">
+          <div className="relative bg-white rounded-lg shadow dark:bg-gray-500 opacity-70 pt-32 pb-32 p-10">
+            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <div className="bg-white w-full p-5 rounded-xl">
+                <div className="flex flex-row ">
+                  <button
+                    type="button"
+                    className=" text-amber-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    onClick={false}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <p className="text-[16px] font-semibold text-gray-500 pb-[24px]">
+                  Modificación de datos:
+                </p>
+                <p className="text-[20px] font-bold text-gray-500 pb-[12px] ">
+                  Nombre Completo
+                </p>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
+                ></input>
+                <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
+                  Teléfono
+                </p>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
+                ></input>
+                <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
+                  Dirección
+                </p>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
+                ></input>
+                <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
+                  Imagen
+                </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    className="border border-gray-700 bg-gray-500 rounded-lg px-2 py-2 text-white font-bold"
+                  >
+                    Selecciona un archivo
+                  </button>
+                  <p className="text-[20px] font-bold text-gray-600 pl-[20px]">
+                    NO HAY ARCHIVO SELECCIONADO
+                  </p>
+                </div>
+                <div className="flex justify-center pt-[12px]">
+                  <button
+                    type="button"
+                    className="border border-amber-700 bg-amber-500 text-[20px] font-bold text-white px-5 py-2 rounded-full w-[300px]"
+                  >
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

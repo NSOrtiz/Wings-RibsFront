@@ -31,15 +31,15 @@ export default function App() {
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-<<<<<<< HEAD
+
           <Route path="/admin-pedido" element={<AdminPedido />} />
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
           <Route path="/vendedor-insumos" element={<VendedorInsumos />} />
           <Route path="/admin-vendors" element={<AdminVendors />} />
-=======
+
           <Route path="/admin-pedidos" element={<AdminPedido />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
->>>>>>> 022430b35eec9dde3fb084591cd79fcb0176a1a8
+
           <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />

@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
 import NavBar from '../components/NavBar';
-import React from 'react';
+import UpdateUser from '../components/UpdateModal';
+import React, { useState } from 'react';
 /*import visaLogo from '../assets/visa-logo.png';
 import paypalLogo from '../assets/paypal-logo.png';*/
+import logoPencil from '../assets/edit_logo.png';
 
 export default function MetodoDePago() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -19,6 +23,18 @@ export default function MetodoDePago() {
     <div>
       <NavBar />
       <div className="font-[Ubuntu] font-bold bg-neutral-100 md:p-[56px] lg:p-[80px]  ">
+        <div className="flex flex-row-reverse w-full ">
+          <button
+            type="button"
+            className="hover:bg-gray-300 rounded-sm"
+            onClick={() => setIsOpenModal(!isOpenModal)}
+          >
+            <img src={logoPencil} />
+          </button>
+        </div>
+        <div style={{ visibility: isOpenModal ? 'visible' : 'hidden' }}>
+          <UpdateUser />
+        </div>
         <div className="grid grid-cols-2 grid-row-4 gap-[16px] p-[16px] pt-10 w-auto border-2 border-gray-100 border-b-zinc-700 md:grid-cols-3 grid-rows-4 lg:grid-cols-5 lg:grid-rows-4 lg:p-[8px] lg:pt-8 ">
           <div className="col-span-2 grid place-content-center p-2 md:col-span-1 lg:col-span-1 row-[1/5]">
             <img
