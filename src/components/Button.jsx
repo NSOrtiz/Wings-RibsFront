@@ -29,12 +29,30 @@ export function IconBtn({ icono, texto, onClick }) {
   return (
     <button
       id="ubuntu-bold"
-      className="flex flex-row justify-between items-center bg-amber-500 hover:bg-amber-600 text-white text-[20px] py-[8px] px-[16px] rounded-[8px]"
+      className="flex flex-row justify-between items-center bg-amber-500 hover:shadow-md hover:bg-amber-600 text-white text-[20px] py-[8px] px-[16px] rounded-[8px]"
       onClick={onClick}
     >
       <img className="w-[24px] h-[24px]" src={icono} alt="pay" />
       {texto}
       <img className="w-[20px] h-[20px]" src="/icons/arrow.svg" alt="arrow" />
+    </button>
+  );
+}
+
+export function IconBtnWhite({ icono, texto, onClick }) {
+  return (
+    <button
+      id="ubuntu-bold"
+      className="flex flex-row justify-between items-center bg-white border-[1px] hover:shadow-md border-amber-500 hover:bg-amber-600 text-neutral-900 text-[20px] py-[8px] px-[16px] rounded-[8px]"
+      onClick={onClick}
+    >
+      <img className="w-[24px] h-[24px]" src={icono} alt="pay" />
+      {texto}
+      <img
+        className="w-[20px] h-[20px]"
+        src="/icons/chevron-down.svg"
+        alt="arrow"
+      />
     </button>
   );
 }

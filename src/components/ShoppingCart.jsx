@@ -11,6 +11,13 @@ export default function Cart() {
     alert(message);
     navigate('/confirmacion-com');
   };
+
+  const [total, setTotal] = useState(0);
+
+  const handleUpdateTotal = (priceChange) => {
+    setTotal((prevTotal) => prevTotal + priceChange);
+  };
+
   return (
     <section className="w1-cart w2-cart h-fit flex flex-col justify-center items-center gap-[28px] border-[1px] border-amber-600 bg-white shadow-sm rounded-b-[16px]">
       <span className="w-full h-fit flex flex-row justify-start items-center gap-2 border-b-[1px] border-amber-600 px-[16px]">
@@ -21,7 +28,7 @@ export default function Cart() {
       </span>
       <section className="w-full px-[16px]">
         <div className="w-full">
-          <DishData />
+          <DishData onUpdateTotal={handleUpdateTotal} />
         </div>
       </section>
       <div
@@ -34,7 +41,7 @@ export default function Cart() {
         </span>
         <span className="flex flex-row justify-between pb-2">
           <p className="text-amber-600 text-[20px]">Total</p>
-          <p className="text-amber-600 text-[20px]">$220</p>
+          <p className="text-amber-600 text-[20px]">${total + 20}</p>
         </span>
         <IconBtn
           icono="/icons/payments.svg"

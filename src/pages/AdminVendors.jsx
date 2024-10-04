@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBarManager from '../components/NavBarManger';
 import Footer from '../components/Footer';
-import MenuOP from '../components/VerticalMenuOP';
+import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 import { Boton } from '../components/Button';
 import ProfileVendor from '../components/ProfileVendors';
@@ -12,7 +12,7 @@ export default function AdminVendores() {
       <NavBarManager />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2 ">
         <aside className=" w-1/4 md:flex flex-col items-center hidden ">
-          <MenuOP />
+          <AdminMenu />
         </aside>
         <div className="overflow-scroll w-full h-full p-[24px]">
           <section className="w-full flex flex-col items-stretch pl-[16px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
