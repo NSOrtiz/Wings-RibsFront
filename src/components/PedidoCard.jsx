@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import EstatusDePedidoVendedorAdmin from './Estatus-de-pedido';
 
 export default function PedidoCard() {
+  const [mostrarDetalles, setMostrarDetalles] = useState(false);
+  const toggleDetalles = () => {
+    setMostrarDetalles(!mostrarDetalles);
+  };
+  
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [status, setStatus] = useState('Selecciona un estado');
 
@@ -36,7 +43,7 @@ export default function PedidoCard() {
   return (
     <main>
       <section className="p-4">
-        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4">
+        <div className="grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]  2xl:grid-cols-[calc(22%+1px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4">
           <div className="flex flex-col mb-2 items-center">
             <div className="text-center mb-1 text-[16px]">Cliente</div>
             <div className="flex space-x-1 items-center">
@@ -54,10 +61,16 @@ export default function PedidoCard() {
                   </p>
                 </div>
                 <p className="text-[16px]">Hora de pedido</p>
-                <button className="mt-2 bg-amber-500 text-white rounded-md px-2 py-1">
+                <div className="flex flex-col p-2 text-center">
+
+                <button className="mt-2 bg-amber-500 text-white rounded-md px-2 py-1" onClick={toggleDetalles}>
                   Ver detalles
                 </button>
+                </div>
               </div>
+              {mostrarDetalles && (
+              <EstatusDePedidoVendedorAdmin onClose={toggleDetalles} />
+               )}
             </div>
           </div>
 
@@ -146,13 +159,13 @@ export default function PedidoCard() {
             </div>
           </div>
 
-          <div className="hidden lg:flex flex-col items-center justify-center">
+          <div className="hidden 2xl:flex flex-col items-center justify-center">
             <div className="flex items-center space-x-1">
               <p className="text-left text-[16px]">8:30</p>
             </div>
           </div>
 
-          <div className="hidden lg:flex flex-col items-center justify-center">
+          <div className="hidden 2xl:flex flex-col items-center justify-center">
             <img
               src="/icons/edit-yellow.svg"
               alt=""

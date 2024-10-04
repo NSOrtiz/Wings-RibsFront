@@ -44,23 +44,23 @@ export default function VendedorPedido() {
             <Search />
           </div>
 
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33.33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
-            <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
+          <div className="grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]  2xl:grid-cols-[calc(22%+1px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4 ">
+            <p className="flex flex-col mb-2 items-center justify-center text-[16px] text-amber-500">
               Detalles de pedido
             </p>
-            <p className="text-center text-[16px] text-amber-500">
+            <p className="flex flex-col items-center justify-center text-[16px] text-amber-500">
               Tipo de pago
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="lg:flex flex-col items-center justify-center  text-[16px] text-amber-500 hidden">
               Tiempo de preparación
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="md:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden ">
               Estatus de pedido
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="2xl:flex flex-col items-center justify-center  text-[16px] text-amber-500 hidden ">
               Hora aproximada de entrega
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="2xl:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden ">
               Editar
             </p>
           </div>
