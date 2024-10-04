@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react'; // Agregar useState aquí
 import NavBarManager from '../components/NavBarManger';
 import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 import { Boton } from '../components/Button';
 import ProfileVendor from '../components/ProfileVendors';
+import NewVendorForm from '../components/nodalVendedores'; // Importa el modal
 
 export default function AdminVendores() {
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar el modal
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true); // Abre el modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Cierra el modal
+  };
   return (
     <main className="w-full">
       <NavBarManager />
@@ -27,7 +37,7 @@ export default function AdminVendores() {
               <Search />
               <Boton
                 texto="Agregar Vendedor"
-                onClick={() => handleClick('Has hecho clic en Comprar ahora')}
+                onClick={handleOpenModal} // Abre el modal cuando se hace clic en el botón
               />
             </div>
 
@@ -106,6 +116,10 @@ export default function AdminVendores() {
         </div>
       </section>
       <Footer />
+      {/* Modal para agregar vendedor */}
+      {isModalOpen && (
+        <NewVendorForm onClose={handleCloseModal} /> // Renderiza el modal si está abierto
+      )}
     </main>
   );
 }
