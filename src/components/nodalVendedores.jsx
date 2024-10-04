@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 
-const sharedInputClasses = 'mt-1 block w-full border border-neutral-300 rounded-md p-2';
+const sharedInputClasses =
+  'mt-1 block w-full border border-neutral-300 rounded-md p-2';
 const sharedLabelClasses = 'block text-neutral-600';
 
 const NewVendorForm = ({ onClose }) => {
@@ -41,16 +42,7 @@ const NewVendorForm = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       {/* Fondo semitransparente */}
-      <div
-        className="absolute flex w-[700px] h-[800px] p-[10px] flex-col justify-center items-center gap-[10px] z-40"
-        style={{
-          left: '178px',
-          bottom: '-71px',
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-          borderRadius: '16px'
-        }}
-      ></div>
+      <div className="absolute flex w-[700px] h-[800px] p-[10px] flex-col justify-center items-center gap-[10px] z-40"></div>
 
       {/* Modal principal */}
       <div className="relative flex flex-col w-[600px] p-[20px] bg-white rounded-[16px] shadow-lg z-50">
@@ -60,7 +52,7 @@ const NewVendorForm = ({ onClose }) => {
             onClick={onClose}
             className="text-[#F39C12] hover:text-amber-700"
           >
-            X
+            <img src="/icons/close.svg" alt="Cerrar" className="w-5 h-5" />
           </button>
         </div>
 
@@ -71,8 +63,8 @@ const NewVendorForm = ({ onClose }) => {
 
         {/* Contenedor para el formulario de "Nombre vendedor" */}
         <div className="flex flex-col p-8 self-stretch">
-          <span 
-            className="self-stretch" 
+          <span
+            className="self-stretch"
             style={{
               color: 'var(--Primary-Gris-500, #667473)',
               fontFamily: 'Ubuntu',
@@ -109,7 +101,7 @@ const NewVendorForm = ({ onClose }) => {
           </div>
 
           {/* Sección "Foto" */}
-          <span 
+          <span
             className="self-stretch mt-4"
             style={{
               color: 'var(--Primary-Gris-500, #667473)',
@@ -151,8 +143,8 @@ const NewVendorForm = ({ onClose }) => {
 
         {/* Nuevo div separado para "Datos vendedor" */}
         <div className="flex flex-col p-8 self-stretch">
-          <span 
-            className="self-stretch" 
+          <span
+            className="self-stretch"
             style={{
               color: 'var(--Primary-Gris-500, #667473)',
               fontFamily: 'Ubuntu',
@@ -211,7 +203,7 @@ const NewVendorForm = ({ onClose }) => {
           </div>
 
           {/* Sucursal */}
-          <span 
+          <span
             className="self-stretch mt-4"
             style={{
               color: 'var(--Primary-Gris-500, #667473)',
@@ -240,7 +232,7 @@ const NewVendorForm = ({ onClose }) => {
           <div className="flex justify-center mt-4">
             <button
               type="button"
-              onClick={handleSubmit}  // Llama a la función handleSubmit al hacer clic
+              onClick={handleSubmit} // Llama a la función handleSubmit al hacer clic
               className="flex justify-center items-start gap-4"
               style={{
                 display: 'flex',

@@ -87,3 +87,31 @@ export function Search() {
     </div>
   );
 }
+
+export function PaginationComponent() {
+  return (
+    <div className="flex flex-col mt-4">
+      <div className="flex justify-end items-center gap-4 p-2">
+        <span className="font-Roboto text-[12px] font-normal text-[#D77408]">
+          Páginas
+        </span>
+        <div className="flex items-center gap-2">
+          <span className="font-Roboto text-[12px] font-normal text-[#D77408]">
+            10
+          </span>
+          <img src="/icons/Flechadepaginacion.svg" alt="Flecha de paginación" />
+        </div>
+        <span className="font-Roboto text-[12px] font-normal text-[#D77408]">
+          1-5 de 13
+        </span>
+        <div className="flex gap-2">
+          <img
+            src="/icons/flechaizquierdapaginacion.svg"
+            alt="Flecha izquierda"
+          />
+          <img src="/icons/flechaderechapaginacion.svg" alt="Flecha derecha" />
+        </div>
+      </div>
+    </div>
+  );
+}

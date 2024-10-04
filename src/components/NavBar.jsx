@@ -128,7 +128,7 @@ export function NavBar() {
   );
 }
 
-export function AdminSellerNavBar() {
+export function AdminSellerNavBar({ toggleMenuVisibility }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   function toggleMenu() {
@@ -146,6 +146,14 @@ export function AdminSellerNavBar() {
         id="ubuntu-bold"
         className="flex justify-between items-center flex-1 self-stretch"
       >
+        <div className="block hide-btns mr-4">
+          <img
+            onClick={toggleMenuVisibility}
+            className="w-[40px] h-[40px] cursor-pointer"
+            src="/icons/menu.svg"
+            alt=""
+          />
+        </div>
         <div className="flex items-center gap-4 flex-1">
           <img
             src="/images/W&R1.png"
