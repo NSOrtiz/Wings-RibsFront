@@ -1,73 +1,74 @@
-import React, { useState } from 'react'; // Agregar useState aquí
+import React from 'react';
 import NavBarManager from '../components/NavBarManger';
 import Footer from '../components/Footer';
-import MenuOP from '../components/VerticalMenuOP';
+import { SellerMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
-import { Boton } from '../components/Button';
-import ProfileVendor from '../components/ProfileVendors';
-import NewVendorForm from '../components/nodalVendedores'; // Importa el modal
+import Inventarios from '../components/Inventario';
 
-export default function AdminVendores() {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar el modal
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true); // Abre el modal
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false); // Cierra el modal
-  };
+export default function VendedorInsumos() {
   return (
     <main className="w-full">
       <NavBarManager />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2 ">
         <aside className=" w-1/4 md:flex flex-col items-center hidden ">
-          <MenuOP />
+          <SellerMenu />
         </aside>
-        <div className="overflow-scroll w-full h-full p-[24px]">
+        <div className="overflow-scroll w-full h-full p-[20px]">
           <section className="w-full flex flex-col items-stretch pl-[16px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
             <div
               id="ubuntu-bold"
               className="w-full border-b border-amber-500 mb-4 text-amber-500 text-[32px]"
             >
-              Vendedores
+              Insumos
             </div>
 
-            <div className="w-full flex pt-8 justify-between mb-20">
+            <div className="w-full flex justify-end items-center mb-20">
+              {/*<div className="flex space-x-4">
+                <div className="flex flex-row ">
+                  <img src="/icons/ViewColumn.svg" alt="columna" />
+                  <p className="text-[16px] text-amber-500 px-2">Columnas</p>
+                </div>
+                <div className="flex flex-row">
+                  <img src="/icons/FilterList.svg" alt="filterList" />
+                  <p className="text-[16px] text-amber-500 px-2">Filtros</p>
+                </div>
+                <div className="flex flex-row">
+                  <img src="/icons/TableRows.svg" alt="tabalRows" />
+                  <p className="text-[16px] text-amber-500 px-2">Densidad</p>
+                </div>
+              </div>*/}
               <Search />
-              <Boton
-                texto="Agregar Vendedor"
-                onClick={handleOpenModal} // Abre el modal cuando se hace clic en el botón
-              />
             </div>
 
-            <div className=" flex flex-row gap-8 border-b border-neutral-500 mb-6 font-bold">
+            <div className=" flex flex-row gap-8 border-b border-neutral-500 mb-6">
               <p className="col-span-full text-center text-[16px] text-amber-500 basis-1/3">
-                Usuario
+                productos
               </p>
               <p className="text-center text-[16px] text-amber-500 basis-1/2">
-                Correo
+                Unidades Disponibles
               </p>
               <p className="text-center text-[16px] text-amber-500 basis-1/2 ">
-                Teléfono
+                Inventario
               </p>
               <p className="text-center text-[16px] text-amber-500  basis-1/4">
-                ID
+                Disponible
               </p>
             </div>
 
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
+            <Inventarios />
             <div className="flex justify-end">
+              {' '}
               <li className="font-roboto font-bold text-[12px] block rounded leading-8 p-3 text-amber-500 ">
                 página 10
               </li>
@@ -116,10 +117,6 @@ export default function AdminVendores() {
         </div>
       </section>
       <Footer />
-      {/* Modal para agregar vendedor */}
-      {isModalOpen && (
-        <NewVendorForm onClose={handleCloseModal} /> // Renderiza el modal si está abierto
-      )}
     </main>
   );
 }

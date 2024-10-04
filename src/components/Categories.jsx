@@ -49,6 +49,14 @@ export default function Categories({ onCategoryClick }) {
     onCategoryClick(category);
   };
 
+  const handleScrollLeft = () => {
+    scrollContainer.current.scrollLeft -= 100;
+  };
+
+  const handleScrollRight = () => {
+    scrollContainer.current.scrollLeft += 100;
+  };
+
   useEffect(() => {
     const container = scrollContainer.current;
     container.addEventListener('mousemove', handleMouseMove);
@@ -62,8 +70,18 @@ export default function Categories({ onCategoryClick }) {
   return (
     <div
       ref={scrollContainer}
-      className="flex flex-row w-full gap-2 overflow-x-auto scrollbar-hide"
+      className="flex flex-row w-full gap-2 overflow-x-auto scrollbar-hide items-center px-[40px] lg:px-0"
     >
+      <button
+        onClick={handleScrollLeft}
+        className="absolute left-[16px] md:left-[56px] lg:left-[80px] z-10  bg-neutral-100 p-2  hover:bg-white hover:rounded-md lg:hidden"
+      >
+        <img
+          className="w-[24px] h-[24px]"
+          src="/icons/flechaizquierdapaginacion.svg"
+          alt=""
+        />
+      </button>
       {categories.map((btn) => {
         return (
           <button
@@ -80,6 +98,16 @@ export default function Categories({ onCategoryClick }) {
           </button>
         );
       })}
+      <button
+        onClick={handleScrollRight}
+        className="absolute right-[16px] md:right-[56px] lg:right-[80px] z-10 bg-neutral-100 p-2  hover:bg-white hover:rounded-md lg:hidden"
+      >
+        <img
+          className="w-[24px] h-[24px]"
+          src="/icons/flechaderechapaginacion.svg"
+          alt=""
+        />
+      </button>
     </div>
   );
 }

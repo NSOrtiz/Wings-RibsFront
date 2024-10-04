@@ -3,8 +3,8 @@ import React from 'react';
 export function Boton({ texto, onClick }) {
   return (
     <button
-      id="ubuntu-bold"
-      className="bg-amber-500 hover:bg-amber-600 text-white text-[12px] py-[8px] px-[16px] rounded-[8px]"
+      id="ubuntu-medium"
+      className="bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px]"
       onClick={onClick}
     >
       {texto}
@@ -36,5 +36,36 @@ export function IconBtn({ icono, texto, onClick }) {
       {texto}
       <img className="w-[20px] h-[20px]" src="/icons/arrow.svg" alt="arrow" />
     </button>
+  );
+}
+
+export function Search() {
+  return (
+    <div className="relative flex items-center z-10">
+      {/*pantallas pequeñas */}
+      <img
+        src="/icons/magnifier.svg"
+        alt="buscador"
+        className="hidden md:hidden w-[20px] h-[20px] cursor-pointer "
+      />
+      {/*pantallas medianas */}
+
+      <img
+        src="/icons/magnifier.svg"
+        alt="buscador"
+        className="hidden md:block lg:hidden w-[20px] h-[20px] cursor-pointer"
+      />
+      {/*pantallas grandes */}
+      <input
+        type="text"
+        placeholder="Buscar"
+        className="hidden lg:block border border-gray-300 rounded-md pl-10 pr-2 py-1 focus:outline-none focus:border-amber-500 w-[200px]"
+      />
+      <img
+        src="/icons/magnifier.svg"
+        alt="buscador"
+        className="absolute left-3 w-5 h-5 text-gray-500 hidden lg:block"
+      />
+    </div>
   );
 }
