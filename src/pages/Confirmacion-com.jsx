@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { NavBar } from '../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
+
   const handleIconClick = () => {
     setIsVisible(!isVisible);
+  };
+  const handleClick = () => {
+    navigate('/metodo_pago');
   };
 
   return (
@@ -223,7 +229,10 @@ function Confirmacioncom() {
                   </div>
 
                   <div className="mt-auto flex justify-center w-full">
-                    <button className="px-20 py-2 bg-amber-500 text-white rounded-xl hover:bg-amber-600">
+                    <button
+                      className="px-20 py-2 bg-amber-500 text-white rounded-xl hover:bg-amber-600"
+                      onClick={() => handleClick()}
+                    >
                       Enviar
                     </button>
                   </div>
