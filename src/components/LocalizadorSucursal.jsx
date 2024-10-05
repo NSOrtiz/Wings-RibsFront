@@ -1,51 +1,52 @@
 import React from 'react';
-import imageURL from '../assets/BackgroundHomepage.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 export default function LocalizadorSucursal() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/home/menu');
+  };
   return (
     <div
-      className="w-full h-[500px] flex-col justify-center items-center gap-2.5 inline-flex pt-10 px-4"
-      style={{
-        backgroundImage: `url(${imageURL})`,
-        objectFit: 'scale-down',
-      }}
+      id="filterhome"
+      className="w-full flex flex-col justify-center items-center"
     >
-      <div className="rounded-[10px] flex-col justify-center items-start gap-2 flex">
-        <div className="self-stretch justify-center items-center gap-2 inline-flex">
-          <div className="h-11 p-2 bg-[#f39c12] rounded-2xl shadow border border-[#424949] justify-center items-center flex">
-            <div className="text-white text-2xl font-bold font-['Ubuntu'] tracking-tight">
-              Entregar a Domicilio
-            </div>
-          </div>
-          <div className="h-11 p-2 bg-[#e5e8e7]/60 rounded-2xl shadow border border-[#424949] justify-center items-center flex">
-            <div className="text-[#424949] text-2xl font-bold font-['Ubuntu'] tracking-tight">
-              Recoger en tienda
-            </div>
-          </div>
+      <div className="min-w-[500px] flex flex-col justify-center items-start">
+        <div className="w-full flex flex-row justify-between items-center gap-4 ">
+          <button className="flex py-2 w-full bg-amber-500 rounded-[12px] shadow border border-neutral-800 justify-center items-center text-white text-[12px] md:text-[16px] lg:text-[20px] font-bold font-['Ubuntu'] hover:shadow-md hover:bg-amber-400 hover:text-neutral-800 ">
+            Entregar a Domicilio
+          </button>
+          <button className="flex py-2 w-full bg-neutral-300/60 rounded-[12px] shadow border border-neutral-800 justify-center items-center text-neutral-800 text-[12px] md:text-[16px] lg:text-[20px] font-bold font-['Ubuntu'] hover:shadow-md hover:bg-amber-400 hover:text-neutral-800 ">
+            Recoger en tienda
+          </button>
         </div>
-        <div className="self-stretch h-[135px] py-4 rounded-xl flex-col justify-center items-start gap-2 flex">
-          <div className="self-stretch py-2 justify-center items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 h-[46px] pl-6 pr-7 py-2 bg-white rounded-2xl shadow border border-white justify-start items-center gap-2 flex">
-              <div className="w-[30px] h-[30px] justify-center items-center flex">
-                <div className="w-[30px] h-[30px] relative flex-col justify-start items-start flex" />
-              </div>
-              <div className="text-[#667473] text-xl font-normal font-['Ubuntu']">
-                Ingresa tu calle y número
-              </div>
-            </div>
-            <div className="h-[47px] px-1 py-2 bg-[#f39c12] rounded-2xl shadow border border-[#f39c12] justify-center items-center gap-1 flex">
-              <div className="self-stretch px-2 py-1 justify-center items-center gap-2 flex">
-                <div className="text-white text-xl font-bold font-['Ubuntu'] tracking-tight">
-                  Localizar
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-col w-full justify-center items-center py-4 ">
+          <div className="flex flex-row w-full gap-4 items-center">
+            <label className="w-full flex items-start py-2">
+              <input
+                type="text"
+                className="block w-full border border-neutral-500 rounded-md p-2 text-[12px] md:text-[16px] font-regular font-['Ubuntu']"
+                placeholder="Ingrese su dirección"
+              />
+            </label>
+            <button
+              id="ubuntu-bold"
+              className="bg-amber-500 hover:bg-amber-600 text-white text-[12px] md:text-[16px] py-2 px-[16px] rounded-md"
+              onClick={() => handleClick()}
+            >
+              Localizar
+            </button>
           </div>
-          <div className="px-2 py-1 justify-start items-center gap-4 inline-flex">
-            <div className="w-6 h-6 relative backdrop-blur-sm" />
-            <div className="w-[237px] h-[23px] text-white text-base font-medium font-['Ubuntu']">
+          <div className="w-full flex flex-row justify-start gap-2 items-center hover:cursor-pointer">
+            <img
+              className="w-[20px] h-[20px] "
+              src="/icons/navigate-outline.svg"
+              alt="nav"
+            />
+            <p className="w-[237px] h-[23px] text-white text-base font-medium font-['Ubuntu']">
               Utiliza mi ubicación
-            </div>
+            </p>
           </div>
         </div>
       </div>
