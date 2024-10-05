@@ -30,13 +30,16 @@ export default function VendedorInsumos() {
               Insumos
             </div>
 
-            <div className="w-full flex justify-end items-center mb-20">
+            <div className="w-full flex justify-end items-center mb-10">
               <Search />
             </div>
 
-            <div className=" flex flex-row gap-8 border-b border-neutral-500 mb-6">
+            <div
+              id="ubuntu-bold"
+              className=" flex flex-row gap-8 border-b border-neutral-500 mb-6"
+            >
               <p className="col-span-full text-center text-[16px] text-amber-500 basis-1/3">
-                productos
+                Productos
               </p>
               <p className="text-center text-[16px] text-amber-500 basis-1/2">
                 Unidades Disponibles

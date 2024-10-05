@@ -52,7 +52,10 @@ export default function VendedorPedido() {
             <Search />
           </div>
 
-          <div className="grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]  2xl:grid-cols-[calc(22%+1px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4 ">
+          <div
+            id="ubuntu-bold"
+            className="grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]  2xl:grid-cols-[calc(22%+1px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4 "
+          >
             <p className="flex flex-col mb-2 items-center justify-center text-[16px] text-amber-500">
               Detalles de pedido
             </p>
@@ -68,9 +71,7 @@ export default function VendedorPedido() {
             <p className="2xl:flex flex-col items-center justify-center  text-[16px] text-amber-500 hidden ">
               Hora aproximada de entrega
             </p>
-            <p className="2xl:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden ">
-              Editar
-            </p>
+            <p className="2xl:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden "></p>
           </div>
           <PedidoCard />
           <PedidoCard />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function Boton({ texto, onClick }) {
   return (
@@ -113,5 +113,166 @@ export function PaginationComponent() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function SelectCategories() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [status, setStatus] = useState('Categorías');
+  const [selectedBtn, setSelectedBtn] = useState(null);
+
+  const categories = [
+    'Promociones',
+    'Wings',
+    'Boneless',
+    'Snacks',
+    'Ribs',
+    'Burguers & Dogs',
+    'Charolas',
+    'Ensaladas',
+    'Bebidas',
+  ];
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const closeDropdown = (e) => {
+    if (!e.target.closest('#dropdownButton')) {
+      setDropdownOpen(false);
+    }
+  };
+
+  const selectStatus = (newStatus, e) => {
+    e.preventDefault();
+    setStatus(newStatus);
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', closeDropdown);
+    return () => window.removeEventListener('click', closeDropdown);
+  }, []);
+
+  return (
+    <section className="w-full">
+      <div className="hidden md:flex flex-col items-center justify-center">
+        <div className="w-full relative inline-block">
+          <button
+            id="dropdownButton"
+            className="w-full inline-flex flex-row justify-between items-center rounded-md border border-neutral-300 shadow-sm px-2 py-1 bg-white text-[16px] text-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-600"
+            type="button"
+            onClick={toggleDropdown}
+          >
+            <div className="flex items-center gap-2">
+              <img src="/icons/categories.svg" alt="" />
+              {status}
+            </div>
+            <img
+              className="border-l-[1px] border-neutral-200 p-2"
+              src="/icons/down_arrow.svg"
+              alt=""
+            />
+          </button>
+          {dropdownOpen && (
+            <div
+              className="absolute right-0 z-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="dropdownButton"
+            >
+              <div className="py-1" role="none">
+                {categories.map((category, index) => (
+                  <a
+                    href="#"
+                    key={index}
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-amber-600"
+                    role="menuitem"
+                    onClick={(e) => selectStatus(category, e)}
+                  >
+                    {category}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+export function SelectTimeCook() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [status, setStatus] = useState('Tiempos');
+  const [selectedBtn, setSelectedBtn] = useState(null);
+
+  const times = ['10 min', '15 min', '20 min', '25 min', '30 min'];
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const closeDropdown = (e) => {
+    if (!e.target.closest('#dropdownButton')) {
+      setDropdownOpen(false);
+    }
+  };
+
+  const selectStatus = (newStatus, e) => {
+    e.preventDefault();
+    setStatus(newStatus);
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', closeDropdown);
+    return () => window.removeEventListener('click', closeDropdown);
+  }, []);
+
+  return (
+    <section className="w-full">
+      <div className="hidden md:flex flex-col items-center justify-center">
+        <div className="w-full relative inline-block">
+          <button
+            id="dropdownButton"
+            className="w-full inline-flex flex-row justify-between items-center rounded-md border border-neutral-300 shadow-sm px-2 py-1 bg-white text-[16px] text-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-600"
+            type="button"
+            onClick={toggleDropdown}
+          >
+            <div className="flex items-center gap-2">
+              <img src="/icons/times.svg" alt="" />
+              {status}
+            </div>
+            <img
+              className="border-l-[1px] border-neutral-200 p-2"
+              src="/icons/down_arrow.svg"
+              alt=""
+            />
+          </button>
+          {dropdownOpen && (
+            <div
+              className="absolute right-0 z-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="dropdownButton"
+            >
+              <div className="py-1" role="none">
+                {times.map((category, index) => (
+                  <a
+                    href="#"
+                    key={index}
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-amber-600"
+                    role="menuitem"
+                    onClick={(e) => selectStatus(category, e)}
+                  >
+                    {category}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

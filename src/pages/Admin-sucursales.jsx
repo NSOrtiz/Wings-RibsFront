@@ -4,9 +4,17 @@ import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Boton } from '../components/Button';
 import TableStores from '../components/Table-stores';
+import { AddStore } from '../components/ModalSucursales.jsx';
 
 export default function Productos() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible);
   };
@@ -29,12 +37,12 @@ export default function Productos() {
             Sucursales
           </div>
           <div className="w-full flex flex-row items-center justify-end gap-4 pb-4">
-            <Boton
-              texto="Agregar Sucursal"
-              onClick={() => handleClick('Has hecho clic en Comprar ahora')}
-            />
+            <Boton texto="Agregar Sucursal" onClick={handleOpenModal} />
           </div>
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
+          <div
+            id="ubuntu-bold"
+            className=" grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6"
+          >
             <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
               Nombre
             </p>
@@ -51,6 +59,9 @@ export default function Productos() {
         </div>
       </section>
       <Footer />
+      {isModalOpen && (
+        <AddStore onClose={handleCloseModal} /> // Renderiza el modal si está abierto
+      )}
     </main>
   );
 }

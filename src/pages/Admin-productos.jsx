@@ -5,9 +5,17 @@ import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 import { Boton } from '../components/Button';
 import ListData from '../components/ProductTable';
+import { AddProductForm } from '../components/ModalProductos';
 
 export default function Productos() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible);
   };
@@ -31,10 +39,7 @@ export default function Productos() {
           </div>
           <div className="w-full flex flex-row items-center justify-between gap-4 pb-12">
             <Search />
-            <Boton
-              texto="Agregar producto"
-              onClick={() => handleClick('Has hecho clic en Comprar ahora')}
-            />
+            <Boton texto="Agregar producto" onClick={handleOpenModal} />
           </div>
           <div
             id="ubuntu-bold"
@@ -68,6 +73,9 @@ export default function Productos() {
         </div>
       </section>
       <Footer />
+      {isModalOpen && (
+        <AddProductForm onClose={handleCloseModal} /> // Renderiza el modal si está abierto
+      )}
     </main>
   );
 }
