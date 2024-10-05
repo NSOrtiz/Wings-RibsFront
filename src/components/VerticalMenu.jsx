@@ -37,7 +37,7 @@ export function AdminMenu() {
     } else if (index === 2) {
       navigate('/admin-productos');
     } else if (index === 3) {
-      navigate('/admin-conf');
+      navigate('/admin-sucursales');
     } else if (index === 4) {
       navigate('/admin-menu');
     }
@@ -168,7 +168,7 @@ export function SellerMenu() {
   };
 
   const titlesBtn = [
-    { icon: '/icons/fast-food-outline.svg', title: 'Menu' },
+    { icon: '/icons/fastfood.svg', title: 'Menu' },
     { icon: '/icons/Delivery.svg', title: 'Pedidos' },
     { icon: '/icons/Bill.svg', title: 'Insumos' },
     //{ icon: "/icons/arrow_forward.svg", title: 'Estadisticas de ventas' },
