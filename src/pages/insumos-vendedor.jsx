@@ -35,7 +35,7 @@ const TableRow = ({ product, unitsAvailable, inventory, isAvailable }) => {
 
   const toggleAvailability = () => {
     setAvailable(!available);
-    // Aquí podrías realizar una llamada PUT para actualizar el producto en la base de datos
+    
   };
 
   return (
@@ -107,7 +107,7 @@ export default function Insumos() {
   // Función para obtener los productos desde el backend
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/productos'); // Cambia la URL según corresponda
+      const response = await axios.get('http://localhost:5000/api/productos'); 
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
