@@ -1,12 +1,6 @@
 import { useForm } from 'react-hook-form';
-<<<<<<< HEAD
-import NavBar from '../components/NavBar';
-import UpdateUser from '../components/UpdateModal';
-import React, { useState } from 'react';
-=======
 import { NavBar } from '../components/NavBar';
 import React from 'react';
->>>>>>> 386719453efafc5a5b6c9df954bae2077bfbc964
 /*import visaLogo from '../assets/visa-logo.png';
 import paypalLogo from '../assets/paypal-logo.png';*/
 import logoPencil from '../assets/edit_logo.png';
