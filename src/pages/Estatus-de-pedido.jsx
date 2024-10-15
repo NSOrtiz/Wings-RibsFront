@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavBar } from '../components/NavBar';
 
 function EstatusDePedido() {
+
+  const [pedido, setPedido] = useState(null);
+  
+  const fetchPedido = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/orders');
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error al obtener el pedido: ${response.status} ${errorText}`);
+      }
+      const data = await response.json();
+      setPedido(data[0]); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchPedido();
+  }, []);
+
   return (
     <main>
       <NavBar />
@@ -22,7 +42,8 @@ function EstatusDePedido() {
                     />
                   </div>
                   <div className="flex flex-col space-y-4 mt-4 w-[400px] md:w-[500px] lg:w-[500px]">
-                    {[1, 2, 3].map((item, index) => (
+                  {pedido && pedido.items && pedido.items.length > 0 ? (
+                      pedido.items.map((item, index) => (
                       <div
                         key={index}
                         className="flex items-center border-b border-neutral-200 pb-2 w-full justify-between"
@@ -37,21 +58,26 @@ function EstatusDePedido() {
                         </div>
                         <div className="w-60 flex flex-col mx-4">
                           <h2 id="ubuntu-bold" className="text-[16px]">
-                            Plato de ostras
+                          {item.name}
+
                           </h2>
                           <p id="ubuntu-light" className="text-[12px]">
-                            Galletas de chocolate con forma de tortuga y red
-                            velvet
+                          {item.detalle}
+
                           </p>
                         </div>
                         <p
                           id="ubuntu-medium"
                           className="text-[16px] text-amber-500"
                         >
-                          $10.00 mxn
+                          ${item.price}
+
                         </p>
                       </div>
-                    ))}
+                     ))
+                    ) : (
+                      <p>No hay items en el pedido.</p>
+                    )}
                     <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
                         <p d="ubuntu-light" className="text-[16px]">
