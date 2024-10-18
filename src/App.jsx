@@ -20,6 +20,7 @@ import AdminSucursales from './pages/Admin-sucursales';
 import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
 import Contacto from './pages/Contacto-sucursales';
+import ProtectedRouteUser from './ProtectedRouterUse';
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/home/menu" element={<Menu1 />} />
+
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
@@ -46,6 +47,10 @@ export default function App() {
           <Route path="/admin-vendedores" element={<AdminVendores />} />
           <Route path="/home/carrito" element={<ResponsiveCart />} />
           <Route path="/contacto" element={<Contacto />} />
+
+          <Route element={<ProtectedRouteUser />}>
+            <Route path="/home/menu" element={<Menu1 />} />{' '}
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

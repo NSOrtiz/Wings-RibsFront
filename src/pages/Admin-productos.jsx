@@ -10,6 +10,9 @@ import { AddProductForm } from '../components/ModalProductos';
 export default function Productos() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -19,6 +22,19 @@ export default function Productos() {
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+
+  const handleButtonClick = () => {
+    console.log('Sucursal seleccionada:', selectedSubsidiary);
+    if (selectedSubsidiary) {
+      handleOpenModal();
+    } else {
+      setErrorMessage(
+        'Seleccione sucursal para poder agregar un nuevo producto'
+      );
+      setTimeout(() => setErrorMessage(''), 3000);
+    }
+  };
+
   return (
     <main>
       <AdminSellerNavBar toggleMenuVisibility={toggleMenuVisibility} />
@@ -28,7 +44,7 @@ export default function Productos() {
             isMenuVisible ? 'block' : 'hidden'
           } hide-cart relative top-[0] left-0 h-full w-[300px] z-50 flex flex-col items-center`}
         >
-          <AdminMenu />
+          <AdminMenu onSelectSubsidiary={setSelectedSubsidiary} />
         </aside>
         <div className="w-full flex flex-col items-stretch pl-[16px] md:pl-[56px] pt-[16px] md:pt-[56px] lg:pt-[80px] gap-2">
           <div
@@ -39,15 +55,24 @@ export default function Productos() {
           </div>
           <div className="w-full flex flex-row items-center justify-between gap-4 pb-12">
             <Search />
-            <Boton texto="Agregar producto" onClick={handleOpenModal} />
+            <div className="flex flex-col justify-end w-1/5">
+              <Boton
+                texto="Agregar producto"
+                onClick={handleButtonClick}
+                disabled={!selectedSubsidiary}
+              />
+              {errorMessage && (
+                <p className="flex justify-end text-red-500 text-xs">
+                  {errorMessage}
+                </p>
+              )}
+            </div>
           </div>
+
           <div
             id="ubuntu-bold"
-            className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6"
+            className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6"
           >
-            <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
-              Id
-            </p>
             <p className="text-center text-[16px] text-amber-500">Categoria</p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
               Foto
@@ -59,13 +84,13 @@ export default function Productos() {
               Opciones
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
-              Tiempo de preparacion
+              Tiempo de preparación
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
               Precio
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
-              Promocion
+              Promoción
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell"></p>
           </div>
@@ -74,7 +99,10 @@ export default function Productos() {
       </section>
       <Footer />
       {isModalOpen && (
-        <AddProductForm onClose={handleCloseModal} /> // Renderiza el modal si está abierto
+        <AddProductForm
+          onClose={handleCloseModal}
+          selectedSubsidiary={selectedSubsidiary}
+        />
       )}
     </main>
   );

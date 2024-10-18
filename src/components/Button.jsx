@@ -116,10 +116,9 @@ export function PaginationComponent() {
   );
 }
 
-export function SelectCategories() {
+export function SelectCategories({ onSelect }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [status, setStatus] = useState('Categorías');
-  const [selectedBtn, setSelectedBtn] = useState(null);
 
   const categories = [
     'Promociones',
@@ -147,6 +146,7 @@ export function SelectCategories() {
     e.preventDefault();
     setStatus(newStatus);
     setDropdownOpen(false);
+    onSelect(newStatus);
   };
 
   useEffect(() => {
@@ -201,12 +201,11 @@ export function SelectCategories() {
     </section>
   );
 }
-export function SelectTimeCook() {
+export function SelectTimeCook({ onSelect }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [status, setStatus] = useState('Tiempos');
-  const [selectedBtn, setSelectedBtn] = useState(null);
+  const [status, setStatus] = useState('Tiempos (min.)');
 
-  const times = ['10 min', '15 min', '20 min', '25 min', '30 min'];
+  const times = [10, 15, 20, 25, 30];
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -218,10 +217,11 @@ export function SelectTimeCook() {
     }
   };
 
-  const selectStatus = (newStatus, e) => {
+  const selectTime = (newTime, e) => {
     e.preventDefault();
-    setStatus(newStatus);
+    setStatus(newTime);
     setDropdownOpen(false);
+    onSelect(newTime);
   };
 
   useEffect(() => {
@@ -257,15 +257,15 @@ export function SelectTimeCook() {
               aria-labelledby="dropdownButton"
             >
               <div className="py-1" role="none">
-                {times.map((category, index) => (
+                {times.map((time, index) => (
                   <a
                     href="#"
                     key={index}
                     className="text-gray-700 block px-4 py-2 text-sm hover:bg-amber-600"
                     role="menuitem"
-                    onClick={(e) => selectStatus(category, e)}
+                    onClick={(e) => selectTime(time, e)}
                   >
-                    {category}
+                    {time}
                   </a>
                 ))}
               </div>

@@ -227,3 +227,27 @@ input:checked + .slider:before {
   background-blend-mode: overlay;
   opacity: 0.9;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6; /* Tailwind color gray-100 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #f59e0b; /* Tailwind color amber-500 */
+  border-radius: 10px;
+  border: 2px solid #f3f4f6; /* Tailwind color gray-100 */
+}
+
+/* Ocultar flechas en el scrollbar */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin; /* Para navegadores que soportan scrollbar-width */
+  scrollbar-color: #f59e0b #f3f4f6; /* Tailwind amber-500 y gray-100 */
+}

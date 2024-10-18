@@ -1,12 +1,29 @@
 import { CardsPromo } from './Cards';
-import React, { useRef, useEffect } from 'react';
-import { cardsData } from './FoodData';
+import React, { useRef, useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function PromoCarrusel() {
-  const discountedCards = cardsData.filter((card) => card.discount > 0);
+  //const discountedCards = FoodData.filter((card) => card.discount > 0);
+
+  const [discountedCards, setDiscountedCards] = useState([]);
 
   const scrollContainer = useRef(null);
   let scrollInterval = null;
+
+  useEffect(() => {
+    // Fetch con la API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/items');
+        const discounted = response.data.filter((card) => card.discount > 0);
+        setDiscountedCards(discounted);
+      } catch (error) {
+        console.error('Error para obtner informacion:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleMouseMove = (e) => {
     const container = scrollContainer.current;
@@ -56,7 +73,7 @@ export default function PromoCarrusel() {
             item={data.item}
             discount={data.discount}
             subsidiary={data.subsidiary}
-            newprice={data.newprice}
+            newprice={() => data.price - (data.price * data.discount) / 100}
             price={data.price}
           />
         </div>
