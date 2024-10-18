@@ -8,6 +8,18 @@ export default function ProfileVendor() {
       <p className="font-bold text-center basis-1/2 pt-1 ">algo@gmail.com</p>
       <p className="font-bold text-center basis-1/2 pt-1">1111111111</p>
       <p className="font-bold text-center basis-1/4 pt-1">ID</p>
+      <div className=" basis-1/4 pt-1 flex flex-row gap-2 justify-end">
+        <img
+          src="/icons/edit-yellow.svg"
+          alt=""
+          className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+        />
+        <img
+          className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+          src="/icons/delete-yellow.svg"
+          alt=""
+        />
+      </div>
     </div>
   );
 }

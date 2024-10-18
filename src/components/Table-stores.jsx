@@ -56,7 +56,7 @@ export default function ItemStores() {
             >
               {element.id}
             </p>
-            <div className=" flex flex-row gap-2 justify-end">
+            <div className=" flex flex-row gap-2 justify-center">
               <img
                 src="/icons/edit-yellow.svg"
                 alt=""

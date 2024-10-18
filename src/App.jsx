@@ -12,13 +12,12 @@ import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
 import VendedorPedido from './pages/Vendedor-pedidos';
 import VendedorInsumos from './pages/Vendedor-insumos';
-import AdminVendors from './pages/AdminVendors';
 import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
 import Insumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
-import AdminVendores from './pages/AdminVendors';
+import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
 import Contacto from './pages/Contacto-sucursales';
 import ProtectedRouteUser from './ProtectedRouteUser';
@@ -45,6 +44,11 @@ export default function App() {
 
           <Route path="/admin-pedido" element={<AdminPedido />} />
           <Route path="/admin-vendors" element={<AdminVendors />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/home/menu" element={<Menu1 />} />
+          <Route path="/metodo_pago" element={<MetodoPago />} />
+          <Route path="/confirmacion-com" element={<Confirmacioncom />} />
+          <Route path="/estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/admin-pedidos" element={<AdminPedido />} />
 
           <Route path="/admin-productos" element={<Productos />} />

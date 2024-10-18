@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavBar } from '../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 export default function MetodoDePago() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/estatus-pedido');
+  };
   return (
     <div className="min-h-screen bg-neutral-200 relative">
       <NavBar />
@@ -189,7 +194,10 @@ export default function MetodoDePago() {
               className="w-full flex justify-center"
               style={{ paddingTop: '16px' }}
             >
-              <button className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md">
+              <button
+                className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md"
+                onClick={() => handleClick()}
+              >
                 Pagar
               </button>
             </div>

@@ -1,7 +1,7 @@
 import Dish from './Dish';
 import React from 'react';
 
-export default function DishData() {
+export default function DishData({ onUpdateTotal }) {
   const Data = [
     {
       item: 'Wings 8 piezas',
@@ -22,6 +22,10 @@ export default function DishData() {
     },
   ];
 
+  const handleTotalChange = (priceChange) => {
+    onUpdateTotal(priceChange);
+  };
+
   return (
     <section className="w-full h-full ">
       {Data.map((data) => {
@@ -35,6 +39,7 @@ export default function DishData() {
             newprice={newPrice}
             price={data.price}
             description={data.description}
+            onTotalChange={handleTotalChange}
             className="w-full"
           />
         );

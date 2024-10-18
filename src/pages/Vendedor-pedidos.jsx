@@ -1,20 +1,28 @@
 import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
-import React from 'react';
+import React, { useState } from 'react';
 import PedidoCard from '../components/PedidoCard';
 import { SellerMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 
 export default function VendedorPedido() {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const toggleMenuVisibility = () => {
+    setIsMenuVisible(!isMenuVisible);
+  };
   return (
     <main className="w-full">
-      <AdminSellerNavBar />
+      <AdminSellerNavBar toggleMenuVisibility={toggleMenuVisibility} />
       <section className="w-full pl-0 pr-[16px] pb-[16px] md:pr-[56px] md:pb-[56px] lg:pb-[80px] lg:pr-[80px] flex flex-row gap-2">
-        <aside className="w-1/4 flex flex-col items-center hidden lg:block  ">
+        <aside
+          className={`${
+            isMenuVisible ? 'block' : 'hidden'
+          } hide-cart relative top-[0] left-0 h-full w-[300px]  z-50 flex flex-col items-center`}
+        >
           <SellerMenu />
         </aside>
 
-        <section className="w-full flex flex-col items-stretch pl-[16px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
+        <section className="w-full flex flex-col items-stretch pl-[16px] md:pl-[56px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
           <div
             id="ubuntu-bold"
             className="w-full border-b border-amber-500 mb-4 text-amber-500 text-[32px]"
@@ -44,25 +52,26 @@ export default function VendedorPedido() {
             <Search />
           </div>
 
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[calc(33.33%+20px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6">
-            <p className="col-span-2 lg:col-span-1 text-center text-[16px] text-amber-500">
+          <div
+            id="ubuntu-bold"
+            className="grid grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]  2xl:grid-cols-[calc(22%+1px)_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-4 "
+          >
+            <p className="flex flex-col mb-2 items-center justify-center text-[16px] text-amber-500">
               Detalles de pedido
             </p>
-            <p className="text-center text-[16px] text-amber-500">
+            <p className="flex flex-col items-center justify-center text-[16px] text-amber-500">
               Tipo de pago
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="lg:flex flex-col items-center justify-center  text-[16px] text-amber-500 hidden">
               Tiempo de preparación
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="md:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden ">
               Estatus de pedido
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
+            <p className="2xl:flex flex-col items-center justify-center  text-[16px] text-amber-500 hidden ">
               Hora aproximada de entrega
             </p>
-            <p className="text-center text-[16px] text-amber-500 hidden md:table-cell">
-              Editar
-            </p>
+            <p className="2xl:flex flex-col items-center justify-center text-[16px] text-amber-500 hidden "></p>
           </div>
           <PedidoCard />
           <PedidoCard />

@@ -1,4 +1,4 @@
-import Subsidiary from './Subsidiary';
+import { SubsidiaryFooter } from './Subsidiary';
 import React from 'react';
 
 export default function Footer() {
@@ -14,7 +14,7 @@ export default function Footer() {
         Contacto y sucursales
       </h2>
       <div className="pb-4">
-        <Subsidiary />
+        <SubsidiaryFooter />
       </div>
       <div className="flex flex-row gap-8 justify-center md:justify-end items-center">
         <img

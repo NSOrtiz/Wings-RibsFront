@@ -195,3 +195,35 @@ input:checked + .slider:before {
 #slider.round:before {
   border-radius: 50%;
 }
+
+#filterhome {
+  position: relative; /* Necesario para usar z-index */
+  height: 50vh; /* Altura completa de la ventana del navegador */
+  width: 100%; /* Ancho completo */
+  background: linear-gradient(
+      104deg,
+      rgba(244, 0, 0, 0.25) 0.15%,
+      rgba(144, 0, 0, 0.25) 31.42%,
+      rgba(207, 117, 13, 0.25) 49.19%,
+      rgba(61, 0, 0, 0.25) 69.39%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    url('/images/homeImg.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  opacity: 0.9;
+}
+#filterbaner {
+  background: linear-gradient(
+      94deg,
+      rgba(0, 0, 0, 0.7) 32.24%,
+      rgba(243, 156, 18, 0.3) 50.72%,
+      rgba(123, 0, 0, 0.3) 93.27%
+    ),
+    url('/images/homeImg.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  opacity: 0.9;
+}
