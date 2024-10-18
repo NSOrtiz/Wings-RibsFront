@@ -33,7 +33,7 @@ function EstatusDePedido() {
                 <div className="flex flex-col items-center bg-white p-4 rounded-xl w-full max-w-[600px] mx-auto">
                   <div className="flex items-center pb-2 w-full">
                     <h2 className="text-base md:text-lg font-semibold flex-1 text-center text-amber-500">
-                      No. de pedido
+                      No. de pedido: {pedido ? pedido.orderNumber : 'Cargando...'}
                     </h2>
                     <img
                       src="/edit_24.svg"
