@@ -36,12 +36,11 @@ export default function App() {
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/admin-pedidos" element={<AdminPedido />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
-          <Route path="/vendedor-insumos" element={<VendedorInsumos />} />
           <Route path="/admin-vendores" element={<AdminVendores />} />
           <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />
-          <Route path="/vendedor-insumos" element={<Insumos />} />
+          <Route path="/vendedor-insumoss" element={<Insumos />} />
           <Route path="/admin-sucursales" element={<AdminSucursales />} />
           <Route path="/admin-vendedores" element={<AdminVendores />} />
           <Route path="/home/carrito" element={<ResponsiveCart />} />
