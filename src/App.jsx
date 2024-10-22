@@ -11,11 +11,10 @@ import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
 import VendedorPedido from './pages/Vendedor-pedidos';
-import VendedorInsumos from './pages/Vendedor-insumos';
+import Insumos from './pages/insumos-vendedor';
 import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
-import Insumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
 import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
@@ -39,13 +38,13 @@ export default function App() {
           </Route>
 
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
-          <Route path="/vendedor-insumos" element={<VendedorInsumos />} />
+          <Route path="/vendedor-insumos" element={<Insumos />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
 
           <Route path="/admin-pedido" element={<AdminPedido />} />
-          <Route path="/admin-vendors" element={<AdminVendors />} />
+          <Route path="/admin-vendors" element={<AdminVendores />} />
           <Route path="/profile" element={<ProfilePage />} />
-
+          <Route path="/home/menu" element={<Menu1 />} />
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
@@ -62,10 +61,6 @@ export default function App() {
 
           <Route path="/home/carrito" element={<ResponsiveCart />} />
           <Route path="/contacto" element={<Contacto />} />
-
-          <Route element={<ProtectedRouteUser />}>
-            <Route path="/home/menu" element={<Menu1 />} />{' '}
-          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
