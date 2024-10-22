@@ -25,11 +25,11 @@ const EditInsumoModal = ({ isOpen, onClose, productToEdit }) => {
         disponible: isAvailable,
     };
 
-    console.log('Datos a enviar:', editedProduct); // Agrega este log
+    console.log('Datos a enviar:', editedProduct); 
 
     try {
         await axios.patch(`http://localhost:5000/api/insumos/${productToEdit.id}`, editedProduct);
-        onClose(); // Cerrar modal después de editar
+        onClose();
     } catch (error) {
         console.error('Error updating product:', error);
         alert('Error al actualizar el insumo. Por favor, inténtalo de nuevo.');

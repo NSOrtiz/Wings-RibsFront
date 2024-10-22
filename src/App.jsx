@@ -15,7 +15,6 @@ import VendedorInsumos from './pages/Vendedor-insumos';
 import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
-import Insumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
 import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
@@ -40,7 +39,7 @@ export default function App() {
           <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-menu" element={<Menu2 />} />
           <Route path="/vendedor-menu" element={<Menu3 />} />
-          <Route path="/vendedor-insumoss" element={<Insumos />} />
+          <Route path="/vendedor-insumoss" element={<VendedorInsumos />} />
           <Route path="/admin-sucursales" element={<AdminSucursales />} />
           <Route path="/admin-vendedores" element={<AdminVendores />} />
           <Route path="/home/carrito" element={<ResponsiveCart />} />

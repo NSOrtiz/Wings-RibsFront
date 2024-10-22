@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { SellerMenu } from '../components/VerticalMenu';
 import { AdminSellerNavBar } from '../components/NavBar';
 import { Search, PaginationComponent } from '../components/Button';
-import AddInsumoModal from '../components/ModalAgregarInsumos'; 
+import AddInsumoModal from '../components/AddInsumoModal'; 
 import EditInsumoModal from '../components/EditInsumoModal';
 
 // Tabla de Insumos
