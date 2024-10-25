@@ -3,7 +3,7 @@ import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
-import { Boton } from '../components/Button';
+import { Boton, BotonWhite } from '../components/Button';
 import ListData from '../components/ProductTable';
 import { AddProductForm } from '../components/ModalProductos';
 
@@ -55,12 +55,18 @@ export default function Productos({ onSelectSubsidiary }) {
           </div>
           <div className="w-full flex flex-row items-center justify-between gap-4 pb-12">
             <Search />
-            <div className="flex flex-col justify-end w-1/5">
+            <div className="flex flex-row justify-end w-2/5 gap-2">
               <Boton
                 texto="Agregar producto"
                 onClick={handleButtonClick}
                 disabled={!selectedSubsidiary}
               />
+              <BotonWhite
+                texto="Productos deshabilitados"
+                onClick={handleButtonClick}
+                disabled={!selectedSubsidiary}
+              />
+
               {errorMessage && (
                 <p className="flex justify-end text-red-500 text-xs">
                   {errorMessage}

@@ -4,7 +4,19 @@ export function Boton({ texto, onClick }) {
   return (
     <button
       id="ubuntu-medium"
-      className="bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px]"
+      className="flex bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px] justify-center items-center"
+      onClick={onClick}
+    >
+      {texto}
+    </button>
+  );
+}
+
+export function BotonWhite({ texto, onClick }) {
+  return (
+    <button
+      id="ubuntu-medium"
+      className="flex py-[8px] px-[16px] bg-neutral-300 rounded-[8px]  justify-center items-center text-neutral-800 text-[12px]  md:text-[16px] hover:bg-amber-600 hover:text-white hover:border-none"
       onClick={onClick}
     >
       {texto}
