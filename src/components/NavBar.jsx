@@ -1,13 +1,16 @@
 import React from 'react';
 import NavBtn from './NavBtn';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export function NavBar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, logout, user } = useAuth();
+
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
@@ -40,88 +43,194 @@ export function NavBar() {
           />
           <div className=" before:content-['W&R'] lg:before:content-['Wings_&_Ribs'] pt-2 text-[32px] text-amber-500"></div>
         </div>
-        {location.pathname !== '/login' &&
-          location.pathname !== '/register' &&
-          location.pathname !== '/profile' && (
-            <div className="hidden hide-cart">
-              <NavBtn />
-            </div>
-          )}
-        {location.pathname !== '/login' &&
-          location.pathname !== '/register' &&
-          location.pathname !== '/profile' && (
-            <div className="block hide-btns">
+        {isAuthenticated ? (
+          <>
+            <div className="show-user  flex flex-row justify-center items-center gap-2 ">
               <img
-                onClick={toggleMenu}
-                className="w-[40px] h-[40px] cursor-pointer"
-                src="/icons/menu.svg"
+                src=""
                 alt=""
-              />
-            </div>
-          )}
-        {isOpen && (
-          <div className="flex flex-col hide-btns absolute top-16 bg-neutral-100 rounded-[4px] overflow-hidden border-[1px] border-neutral-300 shadow-lg right-[16px] md:right-[56px] z-20">
-            <button
-              id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
-              onClick={() => handleNavigation('menu')}
-            >
+                className="w-[20px] h-[20px] rounded-full bg-amber-600"
+              ></img>
+              <p className="text-amber-600 text-sm">
+                <Link to="/profile">{user.username}</Link>
+              </p>
               <img
-                className="w-[20px] h-[20px] cursor-pointer"
-                src="/icons/fast-food-outline.svg"
-                alt=""
-              />
-              Menu
-            </button>
-            <button
-              id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row items-center justify-start p-2 items-center gap-2"
-              onClick={() => handleNavigation('carrito')}
-            >
-              <img
-                className="w-[20px] h-[20px] cursor-pointer"
+                className="w-[20px] h-[20px] cursor-pointer py-1 rounded-full bg-amber-600 stroke-amber-600"
                 src="/icons/shopping_cart_black.svg"
                 alt=""
               />
-              Carrito de compras
-            </button>
-            <button
-              id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
-              onClick={() => handleNavigation('contacto')}
-            >
               <img
-                className="w-[20px] h-[20px] cursor-pointer"
+                className="w-[20px] h-[20px] cursor-pointer py-1 rounded-full bg-amber-600 stroke-amber-600"
                 src="/icons/call-outline_black.svg"
                 alt=""
               />
-              Contactanos
-            </button>
-            <button
-              id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 border-t-[1px] border-neutral-300 items-center gap-2"
-              onClick={() => handleNavigation('Inicio')}
-            >
-              <img
-                className="w-[20px] h-[20px] cursor-pointer"
-                src="/icons/log-in-outline.svg"
-                alt=""
-              />
-              Inicio
-            </button>
-            <button
-              id="ubuntu-medium"
-              className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
-              onClick={() => handleNavigation('Registro')}
-            >
-              <img
-                className="w-[20px] h-[20px] cursor-pointer"
-                src="/icons/create-outline.svg"
-                alt=""
-              />
-              Registro
-            </button>
-          </div>
+
+              <button className="bg-amber-600 text-white rounded-full px-1 py-1 w-14">
+                <Link
+                  to="/"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Salir
+                </Link>
+              </button>
+            </div>
+
+            {location.pathname !== '/login' &&
+              location.pathname !== '/register' && (
+                <div className="block show-userMd">
+                  <img
+                    onClick={toggleMenu}
+                    className="w-[40px] h-[40px] cursor-pointer"
+                    src="/icons/menu.svg"
+                    alt=""
+                  />
+                </div>
+              )}
+            {isOpen && (
+              <div className="flex flex-col  show-userMd absolute top-16 bg-neutral-100 rounded-[4px] overflow-hidden border-[1px] border-neutral-300 shadow-lg right-[16px] md:right-[56px] z-20">
+                <button>
+                  <p className="text-black text-[16px]  hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2">
+                    <Link to="/profile">{user.username}</Link>
+                  </p>
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('menu')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/fast-food-outline.svg"
+                    alt=""
+                  />
+                  Menu
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row  justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('carrito')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/shopping_cart_black.svg"
+                    alt=""
+                  />
+                  Carrito de compras
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('contacto')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/call-outline_black.svg"
+                    alt=""
+                  />
+                  Contactanos
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-center p-2 items-center gap-2 text-center"
+                >
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    <p>Salir</p>
+                  </Link>
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            {location.pathname !== '/login' &&
+              location.pathname !== '/register' && (
+                <div className="hidden hide-cart">
+                  <NavBtn />
+                </div>
+              )}
+            {location.pathname !== '/login' &&
+              location.pathname !== '/register' && (
+                <div className="block hide-btns">
+                  <img
+                    onClick={toggleMenu}
+                    className="w-[40px] h-[40px] cursor-pointer"
+                    src="/icons/menu.svg"
+                    alt=""
+                  />
+                </div>
+              )}
+            {isOpen && (
+              <div className="flex flex-col hide-btns absolute top-16 bg-neutral-100 rounded-[4px] overflow-hidden border-[1px] border-neutral-300 shadow-lg right-[16px] md:right-[56px] z-20">
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('menu')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/fast-food-outline.svg"
+                    alt=""
+                  />
+                  Menu
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row items-center justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('carrito')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/shopping_cart_black.svg"
+                    alt=""
+                  />
+                  Carrito de compras
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('contacto')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/call-outline_black.svg"
+                    alt=""
+                  />
+                  Contactanos
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 border-t-[1px] border-neutral-300 items-center gap-2"
+                  onClick={() => handleNavigation('Inicio')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/log-in-outline.svg"
+                    alt=""
+                  />
+                  Inicio
+                </button>
+                <button
+                  id="ubuntu-medium"
+                  className="text-[16px] hover:bg-amber-500 hover:text-white flex flex-row justify-start p-2 items-center gap-2"
+                  onClick={() => handleNavigation('Registro')}
+                >
+                  <img
+                    className="w-[20px] h-[20px] cursor-pointer"
+                    src="/icons/create-outline.svg"
+                    alt=""
+                  />
+                  Registro
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </nav>
