@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ItemCard from './ItemCard';
 
-export default function ListData() {
+export default function ListData({ selectedSubsidiary }) {
   const [ListData, setListData] = useState([]);
 
   const scrollContainer = useRef(null);
@@ -25,7 +25,8 @@ export default function ListData() {
       try {
         const response = await axios.get('http://localhost:5000/api/items');
         const filteredData = response.data
-          .filter((item) => item.subsidiary === 'Loma Real')
+          .filter((item) => item.subsidiary === selectedSubsidiary)
+          .filter((item) => item.showitem === true)
           .sort(
             (a, b) =>
               categoryOrder.indexOf(a.category) -
@@ -36,8 +37,13 @@ export default function ListData() {
         console.error('Error fetching data:', error);
       }
     };
-    fetchData();
-  }, []);
+    if (selectedSubsidiary) {
+      // Asegúrate de que hay una sucursal seleccionada
+      fetchData();
+    } else {
+      setListData([]); // Limpia los datos si no hay sucursal seleccionada
+    }
+  }, [selectedSubsidiary]);
 
   const handleMouseMove = (e) => {
     const container = scrollContainer.current;
@@ -78,10 +84,9 @@ export default function ListData() {
   return (
     <section
       ref={scrollContainer}
-      className="w-full h-[500px] overflow-y-auto custom-scrollbar"
+      className="w-full h-screen overflow-y-auto custom-scrollbar"
     >
       {ListData.map((data) => {
-        const time = 20;
         const options = 'aderezos';
         return (
           <ItemCard
@@ -91,7 +96,7 @@ export default function ListData() {
             item={data.item}
             description={data.description}
             options={options}
-            time={time}
+            time={data.timecook}
             price={data.price}
             discount={data.discount}
             _id={data._id}

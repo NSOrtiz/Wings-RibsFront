@@ -21,3 +21,9 @@ Uso de herramientas: -eslint -prettier -tailwind
 Intalaciones de dependecias: -react-hook-form -react-dom -react-router-dom -tailwind-scrollbar -tailwind-scrollbar-hide -axios -cors
 
 Uso de herramientas: -eslint -prettier -tailwind
+
+//Nota importante....//
+la ruta correcta para los insumos la acabo de modificar para que se elimine la otra y no este generando inconveniente...
+esta es la ruta correcta
+<Route path="/vendedor-insumoss" element={<Insumos />} />
+y se encuentra en la linea 44 le puse doble "ss"

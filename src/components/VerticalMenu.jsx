@@ -111,7 +111,7 @@ export function SellerMenu() {
     } else if (index === 1) {
       navigate('/vendedor-pedidos');
     } else if (index === 2) {
-      navigate('/vendedor-insumos');
+      navigate('/vendedor-insumoss');
     } else if (index === 3) {
       navigate('/vendedor-menu');
     }

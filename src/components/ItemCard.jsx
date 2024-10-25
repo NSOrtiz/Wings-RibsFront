@@ -19,7 +19,7 @@ export default function ItemCard(props) {
         </p>
         <img
           src={props.photo}
-          alt=""
+          alt={props.item}
           className="w-[100px] h-[100px] rounded-full object-cover relative"
         />
         <span className="text-center flex flex-col">

@@ -7,7 +7,7 @@ import { Boton } from '../components/Button';
 import ListData from '../components/ProductTable';
 import { AddProductForm } from '../components/ModalProductos';
 
-export default function Productos() {
+export default function Productos({ onSelectSubsidiary }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
@@ -94,7 +94,7 @@ export default function Productos() {
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell"></p>
           </div>
-          <ListData />
+          <ListData selectedSubsidiary={selectedSubsidiary} />
         </div>
       </section>
       <Footer />

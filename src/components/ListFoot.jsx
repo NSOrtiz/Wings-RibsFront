@@ -26,9 +26,9 @@ export function MenuFood() {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/items');
-        const filteredData = response.data.filter(
-          (card) => card.subsidiary === 'Loma Real'
-        );
+        const filteredData = response.data
+          .filter((card) => card.subsidiary === 'Paseo Loma Real')
+          .filter((item) => item.showitem === true);
         setDataFilter(filteredData);
       } catch (error) {
         console.error('Error para obtner informacion:', error);

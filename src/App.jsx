@@ -11,10 +11,10 @@ import Confirmacioncom from './pages/Confirmacion-com';
 import EstatusDePedido from './pages/Estatus-de-pedido';
 import AdminPedido from './pages/Admin-pedido';
 import VendedorPedido from './pages/Vendedor-pedidos';
-import Insumos from './pages/insumos-vendedor';
 import Productos from './pages/Admin-productos';
 import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
+import VendedorInsumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
 import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
@@ -34,11 +34,11 @@ export default function App() {
             <Route path="/home/menu" element={<Menu1 />} />
             <Route path="/confirmacion-com" element={<Confirmacioncom />} />
             <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-            <Route path="/profile" element={<ProfilePage />} />
           </Route>
 
+          <Route path="/profile" element={<ProfilePage />} />
+
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
-          <Route path="/vendedor-insumos" element={<Insumos />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
 
           <Route path="/admin-pedido" element={<AdminPedido />} />
@@ -49,13 +49,14 @@ export default function App() {
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/admin-pedidos" element={<AdminPedido />} />
-
+          <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
+          <Route path="/vendedor-insumoss" element={<VendedorInsumos />} />
+          <Route path="/admin-vendores" element={<AdminVendores />} />
           <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-menu" element={<Menu2 />} />
 
           <Route path="/vendedor-menu" element={<Menu3 />} />
-          <Route path="/vendedor-insumos" element={<Insumos />} />
-
+          <Route path="/vendedor-insumoss" element={<VendedorInsumos />} />
           <Route path="/admin-sucursales" element={<AdminSucursales />} />
           <Route path="/admin-vendedores" element={<AdminVendores />} />
 

@@ -121,7 +121,6 @@ export function SelectCategories({ onSelect }) {
   const [status, setStatus] = useState('Categorías');
 
   const categories = [
-    'Promociones',
     'Wings',
     'Boneless',
     'Snacks',

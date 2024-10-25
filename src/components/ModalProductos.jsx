@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { SelectCategories, SelectTimeCook } from './Button';
 import axios from 'axios';
@@ -7,8 +7,10 @@ const sharedInputClasses =
   'mt-1 block w-full border border-neutral-300 rounded-md p-2 text-[16px] font-normal  ';
 
 export function AddProductForm({ onClose, selectedSubsidiary }) {
+  const [selectedFile, setSelectedFile] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTimeCook, setSelectedTimeCook] = useState(0);
+  const fileInputRef = useRef(null);
 
   // Inicializa el hook form
   const {
@@ -17,17 +19,26 @@ export function AddProductForm({ onClose, selectedSubsidiary }) {
     formState: { errors },
   } = useForm();
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
   const onSubmit = async (data) => {
     try {
-      const formData = {
-        item: data.item,
-        description: data.description,
-        price: parseFloat(data.price),
-        discount: parseFloat(data.discount) || 0,
-        category: selectedCategory,
-        timecook: selectedTimeCook,
-        subsidiary: selectedSubsidiary,
-      };
+      const formData = new FormData();
+      formData.append('item', data.item);
+      formData.append('subsidiary', selectedSubsidiary);
+      formData.append('photo', selectedFile);
+      formData.append('description', data.description);
+      formData.append('price', parseFloat(data.price));
+      formData.append('discount', parseFloat(data.discount) || 0);
+      formData.append('category', selectedCategory);
+      formData.append('timecook', selectedTimeCook);
 
       console.log('Valor de subsidiary:', selectedSubsidiary);
       console.log('Datos enviados al backend:', formData);
@@ -37,7 +48,7 @@ export function AddProductForm({ onClose, selectedSubsidiary }) {
         formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -100,6 +111,45 @@ export function AddProductForm({ onClose, selectedSubsidiary }) {
                 <p className="text-red-500">{errors.item.message}</p>
               )}
             </span>
+            <div className="w-full flex flex-col items-start">
+              <p
+                style={{
+                  color: '#667473',
+                  fontFamily: 'Ubuntu',
+                  fontSize: '20px',
+                  fontWeight: 700,
+                }}
+              >
+                Imagen
+              </p>
+              <div className="flex flex-col items-start mt-2 w-full">
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={handleButtonClick}
+                  className="flex items-center justify-center rounded-[8px] bg-neutral-500 shadow-[4px_4px_12px_0px_rgba(0,0,0,0.12)] text-[16px] text-[var(--Primary-Gris-100,#E5E8E7)] font-ubuntu font-medium leading-normal tracking-[0.2px] py-2 px-4"
+                  style={{
+                    borderRadius: '8px',
+                    background: '#667473',
+                    boxShadow: '4px 4px 12px 0px rgba(0, 0, 0, 0.12)',
+                  }}
+                >
+                  Selecciona archivo:
+                </button>
+
+                <span className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap text-[var(--Primary-Gris-300,#ABB5B4)] font-ubuntu text-[12px] font-medium leading-normal uppercase">
+                  {selectedFile
+                    ? selectedFile.name
+                    : 'NO HAY ARCHIVO SELECCIONADO'}
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Descripción */}
@@ -208,6 +258,7 @@ export function AddProductForm({ onClose, selectedSubsidiary }) {
 }
 
 export function EditProductForm({ onClose, productData }) {
+  const [selectedFile, setSelectedFile] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(
     productData.category
   );
@@ -218,6 +269,8 @@ export function EditProductForm({ onClose, productData }) {
     productData.subsidiary || ''
   );
 
+  const fileInputRef = useRef(null);
+
   // Inicializa el hook form
   const {
     register,
@@ -225,6 +278,15 @@ export function EditProductForm({ onClose, productData }) {
     formState: { errors },
     reset,
   } = useForm();
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
 
   useEffect(() => {
     console.log('Product Data:', productData);
@@ -237,15 +299,17 @@ export function EditProductForm({ onClose, productData }) {
       return;
     }
     try {
-      const formData = {
-        item: data.item,
-        description: data.description,
-        price: parseFloat(data.price),
-        discount: parseFloat(data.discount) || 0,
-        category: selectedCategory,
-        timecook: selectedTimeCook,
-        subsidiary: selectedSubsidiary,
-      };
+      const formData = new FormData();
+      formData.append('item', data.item);
+      formData.append('description', data.description);
+      formData.append('price', parseFloat(data.price));
+      formData.append('discount', parseFloat(data.discount) || 0);
+      formData.append('category', selectedCategory);
+      formData.append('timecook', selectedTimeCook);
+      formData.append('subsidiary', selectedSubsidiary);
+      if (selectedFile) {
+        formData.append('photo', selectedFile);
+      }
       console.log('Datos enviados al backend:', formData);
 
       const response = await axios.put(
@@ -253,13 +317,13 @@ export function EditProductForm({ onClose, productData }) {
         formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
 
       console.log('Respuesta del servidor:', response.data);
-      onClose(); // Cierra el formulario después de enviar los datos
+      onClose();
     } catch (error) {
       console.error(
         'Error al enviar el formulario:',
@@ -316,6 +380,46 @@ export function EditProductForm({ onClose, productData }) {
                 <p className="text-red-500">{errors.item.message}</p>
               )}
             </span>
+
+            <div className="w-full flex flex-col items-start">
+              <p
+                style={{
+                  color: '#667473',
+                  fontFamily: 'Ubuntu',
+                  fontSize: '20px',
+                  fontWeight: 700,
+                }}
+              >
+                Imagen
+              </p>
+              <div className="flex flex-col items-start mt-2 w-full">
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={handleButtonClick}
+                  className="flex items-center justify-center rounded-[8px] bg-neutral-500 shadow-[4px_4px_12px_0px_rgba(0,0,0,0.12)] text-[16px] text-[var(--Primary-Gris-100,#E5E8E7)] font-ubuntu font-medium leading-normal tracking-[0.2px] py-2 px-4"
+                  style={{
+                    borderRadius: '8px',
+                    background: '#667473',
+                    boxShadow: '4px 4px 12px 0px rgba(0, 0, 0, 0.12)',
+                  }}
+                >
+                  Selecciona archivo:
+                </button>
+
+                <span className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap text-[var(--Primary-Gris-300,#ABB5B4)] font-ubuntu text-[12px] font-medium leading-normal uppercase">
+                  {selectedFile
+                    ? selectedFile.name
+                    : 'NO HAY ARCHIVO SELECCIONADO'}
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Descripción */}
