@@ -5,10 +5,11 @@ import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 import { Boton, BotonWhite } from '../components/Button';
 import ListData from '../components/ProductTable';
-import { AddProductForm } from '../components/ModalProductos';
+import { AddProductForm, DeletedProducts } from '../components/ModalProductos';
 
 export default function Productos({ onSelectSubsidiary }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isListModalOpen, setIsListModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -18,8 +19,12 @@ export default function Productos({ onSelectSubsidiary }) {
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setIsListModalOpen(false);
   };
-  const toggleMenuVisibility = () => {
+  const handleListOpenModal = () => {
+    setIsListModalOpen(true);
+  };
+  const toggleMenuVisibility = (product) => {
     setIsMenuVisible(!isMenuVisible);
   };
 
@@ -34,6 +39,17 @@ export default function Productos({ onSelectSubsidiary }) {
       setTimeout(() => setErrorMessage(''), 3000);
     }
   };
+  /*const handleListButtonClick = () => {
+    console.log('Sucursal seleccionada:', selectedSubsidiary);
+    if (selectedSubsidiary) {
+      handleOpenModal();
+    } else {
+      setErrorMessage(
+        'Seleccione sucursal para poder agregar un nuevo producto'
+      );
+      setTimeout(() => setErrorMessage(''), 3000);
+    }
+  };*/
 
   return (
     <main>
@@ -55,18 +71,19 @@ export default function Productos({ onSelectSubsidiary }) {
           </div>
           <div className="w-full flex flex-row items-center justify-between gap-4 pb-12">
             <Search />
-            <div className="flex flex-row justify-end w-2/5 gap-2">
-              <Boton
-                texto="Agregar producto"
-                onClick={handleButtonClick}
-                disabled={!selectedSubsidiary}
-              />
-              <BotonWhite
-                texto="Productos deshabilitados"
-                onClick={handleButtonClick}
-                disabled={!selectedSubsidiary}
-              />
-
+            <div className="w-full flex flex-col items-end">
+              <div className="flex flex-row w-2/5 justify-end gap-2">
+                <Boton
+                  texto="Agregar producto"
+                  onClick={handleButtonClick}
+                  disabled={!selectedSubsidiary}
+                />
+                <BotonWhite
+                  texto="Productos deshabilitados"
+                  onClick={handleButtonClick}
+                  disabled={!selectedSubsidiary}
+                />
+              </div>
               {errorMessage && (
                 <p className="flex justify-end text-red-500 text-xs">
                   {errorMessage}
@@ -74,7 +91,6 @@ export default function Productos({ onSelectSubsidiary }) {
               )}
             </div>
           </div>
-
           <div
             id="ubuntu-bold"
             className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6"
@@ -100,7 +116,7 @@ export default function Productos({ onSelectSubsidiary }) {
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell"></p>
           </div>
-          <ListData selectedSubsidiary={selectedSubsidiary} />
+          <ListData selectedSubsidiary={selectedSubsidiary} />;
         </div>
       </section>
       <Footer />
@@ -110,6 +126,7 @@ export default function Productos({ onSelectSubsidiary }) {
           selectedSubsidiary={selectedSubsidiary}
         />
       )}
+      {isListModalOpen && <DeletedProducts onClose={handleCloseModal} />}
     </main>
   );
 }

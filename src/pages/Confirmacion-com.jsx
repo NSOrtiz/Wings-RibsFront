@@ -1,17 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavBar } from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
+  const [pedido, setPedido] = useState(null);
   const navigate = useNavigate();
 
   const handleIconClick = () => {
     setIsVisible(!isVisible);
   };
+  
   const handleClick = () => {
     navigate('/metodo_pago');
   };
+
+  const fetchPedido = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/orders');
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error al obtener el pedido: ${response.status} ${errorText}`);
+      }
+      const data = await response.json();
+      setPedido(data[0]); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDelete = async (itemId) => {
+    if (!pedido) return; 
+    try {
+      const response = await axios.delete(`http://localhost:5000/api/orders/${pedido._id}/items/${itemId}`);
+      console.log(response.data);
+     
+      fetchPedido();
+    } catch (error) {
+      console.error('Error al eliminar el item:', error);
+    }
+  };
+  
+  
+   
+
+  useEffect(() => {
+    fetchPedido(); 
+  }, []);
+
 
   return (
     <main>
@@ -33,70 +70,72 @@ function Confirmacioncom() {
                       id="ubuntu-bold"
                       className="text-[16px] flex-1 text-center text-amber-500"
                     >
-                      No. de pedido
+                      No. de pedido: {pedido ? pedido.orderNumber : 'Cargando...'}
                     </h2>
                   </div>
                   <div className="flex flex-col space-y-4 mt-4 w-full">
-                    {[1, 2, 3].map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col border-b border-amber-300 pb-2 w-full"
-                      >
-                        <div className="flex items-center justify-start">
-                          <img
-                            src="/images/chickenplate.png"
-                            alt="Plato"
-                            className="w-[70px] h-[60px]"
-                          />
-                          <div className="flex flex-col mx-8">
-                            <h2 id="ubuntu-bold" className="text-[16px]">
-                              Platillo 1
-                            </h2>
-                            <p id="ubuntu-light" className="text-[12px]">
-                              Detalle del producto
-                            </p>
-                            <p id="ubuntu-medium" className="text-[16px]">
-                              MX $210
-                            </p>
+                    {pedido && pedido.items && pedido.items.length > 0 ? (
+                      pedido.items.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex flex-col border-b border-amber-300 pb-2 w-full"
+                        >
+                          <div className="flex items-center justify-start">
+                            <img
+                              src="/images/chickenplate.png"
+                              alt="Plato"
+                              className="w-[70px] h-[60px]"
+                            />
+                            <div className="flex flex-col mx-8">
+                              <h2 id="ubuntu-bold" className="text-[16px]">
+                                {item.name} 
+                              </h2>
+                              <p id="ubuntu-light" className="text-[12px]">
+                                {item.detalle}
+                              </p>
+                              <p id="ubuntu-medium" className="text-[16px]">
+                                MX ${item.price}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-2 justify-between">
+                            <div className="flex items-center">
+                              <img
+                                src="/icons/trash-outline.svg"
+                                alt="Eliminar"
+                                className="w-4 h-4 mr-1"
+                              />
+                              <button className="mr-2" onClick={() => handleDelete(item._id)}>Eliminar</button>
+                            </div>
+                            <div className="flex items-center">
+                              <img
+                                src="/icons/add-amber.svg"
+                                alt="añadir"
+                                className="w-6 h-6 mr-1 rounded-full border border-amber-400"
+                              />
+                              <p className="mr-1 text-[16px]">1</p>
+                              <img
+                                src="/icons/remove-amber.svg"
+                                alt=""
+                                className="w-6 h-6 rounded-full border border-amber-400"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-2 justify-end">
+                            <div className="flex items-center">
+                              <p id="ubuntu-light" className="mr-2">
+                                1 producto x
+                              </p>
+                              <p id="ubuntu-medium" className="mr-1">
+                                MX $10.00
+                              </p>
+                            </div>
                           </div>
                         </div>
-
-                        <div className="flex items-center mt-2 justify-between">
-                          <div className="flex items-center">
-                            <img
-                              src="/icons/trash-outline.svg"
-                              alt="Eliminar"
-                              className="w-4 h-4 mr-1"
-                            />
-                            <button className="mr-2">Eliminar</button>
-                          </div>
-                          <div className="flex items-center">
-                            <img
-                              src="/icons/add-amber.svg"
-                              alt="añadir"
-                              className="w-6 h-6 mr-1 rounded-full border border-amber-400"
-                            />
-                            <p className="mr-1 text-[16px]">1</p>
-                            <img
-                              src="/icons/remove-amber.svg"
-                              alt=""
-                              className="w-6 h-6 rounded-full border border-amber-400"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex items-center mt-2 justify-end">
-                          <div className="flex items-center">
-                            <p id="ubuntu-light" className="mr-2 ">
-                              1 producto x
-                            </p>
-                            <p id="ubuntu-medium" className="mr-1 ">
-                              {' '}
-                              MX $10.00
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                      ))
+                    ) : (
+                      <p>No hay items en el pedido.</p>
+                    )}
                     <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
                         <p id="ubuntu-light" className="text-[16px]">
@@ -163,19 +202,19 @@ function Confirmacioncom() {
                             className="border border-neutral-500 w-full py-3 rounded-md"
                           />
                           <h2 id="ubuntu-regular" className="py-2 text-[28px]">
-                            Numero telèfonico
+                            Número telefónico
                           </h2>
                           <input
                             type="text"
-                            placeholder="Numero telèfonico"
+                            placeholder="Número telefónico"
                             className="border border-neutral-500 w-full py-3 rounded-md"
                           />
                           <h2 id="ubuntu-regular" className="py-2 text-[28px]">
-                            Direcciòn
+                            Dirección
                           </h2>
                           <input
                             type="text"
-                            placeholder="Escribe tu direcciòn"
+                            placeholder="Escribe tu dirección"
                             className="border border-neutral-500 w-full py-3 rounded-md"
                           />
                           <div className="mt-6 flex justify-between">
@@ -204,7 +243,7 @@ function Confirmacioncom() {
                     </div>
                     <div className="flex justify-between border-b border-neutral-200 pb-2">
                       <p id="ubuntu-light" className="text-[16px]">
-                        Direccion
+                        Dirección
                       </p>
                       <p id="ubuntu-regular" className="text-[16px]">
                         ygahysisysi
@@ -212,7 +251,7 @@ function Confirmacioncom() {
                     </div>
                     <div className="flex justify-between border-b border-neutral-200 pb-2">
                       <p id="ubuntu-light" className="text-[16px]">
-                        Codigo postal
+                        Código postal
                       </p>
                       <p id="ubuntu-regular" className="text-[16px]">
                         BCBSBER
@@ -220,7 +259,7 @@ function Confirmacioncom() {
                     </div>
                     <div className="flex justify-between pb-2">
                       <p id="ubuntu-light" className="text-[16px]">
-                        Numero telefonico
+                        Número telefónico
                       </p>
                       <p id="ubuntu-regular" className="text-[16px]">
                         +12 83472838 28
@@ -231,7 +270,7 @@ function Confirmacioncom() {
                   <div className="mt-auto flex justify-center w-full">
                     <button
                       className="px-20 py-2 bg-amber-500 text-white rounded-xl hover:bg-amber-600"
-                      onClick={() => handleClick()}
+                      onClick={handleClick}
                     >
                       Enviar
                     </button>
@@ -247,3 +286,4 @@ function Confirmacioncom() {
 }
 
 export default Confirmacioncom;
+

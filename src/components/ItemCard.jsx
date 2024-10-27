@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { EditProductForm } from './ModalProductos';
+import { EditProductForm, LogicalDeleted } from './ModalProductos';
 
 export default function ItemCard(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleOpenEdit = () => {
     setIsModalOpen(true);
   };
-  const handleCloseEdit = () => {
+  const handleCloseModals = () => {
     setIsModalOpen(false);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDeletedProduct = () => {
+    setIsDeleteModalOpen(true);
   };
 
   return (
@@ -53,13 +59,13 @@ export default function ItemCard(props) {
             className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
             src="/icons/delete-yellow.svg"
             alt=""
-            //onClick={handleDelete}
+            onClick={handleDeletedProduct}
           />
         </div>
       </div>
       {isModalOpen && (
         <EditProductForm
-          onClose={handleCloseEdit}
+          onClose={handleCloseModals}
           productData={{
             item: props.item,
             description: props.description,
@@ -67,6 +73,15 @@ export default function ItemCard(props) {
             discount: props.discount,
             category: props.category,
             timecook: props.time,
+            _id: props._id,
+          }}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <LogicalDeleted
+          onClose={handleCloseModals}
+          productData={{
+            showitem: props.showitem,
             _id: props._id,
           }}
         />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { SelectCategories, SelectTimeCook } from './Button';
+import { Boton, SelectCategories, SelectTimeCook } from './Button';
 import axios from 'axios';
 
 const sharedInputClasses =
@@ -542,6 +542,115 @@ export function EditProductForm({ onClose, productData }) {
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  );
+}
+
+export function DeletedProducts({ onClose, props }) {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="relative flex flex-col w-[600px] p-[20px] bg-white rounded-[16px]">
+        <div className="flex justify-end items-start gap-2 self-stretch ">
+          <button
+            onClick={onClose}
+            className="text-[#F39C12] hover:text-amber-700"
+          >
+            <img src="/icons/close.svg" alt="Cerrar" className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-neutral-400 items-center justify-items-center pb-4">
+          <p className="text-center text-[16px] text-neutral-800">
+            {props.category}
+          </p>
+          <img
+            src={props.photo}
+            alt={props.item}
+            className="w-[100px] h-[100px] rounded-full object-cover relative"
+          />
+          <span className="text-center flex flex-col">
+            <p className="text-center text-[16px] font-semibold text-neutral-800 ">
+              {props.item}
+            </p>
+            <p className="text-center text-[16px] font-normal text-neutral-800 ">
+              {props.description}
+            </p>
+          </span>
+          <p className="text-center text-[16px] text-neutral-800 ">
+            {props.options}
+          </p>
+          <p className="text-center text-[16px] text-neutral-800 ">
+            {props.time}
+          </p>
+          <p className="text-center text-[16px] text-neutral-800 ">
+            {props.price}
+          </p>
+          <p className="text-center text-[16px] text-neutral-800 ">
+            {props.discount}
+          </p>
+          <div className="flex flex-row gap-2 justify-end">
+            <img
+              src="/icons/edit-yellow.svg"
+              alt=""
+              className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+              //onClick={handleOpenEdit}
+            />
+            <img
+              className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+              src="/icons/delete-yellow.svg"
+              alt=""
+              //onClick={handleDeletedProduct}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function LogicalDeleted({ onClose, productData }) {
+  const onSubmit = async () => {
+    if (!productData._id) {
+      console.error('El ID del producto no está definido.');
+      return;
+    }
+    try {
+      const formData = {
+        showitem: false,
+      };
+      console.log('Datos enviados al backend:', formData);
+
+      const response = await axios.put(
+        `http://localhost:5000/api/items/${productData._id}`,
+        formData
+      );
+
+      console.log('Respuesta del servidor:', response.data);
+      onClose();
+    } catch (error) {
+      console.error(
+        'Error al enviar el formulario:',
+        error.response?.data || error.message
+      );
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="relative flex flex-col w-[600px] p-[20px] bg-white rounded-[16px]">
+        <div className="flex justify-end items-start gap-2 self-stretch ">
+          <button
+            onClick={onClose}
+            className="text-[#F39C12] hover:text-amber-700"
+          >
+            <img src="/icons/close.svg" alt="Cerrar" className="w-5 h-5" />
+          </button>
+        </div>
+        <span className="flex flex-col justify-center text-center items-center gap-2 ">
+          <p>¿Estás seguro de que quieres deshabilitar este producto?</p>
+          <Boton texto="Aceptar" onClick={onSubmit} />
+        </span>
       </div>
     </div>
   );

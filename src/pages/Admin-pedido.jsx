@@ -1,15 +1,32 @@
 import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PedidoCard from '../components/PedidoCard';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 
 export default function VendedorPedido() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [items, setItems] = useState([]);
+
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible);
   };
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/pedido');
+        if (!response.ok) throw new Error('Error al obtener los pedidos');
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchItems();
+  }, []);
   return (
     <main className="w-full">
       <AdminSellerNavBar toggleMenuVisibility={toggleMenuVisibility} />
@@ -31,24 +48,7 @@ export default function VendedorPedido() {
           </div>
 
           <div className="w-full flex justify-end items-center mb-10">
-            {/*<div className="flex space-x-4">
-              <div className="flex flex-row ">
-                <img src="/icons/ViewColumn.svg" alt="columna" />
-                <p className="text-[16px] text-amber-500 px-2">Columnas</p>
-              </div>
-              <div className="flex flex-row">
-                <img src="/icons/FilterList.svg" alt="filterList" />
-                <p className="text-[16px] text-amber-500 px-2">Filtros</p>
-              </div>
-              <div className="flex flex-row">
-                <img src="/icons/TableRows.svg" alt="tabalRows" />
-                <p className="text-[16px] text-amber-500 px-2">Densidad</p>
-              </div>
-              <div className="flex flex-row">
-                <img src="/icons/SaveAlt.svg" alt="saveAlt" />
-                <p className="text-[16px] text-amber-500 px-2">Exportar</p>
-              </div>
-            </div>*/}
+
             <Search />
           </div>
 
@@ -75,11 +75,7 @@ export default function VendedorPedido() {
               Editar
             </p>
           </div>
-          <PedidoCard />
-          <PedidoCard />
-          <PedidoCard />
-          <PedidoCard />
-          <PedidoCard />
+          <PedidoCard items={items} />
           <div className="flex justify-end"> </div>
         </section>
       </section>
