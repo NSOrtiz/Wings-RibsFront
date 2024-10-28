@@ -20,6 +20,7 @@ import AdminVendores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
 import Contacto from './pages/Contacto-sucursales';
 import ProtectedRouteUser from './ProtectedRouteUser';
+import ProductosDeshabilitados from './pages/Admin-productosDeshabilitados';
 
 export default function App() {
   return (
@@ -62,6 +63,10 @@ export default function App() {
 
           <Route path="/home/carrito" element={<ResponsiveCart />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route
+            path="/admin-deshabilitados"
+            element={<ProductosDeshabilitados />}
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

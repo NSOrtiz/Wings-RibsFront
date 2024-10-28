@@ -3,48 +3,24 @@ import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
-import { Boton, BotonWhite } from '../components/Button';
-import { ListData } from '../components/ProductTable';
-import { AddProductForm } from '../components/ModalProductos';
+import { Boton } from '../components/Button';
+import { ListDataFalse } from '../components/ProductTable';
 import { useNavigate } from 'react-router-dom';
 
-export default function Productos({ onSelectSubsidiary }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isListDisabled, setisListDisabled] = useState(false);
+export default function ProductosDeshabilitados({ onSelectSubsidiary }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setisListDisabled(false);
-  };
-  const handleListOpenModal = () => {
-    setisListDisabled(navigate('/admin-deshabilitados'));
-  };
-  const toggleMenuVisibility = () => {
+  const toggleMenuVisibility = (product) => {
     setIsMenuVisible(!isMenuVisible);
   };
 
   const handleButtonClick = () => {
     console.log('Sucursal seleccionada:', selectedSubsidiary);
     if (selectedSubsidiary) {
-      handleOpenModal();
-    } else {
-      setErrorMessage(
-        'Seleccione sucursal para poder agregar un nuevo producto'
-      );
-      setTimeout(() => setErrorMessage(''), 3000);
-    }
-  };
-  const handleListButtonClick = () => {
-    console.log('Sucursal seleccionada:', selectedSubsidiary);
-    if (selectedSubsidiary) {
-      handleListOpenModal();
+      navigate('/admin-productos');
     } else {
       setErrorMessage(
         'Seleccione sucursal para poder agregar un nuevo producto'
@@ -76,13 +52,8 @@ export default function Productos({ onSelectSubsidiary }) {
             <div className="w-full flex flex-col items-end">
               <div className="flex flex-row w-2/5 justify-end gap-2">
                 <Boton
-                  texto="Agregar producto"
+                  texto="Volver a productos"
                   onClick={handleButtonClick}
-                  disabled={!selectedSubsidiary}
-                />
-                <BotonWhite
-                  texto="Productos deshabilitados"
-                  onClick={handleListButtonClick}
                   disabled={!selectedSubsidiary}
                 />
               </div>
@@ -118,16 +89,10 @@ export default function Productos({ onSelectSubsidiary }) {
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell"></p>
           </div>
-          <ListData selectedSubsidiary={selectedSubsidiary} />;
+          <ListDataFalse selectedSubsidiary={selectedSubsidiary} />;
         </div>
       </section>
       <Footer />
-      {isModalOpen && (
-        <AddProductForm
-          onClose={handleCloseModal}
-          selectedSubsidiary={selectedSubsidiary}
-        />
-      )}
     </main>
   );
 }

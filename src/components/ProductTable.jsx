@@ -1,22 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ItemCard from './ItemCard';
+import {
+  EditProductForm,
+  LogicalDeleted,
+  EnableItem,
+  DeleteItem,
+} from './ModalProductos';
 
-export default function ListData({ selectedSubsidiary }) {
+const categoryOrder = [
+  'Wings',
+  'Boneless',
+  'Snacks',
+  'Ribs',
+  'Burguers & Dogs',
+  'Charolas',
+  'Ensaladas',
+  'Bebidas',
+];
+
+function ScrollableList({ selectedSubsidiary, showItem, isEditingMode }) {
   const [ListData, setListData] = useState([]);
-
   const scrollContainer = useRef(null);
-
-  const categoryOrder = [
-    'Wings',
-    'Boneless',
-    'Snacks',
-    'Ribs',
-    'Burguers & Dogs',
-    'Charolas',
-    'Ensaladas',
-    'Bebidas',
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [productData, setProductData] = useState(null);
 
   let scrollInterval = null;
 
@@ -26,7 +34,7 @@ export default function ListData({ selectedSubsidiary }) {
         const response = await axios.get('http://localhost:5000/api/items');
         const filteredData = response.data
           .filter((item) => item.subsidiary === selectedSubsidiary)
-          .filter((item) => item.showitem === true)
+          .filter((item) => item.showitem === showItem)
           .sort(
             (a, b) =>
               categoryOrder.indexOf(a.category) -
@@ -38,12 +46,31 @@ export default function ListData({ selectedSubsidiary }) {
       }
     };
     if (selectedSubsidiary) {
-      // Asegúrate de que hay una sucursal seleccionada
       fetchData();
     } else {
-      setListData([]); // Limpia los datos si no hay sucursal seleccionada
+      setListData([]);
     }
   }, [selectedSubsidiary]);
+
+  const handleEdit = (data) => {
+    setProductData(data);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = (data) => {
+    setProductData(data);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleEnable = (data) => {
+    setProductData(data);
+    setIsModalOpen(true);
+  };
+
+  const handleDeleteItem = (data) => {
+    setProductData(data);
+    setIsDeleteModalOpen(true);
+  };
 
   const handleMouseMove = (e) => {
     const container = scrollContainer.current;
@@ -100,9 +127,54 @@ export default function ListData({ selectedSubsidiary }) {
             price={data.price}
             discount={data.discount}
             _id={data._id}
+            onEdit={isEditingMode ? handleEdit : handleEnable}
+            onDelete={isEditingMode ? handleDelete : handleDeleteItem}
           />
         );
       })}
+      {isModalOpen &&
+        (isEditingMode ? (
+          <EditProductForm
+            onClose={() => setIsModalOpen(false)}
+            productData={productData}
+          />
+        ) : (
+          <EnableItem
+            onClose={() => setIsModalOpen(false)}
+            productData={productData}
+          />
+        ))}
+      {isDeleteModalOpen &&
+        (isEditingMode ? (
+          <LogicalDeleted
+            onClose={() => setIsDeleteModalOpen(false)}
+            productData={productData}
+          />
+        ) : (
+          <DeleteItem
+            onClose={() => setIsDeleteModalOpen(false)}
+            productData={productData}
+          />
+        ))}
     </section>
+  );
+}
+
+export function ListData({ selectedSubsidiary }) {
+  return (
+    <ScrollableList
+      selectedSubsidiary={selectedSubsidiary}
+      showItem={true}
+      isEditingMode={true}
+    />
+  );
+}
+export function ListDataFalse({ selectedSubsidiary }) {
+  return (
+    <ScrollableList
+      selectedSubsidiary={selectedSubsidiary}
+      showItem={false}
+      isEditingMode={false}
+    />
   );
 }

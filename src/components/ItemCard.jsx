@@ -6,7 +6,7 @@ export default function ItemCard(props) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleOpenEdit = () => {
-    setIsModalOpen(true);
+    props.onEdit(props);
   };
   const handleCloseModals = () => {
     setIsModalOpen(false);
@@ -14,7 +14,7 @@ export default function ItemCard(props) {
   };
 
   const handleDeletedProduct = () => {
-    setIsDeleteModalOpen(true);
+    props.onDelete(props);
   };
 
   return (
@@ -63,7 +63,7 @@ export default function ItemCard(props) {
           />
         </div>
       </div>
-      {isModalOpen && (
+      {/*{isModalOpen && (
         <EditProductForm
           onClose={handleCloseModals}
           productData={{
@@ -85,7 +85,7 @@ export default function ItemCard(props) {
             _id: props._id,
           }}
         />
-      )}
+      )}*/}
     </section>
   );
 }

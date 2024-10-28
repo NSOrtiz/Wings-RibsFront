@@ -1,15 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+function MenuButtonList({ titlesBtn, handleButtonClick, selectedBtn }) {
+  return (
+    <div className="flex flex-col items-start gap-2">
+      {titlesBtn.map((btn, index) => (
+        <button
+          key={index}
+          onClick={() => handleButtonClick(index)}
+          className={`w-full flex items-center gap-[8px] justify-start p-2 rounded-[12px] 
+            ${selectedBtn === index ? 'bg-white shadow-md' : 'hover:bg-white'}`}
+        >
+          <img src="/icons/ArrowLineRight.svg" alt="" />
+          <img src={btn.icon} alt={btn.title} className="w-[24px] h-[24px]" />
+          <p>{btn.title}</p>
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function AdminMenu({ onSelectSubsidiary }) {
   const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
   const [selectedBtn, setSelectedBtn] = useState(null);
   const navigate = useNavigate();
 
+  //guardar en localStorage sucursal
+  useEffect(() => {
+    const storedSubsidiary = localStorage.getItem('selectedSubsidiary');
+    if (storedSubsidiary) {
+      setSelectedSubsidiary(storedSubsidiary);
+      onSelectSubsidiary(storedSubsidiary);
+    }
+  }, [onSelectSubsidiary]);
+
   const handleSubsidiaryChange = (event) => {
     const newSubsidiary = event.target.value;
     setSelectedSubsidiary(newSubsidiary);
     onSelectSubsidiary(newSubsidiary);
+    localStorage.setItem('selectedSubsidiary', newSubsidiary);
   };
 
   const handleButtonClick = (index) => {
@@ -21,16 +50,13 @@ export function AdminMenu({ onSelectSubsidiary }) {
       '/admin-sucursales',
       '/admin-menu',
     ];
-    if (index >= 0 && index < routes.length) {
-      navigate(routes[index]);
-    }
+    if (index >= 0 && index < routes.length) navigate(routes[index]);
   };
 
-  const titlesBtn = [
+  const adminTitlesBtn = [
     { icon: '/icons/Delivery.svg', title: 'Pedidos' },
     { icon: '/icons/UsersThree.svg', title: 'Vendedores' },
     { icon: '/icons/Bill.svg', title: 'Productos' },
-    //{ icon: "/icons/arrow_forward.svg", title: 'Estadisticas de ventas' },
     { icon: '/icons/Setting.svg', title: 'Configuración sucursal' },
   ];
 
@@ -69,24 +95,11 @@ export function AdminMenu({ onSelectSubsidiary }) {
             </div>
           </div>
         </section>
-        <div className="flex flex-col items-start gap-2 ">
-          {titlesBtn.map((btn, index) => (
-            <button
-              key={index}
-              onClick={() => handleButtonClick(index)}
-              className={`w-full flex items-center gap-[8px] justify-start p-2 rounded-[12px] 
-              ${selectedBtn === index ? 'bg-white shadow-md' : 'hover:bg-white'}`}
-            >
-              <img src="/icons/ArrowLineRight.svg" alt="" />
-              <img
-                src={btn.icon}
-                alt={btn.title}
-                className="w-[24px] h-[24px]"
-              />
-              <p>{btn.title}</p>
-            </button>
-          ))}
-        </div>
+        <MenuButtonList
+          titlesBtn={adminTitlesBtn}
+          handleButtonClick={handleButtonClick}
+          selectedBtn={selectedBtn}
+        />
       </div>
       <div className="flex justify-center">
         <img
@@ -106,22 +119,19 @@ export function SellerMenu() {
 
   const handleButtonClick = (index) => {
     setSelectedBtn(index);
-    if (index === 0) {
-      navigate('/vendedor-menu');
-    } else if (index === 1) {
-      navigate('/vendedor-pedidos');
-    } else if (index === 2) {
-      navigate('/vendedor-insumoss');
-    } else if (index === 3) {
-      navigate('/vendedor-menu');
-    }
+    const routes = [
+      '/vendedor-menu',
+      '/vendedor-pedidos',
+      '/vendedor-insumoss',
+      '/vendedor-menu',
+    ];
+    if (index >= 0 && index < routes.length) navigate(routes[index]);
   };
 
-  const titlesBtn = [
+  const sellerTitlesBtn = [
     { icon: '/icons/fastfood.svg', title: 'Menu' },
     { icon: '/icons/Delivery.svg', title: 'Pedidos' },
     { icon: '/icons/Bill.svg', title: 'Insumos' },
-    //{ icon: "/icons/arrow_forward.svg", title: 'Estadisticas de ventas' },
   ];
 
   return (
@@ -135,24 +145,11 @@ export function SellerMenu() {
           />
           <p className="text-[20px]">Vendedor</p>
         </div>
-        <div className="flex flex-col items-start gap-2 ">
-          {titlesBtn.map((btn, index) => (
-            <button
-              key={index}
-              onClick={() => handleButtonClick(index)}
-              className={`w-full flex items-center gap-[8px] justify-start p-2 rounded-[12px] 
-                ${selectedBtn === index ? 'bg-white shadow-md' : 'hover:bg-white'}`}
-            >
-              <img src="/icons/ArrowLineRight.svg" alt="" />
-              <img
-                src={btn.icon}
-                alt={btn.title}
-                className="w-[24px] h-[24px]"
-              />
-              <p>{btn.title}</p>
-            </button>
-          ))}
-        </div>
+        <MenuButtonList
+          titlesBtn={sellerTitlesBtn}
+          handleButtonClick={handleButtonClick}
+          selectedBtn={selectedBtn}
+        />
       </div>
       <div className="flex justify-center">
         <img
