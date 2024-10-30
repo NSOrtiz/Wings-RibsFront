@@ -105,21 +105,6 @@ export function MenuFood() {
     };
   }, []);
 
-  // const datafilter = FoodData.filter((card) => card.subsidiary === 'Loma Real');
-
-  /*const discountedItems = datafilter.filter((card) => card.discount !== 0);
-  if (discountedItems.length > 0) {
-    groupedData['Promociones'] = discountedItems;
-  }
-
-  datafilter.forEach((card) => {
-    const category = card.card_category;
-    if (!groupedData[category]) {
-      groupedData[category] = [];
-    }
-    groupedData[category].push(card);
-  }, {});*/
-
   return (
     <section
       ref={scrollContainer}

@@ -31,11 +31,11 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          <Route element={<ProtectedRouteUser />}>
-            <Route path="/home/menu" element={<Menu1 />} />
-            <Route path="/confirmacion-com" element={<Confirmacioncom />} />
-            <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-          </Route>
+          {/*<Route element={<ProtectedRouteUser />}>*/}
+          <Route path="/home/menu" element={<Menu1 />} />
+          <Route path="/confirmacion-com" element={<Confirmacioncom />} />
+          <Route path="/estatus-pedido" element={<EstatusDePedido />} />
+          {/*</Route>*/}
 
           <Route path="/profile" element={<ProfilePage />} />
 

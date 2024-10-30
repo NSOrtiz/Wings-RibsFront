@@ -3,19 +3,63 @@ import DishData from './DishData';
 import { useState } from 'react';
 import { Boton, IconBtn } from './Button';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Cart() {
   const navigate = useNavigate();
-
-  const handleClick = (message) => {
-    alert(message);
-    navigate('/confirmacion-com');
-  };
-
   const [total, setTotal] = useState(0);
+
+  //datos del carrito
+  const getCartData = () => JSON.parse(localStorage.getItem('cart')) || [];
 
   const handleUpdateTotal = (priceChange) => {
     setTotal((prevTotal) => prevTotal + priceChange);
+  };
+
+  const handleOrderSubmit = async () => {
+    const cartItems = getCartData();
+    const orderData = {
+      items: cartItems,
+      total: total + 20, // Incluye el cargo de servicio
+      details: 'Detalles adicionales del pedido',
+      client: {
+        nameuser: 'nombre',
+        address: 'domicilio',
+        cpnum: 12345,
+        phone: 1234567890,
+      },
+    };
+
+    console.log(orderData);
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/orders',
+        orderData,
+
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Respuesta del servidor:', response);
+
+      if (response.status === 201) {
+        const data = response.data;
+        alert(`Pedido confirmado: #${data.orderNumber}`);
+        localStorage.removeItem('cart');
+        navigate('/confirmacion-com');
+      } else {
+        throw new Error('Error al confirmar el pedido');
+      }
+    } catch (error) {
+      console.error(
+        'Error al enviar el pedido:',
+        error.response ? error.response.data : error
+      );
+    }
   };
 
   return (
@@ -46,7 +90,7 @@ export default function Cart() {
         <IconBtn
           icono="/icons/payments.svg"
           texto="Pagar"
-          onClick={() => handleClick('Confirmacionde compra')}
+          onClick={handleOrderSubmit}
         />
       </div>
     </section>
