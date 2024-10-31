@@ -7,6 +7,11 @@ import axios from 'axios';
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
   const [pedido, setPedido] = useState(null);
+  const [clientData, setClientData] = useState({
+    nameuser: '',
+    address: '',
+    phone: '',
+  });
   const navigate = useNavigate();
 
   const handleIconClick = () => {
@@ -42,8 +47,24 @@ function Confirmacioncom() {
     }
   };
   
+  const calculateSubtotal = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.price; 
+    }, 0);
+  };
   
-   
+  const calculateTotalDiscount = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.discount; 
+    }, 0);
+  };
+  
+  const calculateTotal = () => {
+    const subtotal = calculateSubtotal();
+    const discount = calculateTotalDiscount();
+    return subtotal - discount; 
+  };
+  
 
   useEffect(() => {
     fetchPedido(); 
@@ -82,16 +103,16 @@ function Confirmacioncom() {
                         >
                           <div className="flex items-center justify-start">
                             <img
-                              src="/images/chickenplate.png"
+                              src={item.photo}
                               alt="Plato"
                               className="w-[70px] h-[60px]"
                             />
                             <div className="flex flex-col mx-8">
                               <h2 id="ubuntu-bold" className="text-[16px]">
-                                {item.name} 
+                                {item.item} 
                               </h2>
                               <p id="ubuntu-light" className="text-[12px]">
-                                {item.detalle}
+                                {item.details}
                               </p>
                               <p id="ubuntu-medium" className="text-[16px]">
                                 MX ${item.price}
@@ -138,36 +159,21 @@ function Confirmacioncom() {
                     )}
                     <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-light" className="text-[16px]">
-                          Subtotal
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $30.00 mxn
+                        <p className="text-[16px]">Subtotal</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateSubtotal().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-light" className="text-[16px]">
-                          Descuento
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $10.00 mxn
+                        <p className="text-[16px]">Descuento</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateTotalDiscount().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-medium" className="text-[28px]">
-                          Total
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[28px] text-amber-500"
-                        >
-                          $220.00 mxn
+                        <p className="text-[28px]">Total</p>
+                        <p className="text-[28px] text-amber-500">
+                          MX ${pedido ? calculateTotal().toFixed(2) : 0}
                         </p>
                       </div>
                     </div>
@@ -178,47 +184,40 @@ function Confirmacioncom() {
               <div className="flex-1 flex flex-col lg:mt-0 mt-4">
                 <div className="flex flex-col items-center bg-white p-4 rounded-xl h-full">
                   <div className="flex items-center pb-2 w-full relative">
-                    <h2
-                      id="ubuntu-bold"
-                      className="text-[16px] flex-1 text-center"
-                    >
-                      Datos del cliente
-                    </h2>
-                    <img
-                      src="/icons/edit-yellow.svg"
-                      alt="Edit"
-                      className="w-6 h-6 text-amber-500 ml-4 cursor-pointer"
-                      onClick={handleIconClick}
-                    />
+                    <h2 id="ubuntu-bold" className="text-[16px] flex-1 text-center">Datos del cliente</h2>
+                    <img src="/icons/edit-yellow.svg" alt="Edit" className="w-6 h-6 text-amber-500 ml-4 cursor-pointer" onClick={handleIconClick} />
                     {isVisible && (
                       <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
                         <div className="bg-slate-200 p-6 shadow-lg w-full max-w-md rounded-lg">
-                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">
-                            Nombre
-                          </h2>
+                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">Nombre</h2>
                           <input
                             type="text"
                             placeholder="Escribe tu nombre"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.nameuser} // Cambiado a nameuser
+                            onChange={(e) => setClientData({ ...clientData, nameuser: e.target.value })} // Cambiado a nameuser
                           />
-                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">
-                            Número telefónico
-                          </h2>
+                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">Número telefónico</h2>
                           <input
                             type="text"
                             placeholder="Número telefónico"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.phone}
+                            onChange={(e) => setClientData({ ...clientData, phone: e.target.value })}
                           />
-                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">
-                            Dirección
-                          </h2>
+                          <h2 id="ubuntu-regular" className="py-2 text-[28px]">Dirección</h2>
                           <input
                             type="text"
                             placeholder="Escribe tu dirección"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.address}
+                            onChange={(e) => setClientData({ ...clientData, address: e.target.value })}
                           />
                           <div className="mt-6 flex justify-between">
-                            <button className="px-6 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600">
+                            <button 
+                              className="px-6 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600"
+                              onClick={handleSubmit}
+                            >
                               Enviar
                             </button>
                             <button
@@ -234,36 +233,16 @@ function Confirmacioncom() {
                   </div>
                   <div className="flex flex-col space-y-4 mt-4 w-full">
                     <div className="flex justify-between border-b border-neutral-200 pb-2">
-                      <p id="ubuntu-light" className="text-[16px]">
-                        Nombre
-                      </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        Albert Stevano
-                      </p>
+                      <p id="ubuntu-light" className="text-[16px]">Nombre</p>
+                      <p id="ubuntu-regular" className="text-[16px}">{clientData.nameuser || 'No disponible'}</p>
                     </div>
                     <div className="flex justify-between border-b border-neutral-200 pb-2">
-                      <p id="ubuntu-light" className="text-[16px]">
-                        Dirección
-                      </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        ygahysisysi
-                      </p>
-                    </div>
-                    <div className="flex justify-between border-b border-neutral-200 pb-2">
-                      <p id="ubuntu-light" className="text-[16px]">
-                        Código postal
-                      </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        BCBSBER
-                      </p>
+                      <p id="ubuntu-light" className="text-[16px]">Dirección</p>
+                      <p id="ubuntu-regular" className="text-[16px]">{clientData.address || 'No disponible'}</p>
                     </div>
                     <div className="flex justify-between pb-2">
-                      <p id="ubuntu-light" className="text-[16px]">
-                        Número telefónico
-                      </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        +12 83472838 28
-                      </p>
+                      <p id="ubuntu-light" className="text-[16px]">Número telefónico</p>
+                      <p id="ubuntu-regular" className="text-[16px]">{clientData.phone || 'No disponible'}</p>
                     </div>
                   </div>
 

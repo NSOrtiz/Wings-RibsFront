@@ -18,6 +18,25 @@ function EstatusDePedido() {
       console.error(error);
     }
   };
+
+  const calculateSubtotal = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.price; 
+    }, 0);
+  };
+  
+  const calculateTotalDiscount = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.discount; 
+    }, 0);
+  };
+  
+  const calculateTotal = () => {
+    const subtotal = calculateSubtotal();
+    const discount = calculateTotalDiscount();
+    return subtotal - discount; 
+  };
+
   useEffect(() => {
     fetchPedido();
   }, []);
@@ -51,18 +70,18 @@ function EstatusDePedido() {
                         <div className="flex items-center">
                           <p className="mr-2 text-amber-500">1</p>
                           <img
-                            src="/images/Rectangle-19.png"
+                            src={item.photo}
                             alt="Edit"
                             className="w-[65px] h-[82px] p-2 text-amber-500"
                           />
                         </div>
                         <div className="w-60 flex flex-col mx-4">
                           <h2 id="ubuntu-bold" className="text-[16px]">
-                          {item.name}
+                          {item.item}
 
                           </h2>
                           <p id="ubuntu-light" className="text-[12px]">
-                          {item.detalle}
+                          {item.details}
 
                           </p>
                         </div>
@@ -78,38 +97,23 @@ function EstatusDePedido() {
                     ) : (
                       <p>No hay items en el pedido.</p>
                     )}
-                    <div className="flex flex-col space-y-4 mt-4 w-full">
+ <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
-                        <p d="ubuntu-light" className="text-[16px]">
-                          Subtotal
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $30.00 mxn
+                        <p className="text-[16px]">Subtotal</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateSubtotal().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p d="ubuntu-light" className="text-[16px]">
-                          Descuento
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $10.00 mxn
+                        <p className="text-[16px]">Descuento</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateTotalDiscount().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-medium" className="text-[28px]">
-                          Total
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[28px] text-amber-500"
-                        >
-                          $220.00 mxn
+                        <p className="text-[28px]">Total</p>
+                        <p className="text-[28px] text-amber-500">
+                          MX ${pedido ? calculateTotal().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex items-center pb-2 w-full relative">
