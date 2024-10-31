@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavBar } from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
+// Clave pública de Stripe
+const stripePromise = loadStripe("pk_test_51QDrCjLdb3cGGjzGXdyQ6Ev1HzyhL5ye89mE9NtPYoKkc1naCRfvDFlzjCmOFZwRWEP6zdMArEac4kLM7tJaHKta00lTLMw2eB");
 
 export default function MetodoDePago() {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/estatus-pedido');
   };
+
   return (
     <div className="min-h-screen bg-neutral-200 relative">
       <NavBar />
@@ -30,7 +36,7 @@ export default function MetodoDePago() {
               style={{
                 width: '311px',
                 height: '55px',
-                color: '#F59E0B', // Color ámbar
+                color: '#F59E0B',
                 textAlign: 'center',
                 fontFamily: 'Ubuntu',
                 fontSize: '32px',
@@ -59,91 +65,29 @@ export default function MetodoDePago() {
               </h3>
             </div>
 
-            {/* Formulario */}
-            <form className="w-full">
-              {/* Contenedor para las imágenes de tipo de tarjeta */}
-              <div
-                className="flex justify-between w-full"
-                style={{
-                  display: 'flex',
-                  gap: '0px',
-                }}
-              >
-                <img
-                  src="/images/logo-mastercard.png"
-                  alt="Mastercard"
-                  className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
-                />
-                <img
-                  src="/images/logo-visa.png"
-                  alt="Visa"
-                  className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
-                />
-                <img
-                  src="/images/logo-rupay.png"
-                  alt="Rupay"
-                  className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
-                />
-              </div>
+            {/* Contenedor de logos de tarjetas */}
+            <div className="flex gap-4 mb-4">
+              <img
+                src="/images/logo-mastercard.png"
+                alt="Mastercard"
+                className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
+              />
+              <img
+                src="/images/logo-visa.png"
+                alt="Visa"
+                className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
+              />
+              <img
+                src="/images/logo-rupay.png"
+                alt="Rupay"
+                className="w-[75px] h-[55px] rounded-[5px] bg-[lightgray] bg-center bg-cover border-[rgba(217, 217, 217, 0.20)]"
+              />
+            </div>
 
-              {/* Formulario para los inputs */}
-              <div className="flex flex-col items-center gap-4 p-8 self-stretch">
-                {/* Input "Nombre del titular de la tarjeta" */}
-                <div className="w-full flex flex-col">
-                  <label className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2">
-                    Nombre del titular de la tarjeta
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-[#667473] border-[1px] rounded-[4px] bg-[#FFF] p-[12px]"
-                    placeholder="Nombre en la sucursal"
-                  />
-                </div>
-
-                {/* Input "Número de la tarjeta" */}
-                <div className="w-full flex flex-col">
-                  <label className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2">
-                    Número de la tarjeta
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-[#667473] border-[1px] rounded-[4px] bg-[#FFF] p-[12px]"
-                    placeholder="XXXX XXXX XXXX XXXX"
-                  />
-                </div>
-
-                {/* Contenedor para los campos "Fecha de expiración" y "CVV" */}
-                <div className="w-full flex gap-4">
-                  <div className="w-1/2 flex flex-col">
-                    <label
-                      className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2"
-                      style={{ alignSelf: 'stretch' }}
-                    >
-                      Fecha de expiración
-                    </label>
-                    <input
-                      type="date"
-                      className="w-full border-[#667473] border-[1px] rounded-[4px] bg-[#FFF] p-[12px]"
-                      placeholder="Fecha de expiración"
-                    />
-                  </div>
-                  <div className="w-1/2 flex flex-col">
-                    <label
-                      className="block text-[#667473] text-[20px] font-[700] font-Ubuntu leading-normal tracking-[0.2px] mb-2"
-                      style={{ alignSelf: 'stretch' }}
-                    >
-                      CVV
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full border-[#667473] border-[1px] rounded-[4px] bg-[#FFF] p-[12px]"
-                      placeholder="CVV"
-                      style={{ alignSelf: 'stretch' }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
+            {/* Formulario de pago */}
+            <Elements stripe={stripePromise}>
+              <CheckoutForm onPaymentSuccess={handleClick} />
+            </Elements>
 
             {/* Contenedor de subtotales y totales */}
             <div
@@ -194,16 +138,108 @@ export default function MetodoDePago() {
               className="w-full flex justify-center"
               style={{ paddingTop: '16px' }}
             >
-              <button
-                className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md"
-                onClick={() => handleClick()}
-              >
-                Pagar
-              </button>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function CheckoutForm({ onPaymentSuccess }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [subject, setSubject] = useState(""); // Estado para el asunto
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: 13579, // Monto en centavos
+          subject: subject, // Agregar el asunto aquí
+          original_data: {
+            // Datos originales que quieras incluir
+            example_field: "example_value",
+          }
+        }),
+      });
+
+      const { clientSecret } = await res.json();
+
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: cardHolderName,
+          },
+        },
+      });
+
+      if (result.error) {
+        setError(result.error.message);
+      } else {
+        if (result.paymentIntent.status === 'succeeded') {
+          // Navegar al estatus del pedido después del pago exitoso
+          onPaymentSuccess();
+        }
+      }
+    } catch (error) {
+      setError("Hubo un error al procesar el pago");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="flex flex-col gap-4 mb-4">
+        <label htmlFor="cardHolderName" className="text-neutral-500 text-[16px] font-[400] font-Ubuntu">
+          Nombre del titular
+        </label>
+        <input
+          type="text"
+          id="cardHolderName"
+          value={cardHolderName}
+          onChange={(e) => setCardHolderName(e.target.value)}
+          className="border rounded p-2 border-gray-300"
+          required
+        />
+      </div>
+
+      {/* Campo para el asunto */}
+      <div className="flex flex-col gap-4 mb-4">
+        <label htmlFor="subject" className="text-neutral-500 text-[16px] font-[400] font-Ubuntu">
+          Asunto
+        </label>
+        <input
+          type="text"
+          id="subject"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          className="border rounded p-2 border-gray-300"
+          required
+        />
+      </div>
+
+      <CardElement className="p-4 border border-gray-300 rounded" />
+      <button
+        type="submit"
+        disabled={!stripe || loading}
+        style={{ paddingTop: '12px' }}
+        className="w-[300px] flex justify-center items-center gap-[4px] p-[12px] bg-amber-500 text-white rounded-[16px] border-[1px] border-amber-500 shadow-md"
+      >
+        {loading ? "Procesando..." : "Pagar"}
+      </button>
+      {error && <div className="text-red-500 mt-2">{error}</div>}
+    </form>
   );
 }
