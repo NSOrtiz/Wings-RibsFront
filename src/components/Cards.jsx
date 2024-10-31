@@ -1,22 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Boton } from './Button';
 
-function Counter() {
-  const [count, setCount] = useState(0);
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-
+function Counter({ count, onIncrement, onDecrement }) {
   return (
     <section className="flex flex-row items-center border-2 border-amber-500 px-[4px] rounded-[8px]">
-      <button onClick={handleDecrement}>
+      <button onClick={onDecrement}>
         <img
           className="w-[20px] h-[20px]"
           src="/icons/remove.svg"
@@ -24,7 +14,7 @@ function Counter() {
         />
       </button>
       <p className="mx-4">{count}</p>
-      <button onClick={handleIncrement}>
+      <button onClick={onIncrement}>
         <img className="w-[20px] h-[20px]" src="/icons/add.svg" alt="Add" />
       </button>
     </section>
@@ -32,8 +22,82 @@ function Counter() {
 }
 
 export function CardsMenu(props) {
-  const handleClick = (message) => {
-    alert(message);
+  const [quantity, setQuantity] = useState(0);
+  const [isBuyButtonDisabled, setBuyButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItem = cart.find((item) => item.item === props.item);
+    if (existingItem) {
+      setQuantity(existingItem.qty);
+      setBuyButtonDisabled(existingItem.qty >= 1);
+    }
+  }, [props.item]);
+
+  const updateLocalStorage = (newQuantity) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItemIndex = cart.findIndex(
+      (item) => item.item === props.item
+    );
+
+    if (existingItemIndex !== -1) {
+      if (newQuantity <= 0) {
+        cart.splice(existingItemIndex, 1);
+      } else {
+        cart[existingItemIndex].qty = newQuantity;
+      }
+    } else if (newQuantity > 0) {
+      const itemData = {
+        item: props.item,
+        photo: props.photo,
+        price: props.price,
+        discount: props.discount,
+        qty: newQuantity,
+      };
+      cart.push(itemData); // Agregar nuevo artículo
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Actualización en localStorage', cart);
+  };
+
+  const handleClick = () => {
+    if (isBuyButtonDisabled) return;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItemIndex = cart.findIndex(
+      (cartItem) => cartItem.item === props.item
+    );
+
+    if (existingItemIndex !== -1) {
+      cart[existingItemIndex].qty = quantity;
+    } else {
+      const itemData = {
+        item: props.item,
+        photo: props.photo,
+        price: props.price,
+        discount: props.discount,
+        qty: quantity === 0 ? 1 : quantity,
+      };
+      cart.push(itemData);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('datos en localStorage', cart);
+  };
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => {
+      const newQuantity = prevQuantity + 1;
+      updateLocalStorage(newQuantity);
+      setBuyButtonDisabled(newQuantity >= 1);
+      return newQuantity;
+    });
+  };
+  const handleDecrement = () => {
+    setQuantity((prevQuantity) => {
+      const newQuantity = Math.max(prevQuantity - 1, 0);
+      updateLocalStorage(newQuantity);
+      setBuyButtonDisabled(newQuantity >= 1);
+      return newQuantity;
+    });
   };
 
   return (
@@ -118,10 +182,15 @@ export function CardsMenu(props) {
             </span>
           </div>
           <div className="flex flex-row justify-around">
-            <Counter />
+            <Counter
+              count={quantity}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+            />
             <Boton
               texto="Comprar ahora"
-              onClick={() => handleClick('Has hecho clic en Comprar ahora')}
+              onClick={handleClick}
+              disabled={isBuyButtonDisabled}
             />
           </div>
         </div>

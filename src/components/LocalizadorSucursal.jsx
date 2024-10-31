@@ -12,7 +12,7 @@ export default function LocalizadorSucursal() {
       id="filterhome"
       className="w-full flex flex-col justify-center items-center"
     >
-      <div className="min-w-[500px] flex flex-col justify-center items-start">
+      <div className="min-w-[300px] lg:min-w-[500px] flex flex-col justify-center items-start">
         <div className="w-full flex flex-row justify-between items-center gap-4 ">
           <button className="flex py-2 w-full bg-amber-500 rounded-[12px] shadow border border-neutral-800 justify-center items-center text-white text-[12px] md:text-[16px] lg:text-[20px] font-bold font-['Ubuntu'] hover:shadow-md hover:bg-amber-400 hover:text-neutral-800 ">
             Entregar a Domicilio
@@ -38,13 +38,13 @@ export default function LocalizadorSucursal() {
               Localizar
             </button>
           </div>
-          <div className="w-full flex flex-row justify-start gap-2 items-center hover:cursor-pointer">
+          <div className="w-full flex flex-row justify-start gap-2 justify-items-center hover:cursor-pointer">
             <img
               className="w-[20px] h-[20px] "
               src="/icons/navigate-outline.svg"
               alt="nav"
             />
-            <p className="w-[237px] h-[23px] text-white text-base font-medium font-['Ubuntu']">
+            <p className="w-[200px] h-[23px] text-white text-[12px] md:text-[16px] font-medium font-['Ubuntu']">
               Utiliza mi ubicación
             </p>
           </div>

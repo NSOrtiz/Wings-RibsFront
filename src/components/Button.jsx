@@ -4,7 +4,19 @@ export function Boton({ texto, onClick }) {
   return (
     <button
       id="ubuntu-medium"
-      className="bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px]"
+      className="flex bg-amber-500 hover:bg-amber-600 text-white text-[16px] py-[8px] px-[16px] rounded-[8px] justify-center items-center"
+      onClick={onClick}
+    >
+      {texto}
+    </button>
+  );
+}
+
+export function BotonWhite({ texto, onClick }) {
+  return (
+    <button
+      id="ubuntu-medium"
+      className="flex py-[8px] px-[16px] bg-neutral-300 rounded-[8px]  justify-center items-center text-neutral-800 text-[12px]  md:text-[16px] hover:bg-amber-600 hover:text-white hover:border-none"
       onClick={onClick}
     >
       {texto}
@@ -116,13 +128,11 @@ export function PaginationComponent() {
   );
 }
 
-export function SelectCategories() {
+export function SelectCategories({ onSelect }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [status, setStatus] = useState('Categorías');
-  const [selectedBtn, setSelectedBtn] = useState(null);
 
   const categories = [
-    'Promociones',
     'Wings',
     'Boneless',
     'Snacks',
@@ -147,6 +157,7 @@ export function SelectCategories() {
     e.preventDefault();
     setStatus(newStatus);
     setDropdownOpen(false);
+    onSelect(newStatus);
   };
 
   useEffect(() => {
@@ -201,12 +212,11 @@ export function SelectCategories() {
     </section>
   );
 }
-export function SelectTimeCook() {
+export function SelectTimeCook({ onSelect }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [status, setStatus] = useState('Tiempos');
-  const [selectedBtn, setSelectedBtn] = useState(null);
+  const [status, setStatus] = useState('Tiempos (min.)');
 
-  const times = ['10 min', '15 min', '20 min', '25 min', '30 min'];
+  const times = [10, 15, 20, 25, 30];
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -218,10 +228,11 @@ export function SelectTimeCook() {
     }
   };
 
-  const selectStatus = (newStatus, e) => {
+  const selectTime = (newTime, e) => {
     e.preventDefault();
-    setStatus(newStatus);
+    setStatus(newTime);
     setDropdownOpen(false);
+    onSelect(newTime);
   };
 
   useEffect(() => {
@@ -257,15 +268,15 @@ export function SelectTimeCook() {
               aria-labelledby="dropdownButton"
             >
               <div className="py-1" role="none">
-                {times.map((category, index) => (
+                {times.map((time, index) => (
                   <a
                     href="#"
                     key={index}
                     className="text-gray-700 block px-4 py-2 text-sm hover:bg-amber-600"
                     role="menuitem"
-                    onClick={(e) => selectStatus(category, e)}
+                    onClick={(e) => selectTime(time, e)}
                   >
-                    {category}
+                    {time}
                   </a>
                 ))}
               </div>

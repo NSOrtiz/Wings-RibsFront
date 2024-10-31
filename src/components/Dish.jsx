@@ -27,34 +27,70 @@ export default function Dish({
   newprice,
   discount,
   onTotalChange,
+  qty,
 }) {
-  const [count, setCount] = useState(1);
-  const [prevTotal, setPrevTotal] = useState(newprice);
+  const [count, setCount] = useState(qty);
+  const [prevTotal, setPrevTotal] = useState(newprice * qty);
 
   useEffect(() => {
-    onTotalChange(newprice / 2); // Sumar el precio inicial al total
-    setPrevTotal(newprice / 2); // Guardar el total inicial como valor previo
-  }, []); // Solo ejecuta al montar el componente
-
-  // Actualizar el total cuando el count cambie
+    setCount(qty);
+  }, [qty]);
   useEffect(() => {
-    // Restar el valor anterior y agregar el nuevo
+    onTotalChange((newprice * qty) / 2);
+    setPrevTotal(newprice * qty);
+  }, []);
+
+  useEffect(() => {
     onTotalChange(newprice * count - prevTotal);
     setPrevTotal(newprice * count);
   }, [count, newprice, prevTotal, onTotalChange]);
 
+  const updateLocalStorage = (newQuantity) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItemIndex = cart.findIndex(
+      (cartItem) => cartItem.item === item
+    );
+
+    if (existingItemIndex !== -1) {
+      if (newQuantity <= 0) {
+        cart.splice(existingItemIndex, 1); // Elimina el ítem si la cantidad es 0
+      } else {
+        cart[existingItemIndex].qty = newQuantity; // Actualiza la cantidad si no es 0
+      }
+    } else if (newQuantity > 0) {
+      // Agrega el ítem solo si la cantidad es mayor a 0
+      cart.push({ item, photo, price, discount, qty: newQuantity });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Actualización en localStorage', cart);
+  };
+
   const handleIncrement = () => {
-    setCount(count + 1);
+    setCount((prevCount) => {
+      const newCount = prevCount + 1;
+      updateLocalStorage(newCount);
+      return newCount;
+    });
   };
 
   const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+    setCount((prevCount) => {
+      const newCount = prevCount - 1;
+      if (newCount <= 0) {
+        updateLocalStorage(0);
+        return 0;
+      } else {
+        updateLocalStorage(newCount);
+        return newCount;
+      }
+    });
   };
 
-  const handleClick = (message) => {
-    console.log(message);
+  const handleDelete = () => {
+    setCount(0);
+    updateLocalStorage(0); // Llama a updateLocalStorage con cantidad 0 para eliminar
+    console.log('El ítem ha sido eliminado del carrito');
   };
 
   return (
@@ -108,10 +144,7 @@ export default function Dish({
         </div>
       </div>
       <div className="w-full flex flex-row justify-between ">
-        <EliminarBtn
-          texto="Eliminar"
-          onClick={() => handleClick('Has hecho clic en Eliminar')}
-        />
+        <EliminarBtn texto="Eliminar" onClick={handleDelete} />
         <Counter
           count={count}
           handleIncrement={handleIncrement}
