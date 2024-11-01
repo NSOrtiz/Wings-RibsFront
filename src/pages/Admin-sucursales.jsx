@@ -6,9 +6,10 @@ import { Boton } from '../components/Button';
 import TableStores from '../components/Table-stores';
 import { AddStore } from '../components/ModalSucursales.jsx';
 
-export default function Productos() {
+export default function AdminSucursales({ onSelectSubsidiary }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -27,7 +28,7 @@ export default function Productos() {
             isMenuVisible ? 'block' : 'hidden'
           } hide-cart relative top-[0] left-0 h-full w-[300px] z-50 flex flex-col items-center`}
         >
-          <AdminMenu />
+          <AdminMenu onSelectSubsidiary={setSelectedSubsidiary} />
         </aside>
         <div className="w-full flex flex-col items-stretch pl-[16px] md:pl-[56px] pt-[16px] md:pt-[56px] lg:pt-[80px] gap-2">
           <div
@@ -59,9 +60,7 @@ export default function Productos() {
         </div>
       </section>
       <Footer />
-      {isModalOpen && (
-        <AddStore onClose={handleCloseModal} /> // Renderiza el modal si está abierto
-      )}
+      {isModalOpen && <AddStore onClose={handleCloseModal} />}
     </main>
   );
 }
