@@ -45,7 +45,7 @@ export default function App() {
           <Route path="/admin-pedido" element={<AdminPedido />} />
           <Route path="/admin-vendors" element={<AdminVendores />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/home/menu" element={<Menu1 />} />
+          <Route path="ho" element={<Menu1 />} />
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />

@@ -3,16 +3,20 @@ import { NavBar } from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
   const [pedido, setPedido] = useState(null);
+  const [clientData, setClientData] = useState({
+    nameuser: '',
+    address: '',
+    phone: '',
+  });
   const navigate = useNavigate();
 
   const handleIconClick = () => {
     setIsVisible(!isVisible);
   };
-  
+
   const handleClick = () => {
     navigate('/metodo_pago');
   };
@@ -22,33 +26,51 @@ function Confirmacioncom() {
       const response = await fetch('http://localhost:5000/api/orders');
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Error al obtener el pedido: ${response.status} ${errorText}`);
+        throw new Error(
+          `Error al obtener el pedido: ${response.status} ${errorText}`
+        );
       }
       const data = await response.json();
-      setPedido(data[0]); 
+      setPedido(data[0]);
     } catch (error) {
       console.error(error);
     }
   };
   const handleDelete = async (itemId) => {
-    if (!pedido) return; 
+    if (!pedido) return;
     try {
-      const response = await axios.delete(`http://localhost:5000/api/orders/${pedido._id}/items/${itemId}`);
+      const response = await axios.delete(
+        `http://localhost:5000/api/orders/${pedido._id}/items/${itemId}`
+      );
       console.log(response.data);
-     
+
       fetchPedido();
     } catch (error) {
       console.error('Error al eliminar el item:', error);
     }
   };
-  
-  
-   
+
+  const calculateSubtotal = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.price;
+    }, 0);
+  };
+
+  const calculateTotalDiscount = () => {
+    return pedido.items.reduce((total, item) => {
+      return total + item.discount;
+    }, 0);
+  };
+
+  const calculateTotal = () => {
+    const subtotal = calculateSubtotal();
+    const discount = calculateTotalDiscount();
+    return subtotal - discount;
+  };
 
   useEffect(() => {
-    fetchPedido(); 
+    fetchPedido();
   }, []);
-
 
   return (
     <main>
@@ -70,7 +92,8 @@ function Confirmacioncom() {
                       id="ubuntu-bold"
                       className="text-[16px] flex-1 text-center text-amber-500"
                     >
-                      No. de pedido: {pedido ? pedido.orderNumber : 'Cargando...'}
+                      No. de pedido:{' '}
+                      {pedido ? pedido.orderNumber : 'Cargando...'}
                     </h2>
                   </div>
                   <div className="flex flex-col space-y-4 mt-4 w-full">
@@ -82,16 +105,16 @@ function Confirmacioncom() {
                         >
                           <div className="flex items-center justify-start">
                             <img
-                              src="/images/chickenplate.png"
+                              src={item.photo}
                               alt="Plato"
                               className="w-[70px] h-[60px]"
                             />
                             <div className="flex flex-col mx-8">
                               <h2 id="ubuntu-bold" className="text-[16px]">
-                                {item.name} 
+                                {item.item}
                               </h2>
                               <p id="ubuntu-light" className="text-[12px]">
-                                {item.detalle}
+                                {item.details}
                               </p>
                               <p id="ubuntu-medium" className="text-[16px]">
                                 MX ${item.price}
@@ -105,7 +128,12 @@ function Confirmacioncom() {
                                 alt="Eliminar"
                                 className="w-4 h-4 mr-1"
                               />
-                              <button className="mr-2" onClick={() => handleDelete(item._id)}>Eliminar</button>
+                              <button
+                                className="mr-2"
+                                onClick={() => handleDelete(item._id)}
+                              >
+                                Eliminar
+                              </button>
                             </div>
                             <div className="flex items-center">
                               <img
@@ -138,36 +166,21 @@ function Confirmacioncom() {
                     )}
                     <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-light" className="text-[16px]">
-                          Subtotal
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $30.00 mxn
+                        <p className="text-[16px]">Subtotal</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateSubtotal().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-light" className="text-[16px]">
-                          Descuento
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[16px] text-amber-500"
-                        >
-                          $10.00 mxn
+                        <p className="text-[16px]">Descuento</p>
+                        <p className="text-[16px] text-amber-500">
+                          MX ${pedido ? calculateTotalDiscount().toFixed(2) : 0}
                         </p>
                       </div>
                       <div className="flex justify-between pb-2">
-                        <p id="ubuntu-medium" className="text-[28px]">
-                          Total
-                        </p>
-                        <p
-                          id="ubuntu-medium"
-                          className="text-[28px] text-amber-500"
-                        >
-                          $220.00 mxn
+                        <p className="text-[28px]">Total</p>
+                        <p className="text-[28px] text-amber-500">
+                          MX ${pedido ? calculateTotal().toFixed(2) : 0}
                         </p>
                       </div>
                     </div>
@@ -200,6 +213,13 @@ function Confirmacioncom() {
                             type="text"
                             placeholder="Escribe tu nombre"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.nameuser} // Cambiado a nameuser
+                            onChange={(e) =>
+                              setClientData({
+                                ...clientData,
+                                nameuser: e.target.value,
+                              })
+                            } // Cambiado a nameuser
                           />
                           <h2 id="ubuntu-regular" className="py-2 text-[28px]">
                             Número telefónico
@@ -208,6 +228,13 @@ function Confirmacioncom() {
                             type="text"
                             placeholder="Número telefónico"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.phone}
+                            onChange={(e) =>
+                              setClientData({
+                                ...clientData,
+                                phone: e.target.value,
+                              })
+                            }
                           />
                           <h2 id="ubuntu-regular" className="py-2 text-[28px]">
                             Dirección
@@ -216,9 +243,19 @@ function Confirmacioncom() {
                             type="text"
                             placeholder="Escribe tu dirección"
                             className="border border-neutral-500 w-full py-3 rounded-md"
+                            value={clientData.address}
+                            onChange={(e) =>
+                              setClientData({
+                                ...clientData,
+                                address: e.target.value,
+                              })
+                            }
                           />
                           <div className="mt-6 flex justify-between">
-                            <button className="px-6 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600">
+                            <button
+                              className="px-6 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600"
+                              //onClick={handleSubmit}
+                            >
                               Enviar
                             </button>
                             <button
@@ -237,8 +274,8 @@ function Confirmacioncom() {
                       <p id="ubuntu-light" className="text-[16px]">
                         Nombre
                       </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        Albert Stevano
+                      <p id="ubuntu-regular" className="text-[16px}">
+                        {clientData.nameuser || 'No disponible'}
                       </p>
                     </div>
                     <div className="flex justify-between border-b border-neutral-200 pb-2">
@@ -246,15 +283,7 @@ function Confirmacioncom() {
                         Dirección
                       </p>
                       <p id="ubuntu-regular" className="text-[16px]">
-                        ygahysisysi
-                      </p>
-                    </div>
-                    <div className="flex justify-between border-b border-neutral-200 pb-2">
-                      <p id="ubuntu-light" className="text-[16px]">
-                        Código postal
-                      </p>
-                      <p id="ubuntu-regular" className="text-[16px]">
-                        BCBSBER
+                        {clientData.address || 'No disponible'}
                       </p>
                     </div>
                     <div className="flex justify-between pb-2">
@@ -262,7 +291,7 @@ function Confirmacioncom() {
                         Número telefónico
                       </p>
                       <p id="ubuntu-regular" className="text-[16px]">
-                        +12 83472838 28
+                        {clientData.phone || 'No disponible'}
                       </p>
                     </div>
                   </div>
@@ -286,4 +315,3 @@ function Confirmacioncom() {
 }
 
 export default Confirmacioncom;
-

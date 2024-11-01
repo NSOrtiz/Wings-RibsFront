@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function NavBar() {
   const buttons = ['Inicio', 'Registro'];
   const navigate = useNavigate();
+  //const { isAuthenticated, logout, user } = useAuth();
 
   function handleNavigation(btn) {
     if (btn === 'Inicio') {
