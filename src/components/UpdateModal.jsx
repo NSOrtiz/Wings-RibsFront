@@ -1,13 +1,30 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 
-export default function UpdateUser({ isOpen, setIsOpen }) {
+import { useLocation } from 'react-router-dom';
+
+function UpdateUser({ isOpen, setIsOpen }) {
+  const location = useLocation();
+  const { nom, setNom } = useState({});
+  const { add, setAdd } = useState({});
+  const { phone, setPhone } = useState({});
+
+  useEffect(() => {
+    try {
+      setNom(location.state.setNom);
+      setAdd(location.state.setAdd);
+      setPhone(location.state.setPhone);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <div>
       <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div className="relative justify-center w-full ">
           <div className="relative bg-neutral-200 rounded-lg py-12 shadow dark:bg-gray-500 bg-opacity-70">
             <div className="flex items-center justify-center p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-              <div className="bg-white w-[80%] lg:max-w-[1000px] p-5 rounded-xl">
+              <form className="bg-white w-[80%] lg:max-w-[1000px] p-5 rounded-xl">
                 <div className="flex flex-row">
                   <button
                     type="button"
@@ -30,6 +47,7 @@ export default function UpdateUser({ isOpen, setIsOpen }) {
                 </p>
                 <input
                   type="text"
+                  defaultValue={nom}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
                 ></input>
                 <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
@@ -37,13 +55,16 @@ export default function UpdateUser({ isOpen, setIsOpen }) {
                 </p>
                 <input
                   type="text"
+                  defaultValue={phone}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
+                  autoFocus
                 ></input>
                 <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
                   Dirección
                 </p>
                 <input
                   type="text"
+                  defaultValue={add}
                   className="w-full px-4 py-2 rounded-md border border-gray-500 my-2"
                 ></input>
                 <p className="text-[20px] font-bold text-gray-500 pb-[12px]">
@@ -62,13 +83,13 @@ export default function UpdateUser({ isOpen, setIsOpen }) {
                 </div>
                 <div className="flex justify-center pt-[12px]">
                   <button
-                    type="button"
                     className="border border-amber-700 bg-amber-500 text-[20px] font-bold text-white px-5 py-2 rounded-full w-[300px]"
+                    //onClick={state.user}
                   >
                     Enviar
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -76,3 +97,5 @@ export default function UpdateUser({ isOpen, setIsOpen }) {
     </div>
   );
 }
+
+export default UpdateUser;
