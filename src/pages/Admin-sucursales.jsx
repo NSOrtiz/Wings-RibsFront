@@ -3,7 +3,7 @@ import { AdminSellerNavBar } from '../components/NavBar';
 import Footer from '../components/Footer';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Boton } from '../components/Button';
-import TableStores from '../components/Table-stores';
+import ItemStores from '../components/Table-stores';
 import { AddStore } from '../components/ModalSucursales.jsx';
 
 export default function AdminSucursales({ onSelectSubsidiary }) {
@@ -56,7 +56,7 @@ export default function AdminSucursales({ onSelectSubsidiary }) {
             </p>
             <p className="text-center text-[16px] text-amber-500 hidden md:table-cell"></p>
           </div>
-          <TableStores />
+          <ItemStores />
         </div>
       </section>
       <Footer />

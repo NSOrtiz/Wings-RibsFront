@@ -44,7 +44,7 @@ export function AdminMenu({ onSelectSubsidiary }) {
   const handleButtonClick = (index) => {
     setSelectedBtn(index);
     const routes = [
-      '/admin-pedidos',
+      '/admin-pedido',
       '/admin-vendedores',
       '/admin-productos',
       '/admin-sucursales',

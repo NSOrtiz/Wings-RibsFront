@@ -5,8 +5,9 @@ import PedidoCard from '../components/PedidoCard';
 import { AdminMenu } from '../components/VerticalMenu';
 import { Search } from '../components/Button';
 
-export default function VendedorPedido() {
+export default function AdminPedido({ onSelectSubsidiary }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
   const [items, setItems] = useState([]);
 
   const toggleMenuVisibility = () => {
@@ -36,7 +37,7 @@ export default function VendedorPedido() {
             isMenuVisible ? 'block' : 'hidden'
           } hide-cart relative top-[0] left-0 h-full w-[300px]  z-50 flex flex-col items-center`}
         >
-          <AdminMenu />
+          <AdminMenu onSelectSubsidiary={setSelectedSubsidiary} />
         </aside>
 
         <section className="w-full flex flex-col items-stretch pl-[16px] md:pl-[56px] pt-[16px] md:pt-[56px] lg:pt-[80px]">
@@ -48,7 +49,6 @@ export default function VendedorPedido() {
           </div>
 
           <div className="w-full flex justify-end items-center mb-10">
-
             <Search />
           </div>
 

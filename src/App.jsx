@@ -16,7 +16,7 @@ import Menu2 from './pages/MenuAdmin';
 import Menu3 from './pages/MenuSeller';
 import VendedorInsumos from './pages/Vendedor-insumos';
 import AdminSucursales from './pages/Admin-sucursales';
-import AdminVendores from './pages/AdminVendores';
+import AdminVendedores from './pages/AdminVendores';
 import ResponsiveCart from './pages/Carrito_compra';
 import Contacto from './pages/Contacto-sucursales';
 import ProtectedRouteUser from './ProtectedRouteUser';
@@ -35,38 +35,31 @@ export default function App() {
           <Route path="/home/menu" element={<Menu1 />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
+          <Route path="/metodo_pago" element={<MetodoPago />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/home/carrito" element={<ResponsiveCart />} />
           {/*</Route>*/}
 
-          <Route path="/profile" element={<ProfilePage />} />
-
+          <Route path="/vendedor-menu" element={<Menu3 />} />
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />
           <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
-
-          <Route path="/admin-pedido" element={<AdminPedido />} />
-          <Route path="/admin-vendors" element={<AdminVendores />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="ho" element={<Menu1 />} />
-          <Route path="/metodo_pago" element={<MetodoPago />} />
-          <Route path="/confirmacion-com" element={<Confirmacioncom />} />
-          <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-          <Route path="/admin-pedidos" element={<AdminPedido />} />
-          <Route path="/vendedor-pedidos" element={<VendedorPedido />} />
           <Route path="/vendedor-insumoss" element={<VendedorInsumos />} />
-          <Route path="/admin-vendores" element={<AdminVendores />} />
-          <Route path="/admin-productos" element={<Productos />} />
+
           <Route path="/admin-menu" element={<Menu2 />} />
-
-          <Route path="/vendedor-menu" element={<Menu3 />} />
-          <Route path="/vendedor-insumoss" element={<VendedorInsumos />} />
+          <Route path="/admin-pedido" element={<AdminPedido />} />
+          <Route path="/admin-vendedores" element={<AdminVendedores />} />
+          <Route path="/admin-productos" element={<Productos />} />
           <Route path="/admin-sucursales" element={<AdminSucursales />} />
-          <Route path="/admin-vendedores" element={<AdminVendores />} />
-
-          <Route path="/home/carrito" element={<ResponsiveCart />} />
-          <Route path="/contacto" element={<Contacto />} />
           <Route
             path="/admin-deshabilitados"
             element={<ProductosDeshabilitados />}
           />
+
+          <Route path="home/menu" element={<Menu1 />} />
+          <Route path="/confirmacion-com" element={<Confirmacioncom />} />
+          <Route path="/metodo_pago" element={<MetodoPago />} />
+          <Route path="/estatus-pedido" element={<EstatusDePedido />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

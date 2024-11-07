@@ -7,9 +7,10 @@ import ProfileVendor from '../components/ProfileVendors';
 import NewVendorForm from '../components/nodalVendedores'; // Importa el modal
 import { AdminSellerNavBar } from '../components/NavBar';
 
-export default function AdminVendores() {
+export default function AdminVendedores() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [selectedSubsidiary, setSelectedSubsidiary] = useState('');
 
   const handleOpenModal = () => {
     setIsModalOpen(true); // Abre el modal
@@ -30,7 +31,7 @@ export default function AdminVendores() {
             isMenuVisible ? 'block' : 'hidden'
           } hide-cart relative top-[0] left-0 h-full w-[300px] z-50 flex flex-col items-center`}
         >
-          <AdminMenu />
+          <AdminMenu onSelectSubsidiary={setSelectedSubsidiary} />
         </aside>
         <div className="w-full h-full p-[24px]">
           <section className="w-full flex flex-col items-stretch pl-[16px] md:pl-[56px]  pt-[16px] md:pt-[56px] lg:pt-[80px]">
@@ -65,16 +66,16 @@ export default function AdminVendores() {
               <p className="text-center text-[16px] text-amber-500  basis-1/4"></p>
             </div>
 
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
-            <ProfileVendor />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
+            <ProfileVendor selectedSubsidiary={selectedSubsidiary} />
 
             <PaginationComponent />
           </section>

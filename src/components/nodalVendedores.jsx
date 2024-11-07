@@ -31,11 +31,25 @@ const NewVendorForm = ({ onClose }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    // Aquí puedes agregar la lógica para manejar el envío del formulario
+  const handleSubmit = async () => {
     console.log('Datos del vendedor:', formData);
-    // Puedes hacer una llamada a una API aquí para enviar los datos
-    // Luego de enviar, cierra el modal
+    const dataToSubmit = { ...formData, role: 'vendor' };
+
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSubmit), // Enviar los datos con el rol
+      });
+
+      const result = await response.json();
+      console.log('Usuario registrado:', result);
+      onClose(); // Cerrar el modal después de un registro exitoso
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+    }
     onClose();
   };
 
@@ -100,7 +114,7 @@ const NewVendorForm = ({ onClose }) => {
             </label>
           </div>
 
-          {/* Sección "Foto" */}
+          {/* Sección "Foto" 
           <span
             className="self-stretch mt-4"
             style={{
@@ -138,7 +152,7 @@ const NewVendorForm = ({ onClose }) => {
             <span className="ml-4 flex-1 text-ellipsis overflow-hidden whitespace-nowrap text-[var(--Primary-Gris-300,#ABB5B4)] font-ubuntu text-[20px] font-medium leading-normal uppercase">
               {selectedFile ? selectedFile : 'NO HAY ARCHIVO SELECCIONADO'}
             </span>
-          </div>
+          </div>*/}
         </div>
 
         {/* Nuevo div separado para "Datos vendedor" */}
@@ -175,28 +189,6 @@ const NewVendorForm = ({ onClose }) => {
                 name="phone"
                 className={sharedInputClasses}
                 placeholder="Teléfono"
-                onChange={handleInputChange}
-              />
-            </label>
-          </div>
-
-          <div className="flex w-full gap-4 mt-2">
-            <label className="flex flex-col items-start self-stretch">
-              <input
-                type="text"
-                name="state"
-                className={sharedInputClasses}
-                placeholder="Estado"
-                onChange={handleInputChange}
-              />
-            </label>
-
-            <label className="flex flex-col items-start self-stretch">
-              <input
-                type="text"
-                name="postalCode"
-                className={sharedInputClasses}
-                placeholder="CP"
                 onChange={handleInputChange}
               />
             </label>

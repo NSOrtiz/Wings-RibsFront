@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 function UpdateUser({ isOpen, setIsOpen }) {
   const location = useLocation();
-  const { nom, setNom } = useState({});
-  const { add, setAdd } = useState({});
-  const { phone, setPhone } = useState({});
+  const { nom, setNom } = useState('user');
+  const { add, setAdd } = useState();
+  const { phone, setPhone } = useState();
 
   useEffect(() => {
     try {

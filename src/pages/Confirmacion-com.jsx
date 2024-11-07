@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavBar } from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
+import DishData from '../components/DishData';
 import axios from 'axios';
 
 function Confirmacioncom() {
   const [isVisible, setIsVisible] = useState(false);
   const [pedido, setPedido] = useState(null);
+  const [total, setTotal] = useState(0);
   const [clientData, setClientData] = useState({
     nameuser: '',
     address: '',
@@ -68,6 +70,11 @@ function Confirmacioncom() {
     return subtotal - discount;
   };
 
+  //requiere esta funcion donde se coloca el valor total
+  const handleUpdateTotal = (priceChange) => {
+    setTotal((prevTotal) => prevTotal + priceChange);
+  };
+
   useEffect(() => {
     fetchPedido();
   }, []);
@@ -97,7 +104,8 @@ function Confirmacioncom() {
                     </h2>
                   </div>
                   <div className="flex flex-col space-y-4 mt-4 w-full">
-                    {pedido && pedido.items && pedido.items.length > 0 ? (
+                    <DishData onUpdateTotal={handleUpdateTotal} />
+                    {/*{pedido && pedido.items && pedido.items.length > 0 ? (
                       pedido.items.map((item, index) => (
                         <div
                           key={index}
@@ -163,7 +171,7 @@ function Confirmacioncom() {
                       ))
                     ) : (
                       <p>No hay items en el pedido.</p>
-                    )}
+                    )}*/}
                     <div className="flex flex-col space-y-4 mt-4 w-full">
                       <div className="flex justify-between pb-2">
                         <p className="text-[16px]">Subtotal</p>

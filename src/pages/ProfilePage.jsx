@@ -17,7 +17,7 @@ export default function MetodoDePago() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // Aquí podrías manejar los datos del formulario, como enviarlos a un backend
+    console.log(data);
   };
 
   return (

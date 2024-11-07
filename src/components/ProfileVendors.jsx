@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProfileVendor() {
+export default function ProfileVendor({ selectedSubsidiary }) {
   return (
     <div className="pl-6 flex flex-row gap-8 border-b border-neutral-500 mb-6 justify-items-center">
       <img className="w-[60px] h-[40px] col-span-full bg-yellow-800  rounded-full "></img>

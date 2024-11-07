@@ -17,7 +17,9 @@ export default function Cart() {
   };
 
   const handleOrderSubmit = async () => {
-    const cartItems = getCartData();
+    console.log(getCartData());
+    navigate('/confirmacion-com');
+    /*const cartItems = getCartData();
     const orderData = {
       items: cartItems,
       total: total + 20, // Incluye el cargo de servicio
@@ -49,7 +51,7 @@ export default function Cart() {
       if (response.status === 201) {
         const data = response.data;
         alert(`Pedido confirmado: #${data.orderNumber}`);
-        localStorage.removeItem('cart');
+        //localStorage.removeItem('cart');  //resetea localStorage
         navigate('/confirmacion-com');
       } else {
         throw new Error('Error al confirmar el pedido');
@@ -59,7 +61,7 @@ export default function Cart() {
         'Error al enviar el pedido:',
         error.response ? error.response.data : error
       );
-    }
+    }*/
   };
 
   return (

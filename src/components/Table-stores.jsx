@@ -1,35 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { DeleteSubsidiary, EditSubsidiaryForm } from './ModalSucursales';
 
 export default function ItemStores() {
-  const dataSubsidiary = [
-    {
-      name: 'Sucursal Paseo Loma Real',
-      address: 'Loma Real, Infonavit Benito Juárez, 88274 Nuevo Laredo, Tamps.',
-      phone: '(867)745-8517',
-      id: '24234235235',
-    },
-    {
-      name: 'Sucursal Ruiz Cortinez',
-      address:
-        'Av. Ruiz cortínez entre fray Pedro de Gante 704, Nuevo Laredo, Tamps.',
-      phone: '(867)750 4342',
-      id: '252543535435',
-    },
-    {
-      name: 'Sucursal Salinas Puga',
-      address: 'Salinas puga 2309, Nuevo Laredo, Tamps.',
-      phone: '(867)308-0606',
-      id: '5254325532453',
-    },
-  ];
+  const [subsidiaryList, setsubsidiaryList] = useState([]);
+  const [subsidiaryData, setsubsidiaryData] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5000/api/subsidiary'
+        );
+        setsubsidiaryList(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleEdit = (data) => {
+    setsubsidiaryData(data);
+    setIsEditModalOpen(true);
+  };
+
+  const handleDelete = (data) => {
+    setsubsidiaryData(data);
+    setIsDeleteModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsEditModalOpen(false);
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <section className="p-2">
-      {dataSubsidiary.map((element) => {
+      {subsidiaryList.map((element) => {
         return (
           <div
             className="w-full grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-neutral-500 mb-6 sm:overflow-x-auto"
-            key={element.text}
+            key={element._id}
           >
             <p
               id="ubuntu-regular"
@@ -42,7 +55,14 @@ export default function ItemStores() {
               id="ubuntu-regular"
               className="text-center text-neutral-800 text-[14px] lg:text-[16px]"
             >
-              {element.address}
+              {element.street}, {element.town}, {element.state}, {element.cpnum}
+            </p>
+
+            <p
+              id="ubuntu-regular"
+              className="text-center text-neutral-800 text-[14px] lg:text-[16px]"
+            >
+              {element.email}
             </p>
             <p
               id="ubuntu-regular"
@@ -50,27 +70,35 @@ export default function ItemStores() {
             >
               {element.phone}
             </p>
-            <p
-              id="ubuntu-regular"
-              className="text-center text-neutral-800 text-[14px] lg:text-[16px]"
-            >
-              {element.id}
-            </p>
             <div className=" flex flex-row gap-2 justify-center">
               <img
                 src="/icons/edit-yellow.svg"
                 alt=""
                 className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
+                onClick={() => handleEdit(element)}
               />
               <img
                 className="w-[30px] h-[30px] cursor-pointer hover:scale-125"
                 src="/icons/delete-yellow.svg"
                 alt=""
+                onClick={() => handleDelete(element)}
               />
             </div>
           </div>
         );
       })}
+      {isEditModalOpen && (
+        <EditSubsidiaryForm
+          onClose={closeModal}
+          subsidiaryData={subsidiaryData}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteSubsidiary
+          onClose={closeModal}
+          subsidiaryData={subsidiaryData}
+        />
+      )}
     </section>
   );
 }
