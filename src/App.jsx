@@ -31,14 +31,14 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/*<Route element={<ProtectedRouteUser />}>*/}
+          <Route element={<ProtectedRouteUser />}>
           <Route path="/home/menu" element={<Menu1 />} />
           <Route path="/confirmacion-com" element={<Confirmacioncom />} />
           <Route path="/estatus-pedido" element={<EstatusDePedido />} />
           <Route path="/metodo_pago" element={<MetodoPago />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/home/carrito" element={<ResponsiveCart />} />
-          {/*</Route>*/}
+          </Route>
 
           <Route path="/vendedor-menu" element={<Menu3 />} />
           <Route path="/vendedor-pedido" element={<VendedorPedido />} />

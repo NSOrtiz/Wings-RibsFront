@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { NavBar } from '../components/NavBar';
 import { useState } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import UpdateUser from '../components/UpdateModal';
 /*import visaLogo from '../assets/visa-logo.png';
 import paypalLogo from '../assets/paypal-logo.png';*/
@@ -52,7 +52,7 @@ export default function MetodoDePago() {
           </div>
 
           <div className="col-start-1 col-span-2 font-bold text-[20px] md:col-start-2 md:text-[28px] lg:col-span-2 lg:text-[28px]">
-            <p>Nombre de usuario</p>
+            <p>{}</p>
           </div>
           <div className="col-start-1 text-[16px] md:col-start-2 lg:col-start-2 ">
             <p className="text-lg text-gray-500 md:text-[20px] lg:text-[20px]">
