@@ -23,75 +23,81 @@ export const AuthProvider = ({ children }) => {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    checkSession();
+  }, []);
+
+  const checkSession = async () => {
+    const token = localStorage.getItem('token') || Cookies.get('token');
+    //const token = Cookies.get('token');
+    if (!token) {
+      setIsAuthenticated(false);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await verityTokenRequest(token);
+      console.log('Respuesta al verificar token:', res);
+      setIsAuthenticated(true);
+      setUser(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error verifying token', error);
+      setIsAuthenticated(false);
+      setUser(null);
+      setLoading(false);
+    }
+  };
+
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
       console.log(res.data);
-      setUser(res.data);
       setIsAuthenticated(true);
+      setUser(res.data);
+      if (res.data.token) {
+        console.log('Token recibido:', res.data.token);
+        localStorage.setItem('token', res.data.token);
+        Cookies.set('token', res.data.token, {
+          secure: false,
+          path: '/', // Asegura que la cookie esté disponible en todo el sitio
+          sameSite: 'None',
+          expires: 1,
+        });
+        console.log('Token almacenado correctamente:', res.data.token);
+      } else {
+        console.error('El token recibido es vacío o undefined');
+      }
     } catch (error) {
       console.log(error.response);
-      setErrors(error.response.data);
+      setErrors([error.response.data.message]);
     }
   };
 
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
-      console.log(res);
+      console.log('Respuesta completa:', res);
       setIsAuthenticated(true);
       setUser(res.data);
-    } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
+      if (res.data.token) {
+        console.log('Token recibido:', res.data.token);
+        localStorage.setItem('token', res.data.token);
+        Cookies.set('token', res.data.token, {
+          secure: false,
+          path: '/', // Asegura que la cookie esté disponible en todo el sitio
+          sameSite: 'None',
+          expires: 1,
+        });
+        console.log('Token almacenado correctamente:', res.data.token);
+      } else {
+        console.error('El token recibido es vacío o undefined');
       }
+    } catch (error) {
       setErrors([error.response.data.message]);
     }
   };
-
-  //timer para limpiar recuadro de errores
-  useEffect(() => {
-    if (errors.length > 0) {
-      const timer = setTimeout(() => {
-        setErrors([]);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [errors]);
-
-  //peticion al backend para busqueda de cookies existentes
-  useEffect(() => {
-    async function checkLogin() {
-      const cookies = Cookies.get();
-
-      console.log(cookies);
-
-      if (!cookies.token) {
-        console.log(cookies.token);
-        setIsAuthenticated(false);
-        setLoading(false);
-        return setUser(null);
-      }
-
-      try {
-        const res = await verityTokenRequest(cookies.token);
-        if (!res.data) {
-          setIsAuthenticated(false);
-          setLoading(false);
-          return;
-        }
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setIsAuthenticated(false);
-        setUser(null);
-        setLoading(false);
-      }
-    }
-    checkLogin();
-  }, []);
 
   return (
     <AuthContext.Provider

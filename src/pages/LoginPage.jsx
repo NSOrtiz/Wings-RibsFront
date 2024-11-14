@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { NavBar } from '../components/NavBar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogoPR from '../assets/W&R2.png';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const {
@@ -10,11 +11,22 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { signin, errors: signinErrors } = useAuth();
+  const { signin, errors: signinErrors, isAuthenticated, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.removeItem('token');
+  }, []);
 
   const onSubmit = handleSubmit((data) => {
     signin(data);
   });
+
+  useEffect(() => {
+    if (isAuthenticated && !loading) {
+      navigate('/home/menu'); // Redirigir a la página principal o dashboard
+    }
+  }, [isAuthenticated, loading, navigate]);
 
   return (
     <>

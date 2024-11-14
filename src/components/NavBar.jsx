@@ -69,6 +69,7 @@ export function NavBar() {
                 <Link
                   to="/"
                   onClick={() => {
+                    localStorage.removeItem('token');
                     logout();
                   }}
                 >
@@ -138,6 +139,7 @@ export function NavBar() {
                   <Link
                     to="/"
                     onClick={() => {
+                      localStorage.removeItem('token');
                       logout();
                     }}
                   >

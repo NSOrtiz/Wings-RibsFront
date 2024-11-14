@@ -31,7 +31,7 @@ export default function RegisterPage() {
         <div className="max-w-full mx-auto p-10 rounded-sm md:max-w-5xl">
           <div className="flex">
             <div className="py-2 w-full">
-              {registerErrors.map((error, i) => (
+              {registerErrors?.map((error, i) => (
                 <div
                   className="mx-auto rounded-md bg-neutral-800 text-amber-50 py-2 px-2 font-bold w-64 text-center"
                   key={i}

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import ProfilePage from './pages/ProfilePage';
+import Profile from './pages/ProfilePage';
 import Menu1 from './pages/Menusucursal';
 import MetodoPago from './pages/metodo_pago';
 import HomePage from './pages/HomePage';
@@ -32,12 +32,12 @@ export default function App() {
           <Route path="/register" element={<RegisterPage />} />
 
           <Route element={<ProtectedRouteUser />}>
-          <Route path="/home/menu" element={<Menu1 />} />
-          <Route path="/confirmacion-com" element={<Confirmacioncom />} />
-          <Route path="/estatus-pedido" element={<EstatusDePedido />} />
-          <Route path="/metodo_pago" element={<MetodoPago />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/home/carrito" element={<ResponsiveCart />} />
+            <Route path="/home/menu" element={<Menu1 />} />
+            <Route path="/confirmacion-com" element={<Confirmacioncom />} />
+            <Route path="/estatus-pedido" element={<EstatusDePedido />} />
+            <Route path="/metodo_pago" element={<MetodoPago />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/home/carrito" element={<ResponsiveCart />} />
           </Route>
 
           <Route path="/vendedor-menu" element={<Menu3 />} />
